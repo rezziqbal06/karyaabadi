@@ -88,14 +88,14 @@
                                 <div class="col-md-8">
                                     <div id="psd_qty">
                                         <div id="sd_qty_0" class="input-group mb-3">
-                                            <input type="number" id="ispec_from_qty_0" name="spec_detail_from_qty[]" class="form-control" data-count="qty" data-count-detail="0" readonly placeholder="">
+                                            <input type="number" id="ispec_detail_from_qty_0" name="spec_detail_from_qty[]" class="form-control" data-count="qty" data-count-detail="0" readonly placeholder="">
                                             <select name="spec_detail_operator_qty[]" class="bg-dark text-white form-select input-group-text" id="ispec_detail_operator_qty_0" data-count="qty" data-count-detail="0">
                                                 <option value="<">
                                                     < </option>
                                                 <option value="-"> - </option>
                                                 <option value=">"> > </option>
                                             </select>
-                                            <input type="number" id="ispec_to_qty_0" name="spec_detail_to_qty[]" class="form-control pe-1" data-count="qty" data-count-detail="0" placeholder="">
+                                            <input type="number" id="ispec_detail_to_qty_0" name="spec_detail_to_qty[]" class="form-control pe-1" data-count="qty" data-count-detail="0" placeholder="">
                                             <button class="btn btn-danger btn-remove-spec-detail" type="button" data-count="qty" data-count-detail="0"><i class="fa fa-minus"></i></button>
                                         </div>
                                     </div>

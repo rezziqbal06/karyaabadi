@@ -5,6 +5,7 @@ var media_caption = 0;
 var media_id = '';
 var folder_id = '';
 var galeri_item_count = 0;
+var id_spec = 0;
 
 function gritter(pesan,jenis="info"){
 	$.bootstrapGrowl(pesan, {
@@ -194,7 +195,7 @@ $("#iekelurahan").select2({
 
 <?php if(isset($bpm->id)){
   foreach($bpm as $k => $v){ ?>
-    <?php if(isset($v) && strlen($v)){?>
+    <?php if(isset($v) && !is_array($v) && strlen($v) && $k != 'gambar'){?>
     $("[name='<?=$k?>']").val('<?=$v?>');
     <?php if($k == 'a_jabatan_id' || $k == 'a_unit_id' || $k == 'a_ruangan_id'){ ?>
       $("[name='<?=$k?>']").val('<?=$v?>').select2();
@@ -220,12 +221,12 @@ $(document).on('change', 'input[type="file"]', function(e){
 
 $('.select2').select2();
 
-function addSpesifikasi(id){
+function addSpesifikasi(id, value="", value_detail=""){
   if(!window['spec_'+id]) window['spec_'+id] = 0;
   var s = `<div id="ps_${id}" class="row">
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                    <input type="text" id="ispec_${id}" name="spec[]" class="form-control" placeholder="Ex: Warna">
+                    <input type="text" id="ispec_${id}" name="spec[]" class="form-control" value="${value}" placeholder="Ex: Warna">
                     <input type="hidden" id="icount_spec_${id}" name="count_spec[]" value="${id}" class="form-control" placeholder="Ex: Warna">
                     <button class="btn btn-danger btn-remove-spec" type="button" data-count="${id}"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-primary btn-add-spec-detail" type="button" data-count="${id}"><i class="fa fa-plus"></i></button>
@@ -234,7 +235,7 @@ function addSpesifikasi(id){
             <div class="col-md-8">
                 <div id="psd_${id}">
                     <div id="sd_${id}_${window['spec_'+id]}" class="input-group mb-3">
-                        <input type="text" id="ispec_${id}_${window['spec_'+id]}" name="spec_detail_${id}[]" class="form-control" placeholder="Ex: Merah">
+                        <input type="text" id="ispec_${id}_${window['spec_'+id]}" name="spec_detail_${id}[]" class="form-control" value="${value_detail}" placeholder="Ex: Merah">
                         <button class="btn btn-danger btn-remove-spec-detail" type="button" data-count="${id}" data-count-detail="${window['spec_'+id]}"><i class="fa fa-minus"></i></button>
                     </div>
                 </div>
@@ -246,9 +247,9 @@ function addSpesifikasi(id){
   id_spec++;
 }
 
-function addSpesifikasiDetail(id){
+function addSpesifikasiDetail(id, value=""){
   var s = `<div id="sd_${id}_${window['spec_'+id]}" class="input-group mb-3">
-                <input type="text" id="ispec_${id}_${window['spec_'+id]}" name="spec_detail_${id}[]" class="form-control" placeholder="Ex: Merah">
+                <input type="text" id="ispec_${id}_${window['spec_'+id]}" name="spec_detail_${id}[]" class="form-control" value="${value}" placeholder="Ex: Merah">
                 <button class="btn btn-danger btn-remove-spec-detail" type="button" data-count="${id}" data-count-detail="${window['spec_'+id]}"><i class="fa fa-minus"></i></button>
             </div>`;
   $('#psd_'+id).append(s);
@@ -316,10 +317,10 @@ function generateCombinations(arrays, i = 0) {
 function settingPrice(){
   NProgress.start();
   $("#panel_price").slideUp();
-  var data = $('#ftambah').serializeArray();
+  var data = $('#fedit').serializeArray();
   var specs = [];
   if(data){
-    console.log(data,'data');
+    <!-- console.log(data,'data'); -->
     var spec = [];
     var count_spec = -1;
     var value = '';
@@ -368,7 +369,7 @@ function settingPrice(){
             table += `<td>${vd}</td>`;
           })
         }
-        table += `<td style="width:20%"><input type="number" name="price_spec[]" class="form-control"></td>`
+        table += `<td style="width:20%"><input type="number" name="price_spec[]" id="price_spec_${kres}" class="form-control"></td>`
         table += `</tr>`
       })
       table += '</table>'
@@ -397,26 +398,30 @@ $(document).on('change', '[name="spec_detail_operator_qty[]"]', function(e){
 	var id_detail = $(this).attr('data-count-detail');
   var value = $(this).find('option:selected').val();
   if(value == '-'){
-    $('#ispec_from_'+id+'_'+id_detail).prop('readonly', false);
+    $('#ispec_detail_from_'+id+'_'+id_detail).prop('readonly', false);
   }else{
-    $('#ispec_from_'+id+'_'+id_detail).prop('readonly', true);
+    $('#ispec_detail_from_'+id+'_'+id_detail).prop('readonly', true);
   }
 });
 
-function addSpesifikasiQtyDetail(id){
+function addSpesifikasiQtyDetail(id, dari="", opr="", ke=""){
   if(!window['spec_'+id]) window['spec_'+id] = 1;
   var s = `<div id="sd_${id}_${window['spec_'+id]}" class="input-group mb-3">
-                <input type="number" id="ispec_from_${id}_${window['spec_'+id]}" name="spec_detail_from_${id}[]" class="form-control" data-count="${id}" data-count-detail="${window['spec_'+id]}" readonly placeholder="">
+                <input type="number" id="ispec_detail_from_${id}_${window['spec_'+id]}" name="spec_detail_from_${id}[]" class="form-control" data-count="${id}" data-count-detail="${window['spec_'+id]}" readonly placeholder="">
                 <select name="spec_detail_operator_${id}[]" class="bg-dark text-white form-select input-group-text" id="ispec_detail_operator_${id}_${window['spec_'+id]}" data-count="${id}" data-count-detail="${window['spec_'+id]}">
                     <option value="<">
                         < </option>
                     <option value="-"> - </option>
                     <option value=">"> > </option>
                 </select>
-                <input type="number" id="ispec_to_${id}_${window['spec_'+id]}" name="spec_detail_to_${id}[]" class="form-control pe-1" data-count="${id}" data-count-detail="${window['spec_'+id]}" placeholder="">
+                <input type="number" id="ispec_detail_to_${id}_${window['spec_'+id]}" name="spec_detail_to_${id}[]" class="form-control pe-1" data-count="${id}" data-count-detail="${window['spec_'+id]}" placeholder="">
                 <button class="btn btn-danger btn-remove-spec-detail" type="button" data-count="${id}" data-count-detail="${window['spec_'+id]}"><i class="fa fa-minus"></i></button>
             </div>`;
   $('#psd_'+id).append(s);
+  $("#ispec_detail_from_"+id+"_"+window['spec_'+id]).val(dari);
+  $("#ispec_detail_operator_"+id+"_"+window['spec_'+id]).val(opr);
+  $("#ispec_detail_to_"+id+"_"+window['spec_'+id]).val(ke);
+  if(opr == '-') $("#ispec_detail_from_"+id+"_"+window['spec_'+id]).prop('readonly', false);
   window['spec_'+id]++;
 }
 
@@ -426,3 +431,42 @@ $(document).on('click', '.btn-add-spec-qty-detail', function(e){
 	var id = $(this).attr('data-count');
 	addSpesifikasiQtyDetail(id);
 });
+
+<?php if(isset($bpm->spesifikasi) && count($bpm->spesifikasi)){ ?>
+  <?php foreach($bpm->spesifikasi as $k => $v){ ?>
+    var ibpm = id_spec;
+    <?php foreach($v as $k2 => $v2){ ?>
+        <?php if($k2 == 0){ ?>
+          addSpesifikasi(id_spec, '<?=$k?>', '<?=$v2?>');
+        <?php }else{ ?>
+          addSpesifikasiDetail(ibpm, '<?=$v2?>');
+        <?php } ?>
+    <?php } ?>
+  <?php } ?>
+<?php } ?>
+
+<?php if(isset($bpm->qty) && count($bpm->qty)){ ?>
+  <?php foreach($bpm->qty as $kq => $vq){ ?>
+    <?php if($kq == 0){ ?>
+      $("#ispec_detail_from_qty_0").val('<?=$vq['dari_qty']?>');
+      $("#ispec_detail_operator_qty_0").val('<?=$vq['opr']?>');
+      $("#ispec_detail_to_qty_0").val('<?=$vq['ke_qty']?>');
+      <?php if($vq['opr'] == '-') : ?> $("#ispec_detail_from_qty_0").prop('readonly', false); <?php endif ?>
+    <?php }else{ ?>
+      addSpesifikasiQtyDetail('qty', '<?=$vq['dari_qty']?>', '<?=$vq['opr']?>', '<?=$vq['ke_qty']?>');
+    <?php } ?>
+  <?php } ?>
+
+  setTimeout(function(){
+    settingPrice();
+  },333)
+<?php } ?>
+
+setTimeout(function(){
+<?php if(isset($bphm) && count($bphm)){ ?>
+  <?php foreach($bphm as $khm => $vhm){ ?>
+      var harga = '<?=$vhm->harga?>'.replaceAll('.00','')
+      $("#price_spec_<?=$khm?>").val(harga)
+  <?php } ?>
+<?php } ?>
+},333)

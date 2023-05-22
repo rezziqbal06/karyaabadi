@@ -115,6 +115,7 @@ class Produk extends \JI_Controller
 			$data['bpm']->qty = $qty;
 		}
 
+		// dd($data['bphm']);
 		$this->setTitle('Produk Edit #' . $bpm->id . ' ' . $this->config_semevar('site_suffix', ''));
 		$this->putThemeContent("pengaturan/produk/edit_modal", $data);
 		$this->putThemeContent("pengaturan/produk/edit", $data);

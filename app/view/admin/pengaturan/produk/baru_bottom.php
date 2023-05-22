@@ -291,7 +291,7 @@ function settingPrice(){
   var data = $('#ftambah').serializeArray();
   var specs = [];
   if(data){
-    console.log(data,'data');
+    <!-- console.log(data,'data'); -->
     var spec = [];
     var count_spec = -1;
     var value = '';
@@ -319,9 +319,9 @@ function settingPrice(){
         }
       }
     });
-    console.log(specs,'specs');
+    <!-- console.log(specs,'specs'); -->
     const res = generateCombinations(specs);
-    console.log(res, 'res');
+    <!-- console.log(res, 'res'); -->
     if(res.length > 1){
       var table = '<table class="table">';
       var input_spec = '';
@@ -340,7 +340,7 @@ function settingPrice(){
             table += `<td>${vd}</td>`;
           })
         }
-        table += `<td style="width:20%"><input type="number" name="price_spec[]" class="form-control"></td>`
+        table += `<td style="width:20%"><input type="number" name="price_spec[]" id="price_spec_${kres}" class="form-control"></td>`
         table += `</tr>`
       })
       table += '</table>'
@@ -369,23 +369,23 @@ $(document).on('change', '[name="spec_detail_operator_qty[]"]', function(e){
 	var id_detail = $(this).attr('data-count-detail');
   var value = $(this).find('option:selected').val();
   if(value == '-'){
-    $('#ispec_from_'+id+'_'+id_detail).prop('readonly', false);
+    $('#ispec_detail_from_'+id+'_'+id_detail).prop('readonly', false);
   }else{
-    $('#ispec_from_'+id+'_'+id_detail).prop('readonly', true);
+    $('#ispec_detail_from_'+id+'_'+id_detail).prop('readonly', true);
   }
 });
 
 function addSpesifikasiQtyDetail(id){
   if(!window['spec_'+id]) window['spec_'+id] = 1;
   var s = `<div id="sd_${id}_${window['spec_'+id]}" class="input-group mb-3">
-                <input type="number" id="ispec_from_${id}_${window['spec_'+id]}" name="spec_detail_from_${id}[]" class="form-control" data-count="${id}" data-count-detail="${window['spec_'+id]}" readonly placeholder="">
+                <input type="number" id="ispec_detail_from_${id}_${window['spec_'+id]}" name="spec_detail_from_${id}[]" class="form-control" data-count="${id}" data-count-detail="${window['spec_'+id]}" readonly placeholder="">
                 <select name="spec_detail_operator_${id}[]" class="bg-dark text-white form-select input-group-text" id="ispec_detail_operator_${id}_${window['spec_'+id]}" data-count="${id}" data-count-detail="${window['spec_'+id]}">
                     <option value="<">
                         < </option>
                     <option value="-"> - </option>
                     <option value=">"> > </option>
                 </select>
-                <input type="number" id="ispec_to_${id}_${window['spec_'+id]}" name="spec_detail_to_${id}[]" class="form-control pe-1" data-count="${id}" data-count-detail="${window['spec_'+id]}" placeholder="">
+                <input type="number" id="ispec_detail_to_${id}_${window['spec_'+id]}" name="spec_detail_to_${id}[]" class="form-control pe-1" data-count="${id}" data-count-detail="${window['spec_'+id]}" placeholder="">
                 <button class="btn btn-danger btn-remove-spec-detail" type="button" data-count="${id}" data-count-detail="${window['spec_'+id]}"><i class="fa fa-minus"></i></button>
             </div>`;
   $('#psd_'+id).append(s);
