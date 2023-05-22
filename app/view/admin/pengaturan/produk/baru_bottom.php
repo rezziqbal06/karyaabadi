@@ -192,12 +192,12 @@ $(document).on('change', 'input[type="file"]', function(e){
 	readURLImage(this, 'img-'+id);
 });
 
-function addSpesifikasi(id){
+function addSpesifikasi(id, value="", value_detail=""){
   if(!window['spec_'+id]) window['spec_'+id] = 0;
   var s = `<div id="ps_${id}" class="row">
             <div class="col-md-4">
                 <div class="input-group mb-3">
-                    <input type="text" id="ispec_${id}" name="spec[]" class="form-control" placeholder="Ex: Warna">
+                    <input type="text" id="ispec_${id}" name="spec[]" class="form-control" value="${value}" placeholder="Ex: Warna">
                     <input type="hidden" id="icount_spec_${id}" name="count_spec[]" value="${id}" class="form-control" placeholder="Ex: Warna">
                     <button class="btn btn-danger btn-remove-spec" type="button" data-count="${id}"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-primary btn-add-spec-detail" type="button" data-count="${id}"><i class="fa fa-plus"></i></button>
@@ -206,8 +206,11 @@ function addSpesifikasi(id){
             <div class="col-md-8">
                 <div id="psd_${id}">
                     <div id="sd_${id}_${window['spec_'+id]}" class="input-group mb-3">
-                        <input type="text" id="ispec_${id}_${window['spec_'+id]}" name="spec_detail_${id}[]" class="form-control" placeholder="Ex: Merah">
+                        <input type="text" id="ispec_${id}_${window['spec_'+id]}" name="spec_detail_${id}[]" class="form-control input-spec" value="${value_detail}" data-count="${id}" data-count-detail="${window['spec_'+id]}" placeholder="Ex: Merah">
                         <button class="btn btn-danger btn-remove-spec-detail" type="button" data-count="${id}" data-count-detail="${window['spec_'+id]}"><i class="fa fa-minus"></i></button>
+                        <div class="input-group-text bg-light">
+                          <input type="checkbox" id="icheck_spec_detail_${id}_${window['spec_'+id]}" data-count="${id}" data-count-detail="${window['spec_'+id]}" value="${value_detail}" class="check-spec-filter">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -218,10 +221,13 @@ function addSpesifikasi(id){
   id_spec++;
 }
 
-function addSpesifikasiDetail(id){
+function addSpesifikasiDetail(id, value=""){
   var s = `<div id="sd_${id}_${window['spec_'+id]}" class="input-group mb-3">
-                <input type="text" id="ispec_${id}_${window['spec_'+id]}" name="spec_detail_${id}[]" class="form-control" placeholder="Ex: Merah">
+                <input type="text" id="ispec_${id}_${window['spec_'+id]}" name="spec_detail_${id}[]" class="form-control input-spec" value="${value}" data-count="${id}" data-count-detail="${window['spec_'+id]}" placeholder="Ex: Merah">
                 <button class="btn btn-danger btn-remove-spec-detail" type="button" data-count="${id}" data-count-detail="${window['spec_'+id]}"><i class="fa fa-minus"></i></button>
+                <div class="input-group-text bg-light">
+                  <input type="checkbox" id="icheck_spec_detail_${id}_${window['spec_'+id]}" data-count="${id}" data-count-detail="${window['spec_'+id]}" value="${value}" class="check-spec-filter">
+                </div>
             </div>`;
   $('#psd_'+id).append(s);
   window['spec_'+id]++;
@@ -323,24 +329,28 @@ function settingPrice(){
     const res = generateCombinations(specs);
     <!-- console.log(res, 'res'); -->
     if(res.length > 1){
-      var table = '<table class="table">';
+      var table = '<table class="table table-bordered">';
       var input_spec = '';
       table += '<tr>'
       $.each(spec, function(ks, vs){
         table += `<th>${vs}</th>`
       })
-      table += `<th>Harga</th>`
+      table += `<th><input type="number" name="" id="input_price_filter" class="form-control" placeholder="Harga"></th>`
+      table += `<th class="text-center align-middle"><input type="checkbox" name="" id="check_price_filter" class=""></th>`
       table += '</tr>'
       $.each(res, function(kres, vres){
         <!-- const vspec = vres.map(str => str.replace(/"/g, '\\"')); -->
         input_spec += `<input type="hidden" name="value_spec[]" value="${vres.join(' --- ')}" class="form-control">`;
         table += `<tr>`
+        var values = '';
         if(vres){
           $.each(vres, function(kd, vd){
             table += `<td>${vd}</td>`;
+            values += `${vd} | `;
           })
         }
-        table += `<td style="width:20%"><input type="number" name="price_spec[]" id="price_spec_${kres}" class="form-control"></td>`
+        table += `<td style="width:20%"><input type="number" name="price_spec[]" id="price_spec_${kres}" data-value="${values}" data-count="${kres}" class="form-control"></td>`
+        table += `<td style="width:5%" class="text-center align-middle"><input type="checkbox" name="" id="check_spec_${kres}" data-value="${values}" data-count="${kres}" class="spec-price-filter"></td>`
         table += `</tr>`
       })
       table += '</table>'
@@ -352,6 +362,20 @@ function settingPrice(){
     }
   }
   NProgress.done();
+
+  $("#input_price_filter").on('input', function(e){
+    e.preventDefault();
+    var values = $(this).val();
+    if(values){
+      $('.price_checked').val(values);
+    }
+  })
+
+  $("#check_price_filter").on('change', function(e){
+    e.preventDefault();
+    var checked = $(this).is(':checked');
+    $('.spec-price-filter').prop('checked', checked).trigger('input')
+  })
 }
 
 $('#btn_price_setting').on('click', function(e){
@@ -375,20 +399,28 @@ $(document).on('change', '[name="spec_detail_operator_qty[]"]', function(e){
   }
 });
 
-function addSpesifikasiQtyDetail(id){
+function addSpesifikasiQtyDetail(id, dari="", opr="", ke=""){
   if(!window['spec_'+id]) window['spec_'+id] = 1;
   var s = `<div id="sd_${id}_${window['spec_'+id]}" class="input-group mb-3">
-                <input type="number" id="ispec_detail_from_${id}_${window['spec_'+id]}" name="spec_detail_from_${id}[]" class="form-control" data-count="${id}" data-count-detail="${window['spec_'+id]}" readonly placeholder="">
-                <select name="spec_detail_operator_${id}[]" class="bg-dark text-white form-select input-group-text" id="ispec_detail_operator_${id}_${window['spec_'+id]}" data-count="${id}" data-count-detail="${window['spec_'+id]}">
+                <input type="number" id="ispec_detail_from_${id}_${window['spec_'+id]}" name="spec_detail_from_${id}[]" class="form-control input-spec" data-count="${id}" data-count-detail="${window['spec_'+id]}" readonly placeholder="">
+                <select name="spec_detail_operator_${id}[]" class="bg-dark text-white form-select input-group-text input-spec" id="ispec_detail_operator_${id}_${window['spec_'+id]}" data-count="${id}" data-count-detail="${window['spec_'+id]}">
                     <option value="<">
                         < </option>
                     <option value="-"> - </option>
                     <option value=">"> > </option>
                 </select>
-                <input type="number" id="ispec_detail_to_${id}_${window['spec_'+id]}" name="spec_detail_to_${id}[]" class="form-control pe-1" data-count="${id}" data-count-detail="${window['spec_'+id]}" placeholder="">
+                <input type="number" id="ispec_detail_to_${id}_${window['spec_'+id]}" name="spec_detail_to_${id}[]" class="form-control pe-1 input-spec" data-count="${id}" data-count-detail="${window['spec_'+id]}" placeholder="">
                 <button class="btn btn-danger btn-remove-spec-detail" type="button" data-count="${id}" data-count-detail="${window['spec_'+id]}"><i class="fa fa-minus"></i></button>
+                <div class="input-group-text bg-light">
+                  <input type="checkbox" id="icheck_spec_detail_${id}_${window['spec_'+id]}" data-count="${id}" data-count-detail="${window['spec_'+id]}" value="" class="check-spec-filter">
+                </div>
             </div>`;
   $('#psd_'+id).append(s);
+  $("#ispec_detail_from_"+id+"_"+window['spec_'+id]).val(dari);
+  $("#ispec_detail_operator_"+id+"_"+window['spec_'+id]).val(opr);
+  $("#ispec_detail_to_"+id+"_"+window['spec_'+id]).val(ke);
+  $("#icheck_spec_detail_"+id+"_"+window['spec_'+id]).val(dari+' '+opr+' '+ke);
+  if(opr == '-') $("#ispec_detail_from_"+id+"_"+window['spec_'+id]).prop('readonly', false);
   window['spec_'+id]++;
 }
 
@@ -397,4 +429,45 @@ $(document).on('click', '.btn-add-spec-qty-detail', function(e){
 	e.preventDefault();
 	var id = $(this).attr('data-count');
 	addSpesifikasiQtyDetail(id);
+});
+
+$(document).off('input', '.input-spec');
+$(document).on('input', '.input-spec', function(e){
+	e.preventDefault();
+  var id = $(this).attr('data-count');
+  var id_detail = $(this).attr('data-count-detail');
+  setTimeout(function(){
+    
+    if(id == 'qty'){
+      var dari = $("#ispec_detail_from_"+id+"_"+id_detail).val();
+      var opr = $("#ispec_detail_operator_"+id+"_"+id_detail).val();
+      var ke = $("#ispec_detail_to_"+id+"_"+id_detail).val();
+      $("#icheck_spec_detail_"+id+'_'+id_detail).val(`${dari} ${opr} ${ke}`);
+      console.log(`${dari} ${opr} ${ke}`, 'check spec')
+    }else{
+      var value = $("#ispec_"+id+"_"+id_detail).val();
+      $("#icheck_spec_detail_"+id+'_'+id_detail).val(`${value}`);
+      console.log("#ispec_"+id+"_"+id_detail, value,'check spec')
+    }
+  },555)
+});
+
+$(document).off('input', '.spec-price-filter');
+$(document).on('input', '.spec-price-filter', function(e){
+	e.preventDefault();
+  var id = $(this).attr('data-count');
+  if($(this).is(':checked')){
+    $("#price_spec_"+id).addClass('price_checked')
+  }else{
+    $("#price_spec_"+id).removeClass('price_checked')
+  }
+});
+
+$(document).off('input', '.check-spec-filter');
+$(document).on('input', '.check-spec-filter', function(e){
+	e.preventDefault();
+  var id = $(this).attr('data-count');
+  var values = $(this).val();
+  var checked = $(this).is(':checked');
+  $("[data-value*='"+values+"']").prop('checked', checked).trigger('input');
 });
