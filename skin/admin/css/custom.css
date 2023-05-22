@@ -1,0 +1,365 @@
+:root{
+    --primary:#917FB3;
+    --accent:#E5BEEC;
+    --secondary:#2A2F4F;
+    --background:#f5f7fa;
+    --dark-primary:#50577A;
+    --dark-accent:#6B728E;
+    --dark-secondary:#474E68;
+    --dark-background:#404258;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital@1&family=Poppins&display=swap');
+
+*{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.gradient-primary{
+    background: var(--secondary);
+    background: linear-gradient(149deg, var(--secondary) 11%, var(--primary) 76%);
+}
+
+.btn {
+    margin-bottom:0 !important;
+}
+.btn-group-vertical .btn{
+    margin-bottom:0 !important;
+}
+.bg-primary{
+    background-color: var(--primary) !important;
+}
+
+.bg-accent{
+    background-color: var(--accent) !important; 
+}
+
+.bg-secondary{
+    background-color: var(--secondary) !important;
+}
+
+.bg-background{
+    background-color: var(--background) !important;
+}
+
+.text-primary{
+    color: var(--primary) !important;
+}
+
+.text-accent{
+    color: var(--accent) !important; 
+}
+
+.text-secondary{
+    color: var(--secondary) !important;
+}
+
+.text-background{
+    color: var(--background) !important;
+}
+
+.bg-orange {
+    background-color: #fb6340 !important;
+}
+
+.bg-blue {
+    background-color: #5e72e4 !important;
+}
+
+.bg-green {
+    background-color: #2dce89 !important;
+}
+
+.bg-yellow {
+    background-color: #ffd600 !important;
+}
+
+.my_table {
+    margin-bottom: 0.5rem;
+}
+
+.my_table td {
+    border: 1px solid #ced4da;
+    padding: 0.5rem;
+}
+
+.my_table th {
+    border: 1px solid #ced4da;
+    padding: 0.5rem;
+}
+
+.my_table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.my_table input {
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.modal{
+    z-index:9999 !important;
+}
+
+.select2-container .select2-selection--single {
+    display: block !important;
+    width: 100% !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    line-height: 1.4rem !important;
+    color: #495057 !important;
+    background-color: #fff !important;
+    background-clip: padding-box !important;
+    border: 1px solid #d2d6da !important;
+    appearance: none !important;
+    border-radius: 0.5rem !important;
+    padding: 0.1rem 0.3rem;
+    height: 40px;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease !important;
+}
+
+.select2-container--open {
+    z-index: 9999999
+}
+
+.progress{
+    height: 25px;
+    border-radius: 0.25rem;
+}
+
+.qaanii-apex-chart {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+div::-webkit-scrollbar {
+    background-color:#fff;
+    width:16px
+}
+
+/* background of the scrollbar except button or resizer */
+div::-webkit-scrollbar-track {
+    background-color:#fff
+}
+div::-webkit-scrollbar-track:hover {
+    background-color:#f4f4f4
+}
+
+/* scrollbar itself */
+div::-webkit-scrollbar-thumb {
+    background-color:#babac0;
+    border-radius:16px;
+    border:5px solid #fff
+}
+div::-webkit-scrollbar-thumb:hover {
+    background-color:#a0a0a5;
+    border:4px solid #f4f4f4
+}
+
+.card-filter{
+    box-shadow: 0 11px 12px 0px rgba(196,196,196,0.4); 
+    top: 50px;
+}
+
+.card {
+    margin-top: 1em;
+}
+
+/* set button(top and bottom of the scrollbar) */
+/* .scrollbar::-webkit-scrollbar-button {display:none} */
+
+
+@media (prefers-color-scheme:light){
+    .bg-primary{
+        background-color: var(--primary) !important;
+    }
+    
+    .bg-accent{
+        background-color: var(--accent) !important; 
+    }
+    
+    .bg-secondary{
+        background-color: var(--secondary) !important;
+    }
+    
+    .bg-background{
+        background-color: var(--background) !important;
+    }
+    
+    .text-primary{
+        color: var(--primary) !important;
+    }
+    
+    .text-accent{
+        color: var(--accent) !important; 
+    }
+    
+    .text-secondary{
+        color: var(--secondary) !important;
+    }
+    
+    .text-background{
+        color: var(--background) !important;
+    }
+
+    .bg-nav{
+        background-color: white !important;
+    }
+
+    
+    a:hover{
+        text-decoration: none;
+        color: var(--dark-secondary)
+    }
+}
+
+@media (prefers-color-scheme:dark){
+    .bg-primary{
+        background-color: var(--dark-primary) !important;
+        color: white !important;
+    }
+    
+    .bg-accent{
+        background-color: var(--dark-accent) !important; 
+        color: white !important;
+    }
+    
+    .bg-secondary{
+        background-color: var(--dark-secondary) !important;
+        color: white !important;
+    }
+    
+    .bg-background{
+        background-color: var(--dark-background) !important;
+        color: white !important;
+    }
+
+    .bg-background option{
+        background-color: var(--dark-background) !important;
+        color: #808080;
+    }
+
+    .gradient-primary{
+        background: var(--dark-secondary);
+        background: linear-gradient(149deg, var(--dark-secondary) 11%, var(--dark-primary) 76%);
+    }
+    
+    .text-primary{
+        color: var(--dark-primary) !important;
+    }
+    
+    .text-accent{
+        color: var(--dark-accent) !important; 
+    }
+    
+    .text-secondary{
+        color: wheat !important;
+    }
+    
+    .text-background{
+        color: var(--dark-background) !important;
+    }
+
+    .form-control{
+        background-color: var(--dark-secondary) !important;
+        color: white !important;
+    }
+
+    .form-control:focus{
+        color: white !important;
+
+    }
+
+    .select2-container .select2-selection--single {
+        background-color: var(--dark-secondary) !important;
+        color: white !important;
+    }
+
+    
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered{
+        color: white;
+    }
+
+    .select2-container--open .select2-dropdown--below{
+        background-color: var(--dark-secondary) !important;
+    }
+
+    .select2-search--dropdown .select2-search__field{
+        background-color: var(--dark-secondary) !important;
+    }
+
+    .select2-container .select2-selection--single :focus{
+        color: white !important;
+
+    }
+
+    h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-weight: 400;
+        line-height: 1.2;
+        color: #BEBEBE;
+    }
+
+    .fa{
+        color: white !important;
+    }
+
+    .bg-nav{
+        background-color: var(--dark-secondary) !important;
+        color:white;
+    }
+
+    .bg-nav a{
+        color:white !important;
+    }
+
+    .card{
+        background-color: var(--dark-primary) !important;
+        color: white;
+    }
+
+    .card-header{
+        background-color: var(--dark-primary) !important;
+        color: white;
+    }
+
+    .panel-card{
+        background-color: var(--dark-primary) !important;
+        color: white;
+    }
+    
+    .modal-content{
+        background-color: var(--dark-background) !important;
+    }
+
+    .panel-header{
+        background-color: var(--dark-primary) !important;
+        color: white;
+    }
+    
+    label{
+        color: white;
+    }
+
+    
+    a:hover{
+        text-decoration: none;
+        color: var(--background)
+    }
+
+    td, th, a, btn {
+        color:white;
+    }
+
+   
+
+}
+
+@media screen and (max-width: 765px) {
+    .card-filter{
+        top: 0px;
+    }
+}

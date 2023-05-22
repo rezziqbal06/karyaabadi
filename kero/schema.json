@@ -1,0 +1,2199 @@
+{
+    "cdate": "221112075746",
+    "ldate": "221112075746",
+    "tables": {
+        "a_api": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "nama": {
+                    "name": "nama",
+                    "type": "string",
+                    "length": "26",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "vendor": {
+                    "name": "vendor",
+                    "type": "string",
+                    "length": "56",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "type": {
+                    "name": "type",
+                    "type": "string",
+                    "length": "28",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "url_sandbox": {
+                    "name": "url_sandbox",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "url_live": {
+                    "name": "url_live",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "header": {
+                    "name": "header",
+                    "type": "string",
+                    "length": "16777215",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "body": {
+                    "name": "body",
+                    "type": "string",
+                    "length": "16777215",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "response_ok": {
+                    "name": "response_ok",
+                    "type": "string",
+                    "length": "16777215",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "response_error": {
+                    "name": "response_error",
+                    "type": "string",
+                    "length": "16777215",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_deleted": {
+                    "name": "is_deleted",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "a_branch": {
+            "columns": {
+                "code": {
+                    "name": "code",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "nama": {
+                    "name": "nama",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_deleted": {
+                    "name": "is_deleted",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "a_company": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "3",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "nama": {
+                    "name": "nama",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "kode": {
+                    "name": "kode",
+                    "type": "string",
+                    "length": "28",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "email": {
+                    "name": "email",
+                    "type": "string",
+                    "length": "56",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "logo_kotak": {
+                    "name": "logo_kotak",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "logo_panjang": {
+                    "name": "logo_panjang",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "subdomain": {
+                    "name": "subdomain",
+                    "type": "string",
+                    "length": "63",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "domain": {
+                    "name": "domain",
+                    "type": "string",
+                    "length": "63",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "website": {
+                    "name": "website",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "instagram": {
+                    "name": "instagram",
+                    "type": "string",
+                    "length": "56",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "linkedin": {
+                    "name": "linkedin",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "site_title": {
+                    "name": "site_title",
+                    "type": "string",
+                    "length": "64",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "site_description": {
+                    "name": "site_description",
+                    "type": "string",
+                    "length": "16",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "site_title_suffix": {
+                    "name": "site_title_suffix",
+                    "type": "string",
+                    "length": "64",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "enable_reseller_portal": {
+                    "name": "enable_reseller_portal",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "enable_sales_portal": {
+                    "name": "enable_sales_portal",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "enable_admin_portal": {
+                    "name": "enable_admin_portal",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "is_deleted": {
+                    "name": "is_deleted",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "b_user_id_owner": {
+                    "name": "b_user_id_owner",
+                    "type": "int",
+                    "length": "11",
+                    "value": "unsigned",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "a_company_id": {
+                    "name": "a_company_id",
+                    "type": "int",
+                    "length": "3",
+                    "value": "unsigned",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "a_destination": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "negara": {
+                    "name": "negara",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "provinsi": {
+                    "name": "provinsi",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "kabkota": {
+                    "name": "kabkota",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "kecamatan": {
+                    "name": "kecamatan",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "kelurahan": {
+                    "name": "kelurahan",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "kodepos": {
+                    "name": "kodepos",
+                    "type": "int",
+                    "length": "11",
+                    "value": "",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "code": {
+                    "name": "code",
+                    "type": "string",
+                    "length": "16",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_deleted": {
+                    "name": "is_deleted",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "a_modules": {
+            "columns": {
+                "identifier": {
+                    "name": "identifier",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_primary": true,
+                    "is_auto_increment": false
+                },
+                "name": {
+                    "name": "name",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "path": {
+                    "name": "path",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": true,
+                    "default_value": ""
+                },
+                "level": {
+                    "name": "level",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "has_submenu": {
+                    "name": "has_submenu",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "children_identifier": {
+                    "name": "children_identifier",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_default": {
+                    "name": "is_default",
+                    "type": "enum",
+                    "length": "2",
+                    "value": [
+                        "allowed",
+                        "denied"
+                    ],
+                    "is_null": false,
+                    "default_value": "denied"
+                },
+                "is_visible": {
+                    "name": "is_visible",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "priority": {
+                    "name": "priority",
+                    "type": "int",
+                    "length": "3",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "fa_icon": {
+                    "name": "fa_icon",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": "fa fa-home"
+                },
+                "utype": {
+                    "name": "utype",
+                    "type": "string",
+                    "length": "48",
+                    "is_null": false,
+                    "default_value": "internal"
+                },
+                "pov": {
+                    "name": "pov",
+                    "type": "string",
+                    "length": "8",
+                    "is_null": true,
+                    "default_value": null
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "a_nomorakun": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "4",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "nama": {
+                    "name": "nama",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "nomor": {
+                    "name": "nomor",
+                    "type": "string",
+                    "length": "28",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "sistem": {
+                    "name": "sistem",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "remark": {
+                    "name": "remark",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_deleted": {
+                    "name": "is_deleted",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "a_origin": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "code": {
+                    "name": "code",
+                    "type": "string",
+                    "length": "16",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "nama": {
+                    "name": "nama",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "a_pengguna": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "6",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "username": {
+                    "name": "username",
+                    "type": "string",
+                    "length": "24",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "password": {
+                    "name": "password",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "email": {
+                    "name": "email",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "nama": {
+                    "name": "nama",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "foto": {
+                    "name": "foto",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "welcome_message": {
+                    "name": "welcome_message",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "scope": {
+                    "name": "scope",
+                    "type": "enum",
+                    "length": "4",
+                    "value": [
+                        "all",
+                        "current_below",
+                        "current_only",
+                        "none"
+                    ],
+                    "is_null": false,
+                    "default_value": "none"
+                },
+                "nip": {
+                    "name": "nip",
+                    "type": "string",
+                    "length": "32",
+                    "is_null": true,
+                    "default_value": "-",
+                    "is_index": true
+                },
+                "alamat": {
+                    "name": "alamat",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "alamat2": {
+                    "name": "alamat2",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "alamat_kecamatan": {
+                    "name": "alamat_kecamatan",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "alamat_kabkota": {
+                    "name": "alamat_kabkota",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "alamat_provinsi": {
+                    "name": "alamat_provinsi",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "alamat_negara": {
+                    "name": "alamat_negara",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "alamat_kodepos": {
+                    "name": "alamat_kodepos",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "tempat_lahir": {
+                    "name": "tempat_lahir",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "tgl_lahir": {
+                    "name": "tgl_lahir",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "jenis_kelamin": {
+                    "name": "jenis_kelamin",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "status_pernikahan": {
+                    "name": "status_pernikahan",
+                    "type": "enum",
+                    "length": "4",
+                    "value": [
+                        "belum menikah",
+                        "menikah",
+                        "duda",
+                        "janda"
+                    ],
+                    "is_null": false,
+                    "default_value": "belum menikah"
+                },
+                "telp_rumah": {
+                    "name": "telp_rumah",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "telp_hp": {
+                    "name": "telp_hp",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "bank_rekening_nomor": {
+                    "name": "bank_rekening_nomor",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "bank_rekening_nama": {
+                    "name": "bank_rekening_nama",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "bank_nama": {
+                    "name": "bank_nama",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "npwp": {
+                    "name": "npwp",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "kerja_terakhir": {
+                    "name": "kerja_terakhir",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "kerja_terakhir_jabatan": {
+                    "name": "kerja_terakhir_jabatan",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "kerja_terakhir_gaji": {
+                    "name": "kerja_terakhir_gaji",
+                    "type": "decimal(18,0)",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "pendidikan_terakhir": {
+                    "name": "pendidikan_terakhir",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "pendidikan_terakhir_jenjang": {
+                    "name": "pendidikan_terakhir_jenjang",
+                    "type": "enum",
+                    "length": "7",
+                    "value": [
+                        "SD",
+                        "SMP",
+                        "SMA",
+                        "S1",
+                        "D3",
+                        "D2",
+                        "S2"
+                    ],
+                    "is_null": false,
+                    "default_value": "SMA"
+                },
+                "pendidikan_terakhir_tahun": {
+                    "name": "pendidikan_terakhir_tahun",
+                    "type": "year(4)",
+                    "length": "",
+                    "value": [],
+                    "is_null": false,
+                    "default_value": "1971"
+                },
+                "ibu_nama": {
+                    "name": "ibu_nama",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "ibu_pekerjaan": {
+                    "name": "ibu_pekerjaan",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "tgl_kerja_mulai": {
+                    "name": "tgl_kerja_mulai",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "tgl_kerja_akhir": {
+                    "name": "tgl_kerja_akhir",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "tgl_kontrak_akhir": {
+                    "name": "tgl_kontrak_akhir",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "karyawan_status": {
+                    "name": "karyawan_status",
+                    "type": "enum",
+                    "length": "4",
+                    "value": [
+                        "Kontrak",
+                        "Magang",
+                        "Tetap",
+                        "Harian Lepas"
+                    ],
+                    "is_null": false,
+                    "default_value": null
+                },
+                "nama_perusahaan": {
+                    "name": "nama_perusahaan",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "is_sales": {
+                    "name": "is_sales",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "a_pengguna_id": {
+                    "name": "a_pengguna_id",
+                    "type": "int",
+                    "length": "6",
+                    "value": "unsigned",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "is_admin_master": {
+                    "name": "is_admin_master",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "a_pengguna_module": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "8",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "a_pengguna_id": {
+                    "name": "a_pengguna_id",
+                    "type": "int",
+                    "length": "6",
+                    "value": "unsigned",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "a_modules_identifier": {
+                    "name": "a_modules_identifier",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "rule": {
+                    "name": "rule",
+                    "type": "enum",
+                    "length": "4",
+                    "value": [
+                        "allowed",
+                        "disallowed",
+                        "allowed_except",
+                        "disallowed_except"
+                    ],
+                    "is_null": false,
+                    "default_value": "allowed"
+                },
+                "tmp_active": {
+                    "name": "tmp_active",
+                    "type": "enum",
+                    "length": "2",
+                    "value": [
+                        "N",
+                        "Y"
+                    ],
+                    "is_null": false,
+                    "default_value": "N"
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "a_trackstat_jne": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "mile_category": {
+                    "name": "mile_category",
+                    "type": "string",
+                    "length": "6",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "pod_code": {
+                    "name": "pod_code",
+                    "type": "string",
+                    "length": "3",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "pod_status_group": {
+                    "name": "pod_status_group",
+                    "type": "string",
+                    "length": "56",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "pod_status": {
+                    "name": "pod_status",
+                    "type": "string",
+                    "length": "50",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "webhook_status": {
+                    "name": "webhook_status",
+                    "type": "string",
+                    "length": "17",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "b_sales_company": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "a_company_id": {
+                    "name": "a_company_id",
+                    "type": "int",
+                    "length": "3",
+                    "value": "unsigned",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "tahun": {
+                    "name": "tahun",
+                    "type": "year(4)",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "bulan": {
+                    "name": "bulan",
+                    "type": "int",
+                    "length": "2",
+                    "value": "unsigned",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "cdate": {
+                    "name": "cdate",
+                    "type": "datetime",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "nominal": {
+                    "name": "nominal",
+                    "type": "decimal(18,0)",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "is_deleted": {
+                    "name": "is_deleted",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "b_shipper": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "2",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "code": {
+                    "name": "code",
+                    "type": "string",
+                    "length": "16",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "branch": {
+                    "name": "branch",
+                    "type": "string",
+                    "length": "10",
+                    "is_null": true,
+                    "default_value": null
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "b_user": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "a_company_id": {
+                    "name": "a_company_id",
+                    "type": "int",
+                    "length": "5",
+                    "value": "unsigned",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "google_id": {
+                    "name": "google_id",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": false,
+                    "default_value": "",
+                    "is_index": true
+                },
+                "kode": {
+                    "name": "kode",
+                    "type": "string",
+                    "length": "24",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "email": {
+                    "name": "email",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "username": {
+                    "name": "username",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "foto": {
+                    "name": "foto",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "welcome_message": {
+                    "name": "welcome_message",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "password": {
+                    "name": "password",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "fnama": {
+                    "name": "fnama",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "lnama": {
+                    "name": "lnama",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "alamat": {
+                    "name": "alamat",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "alamat2": {
+                    "name": "alamat2",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "kelurahan": {
+                    "name": "kelurahan",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "kecamatan": {
+                    "name": "kecamatan",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "kabkota": {
+                    "name": "kabkota",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "provinsi": {
+                    "name": "provinsi",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "negara": {
+                    "name": "negara",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": "Indonesia"
+                },
+                "kodepos": {
+                    "name": "kodepos",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "kelamin": {
+                    "name": "kelamin",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "tlahir": {
+                    "name": "tlahir",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": true,
+                    "default_value": "-"
+                },
+                "bdate": {
+                    "name": "bdate",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": "1970-01-01"
+                },
+                "cdate": {
+                    "name": "cdate",
+                    "type": "datetime",
+                    "length": "",
+                    "value": [],
+                    "is_null": false,
+                    "default_value": null
+                },
+                "adate": {
+                    "name": "adate",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "edate": {
+                    "name": "edate",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "telp": {
+                    "name": "telp",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "image": {
+                    "name": "image",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "reg_from": {
+                    "name": "reg_from",
+                    "type": "string",
+                    "length": "64",
+                    "is_null": false,
+                    "default_value": "online"
+                },
+                "know_from": {
+                    "name": "know_from",
+                    "type": "string",
+                    "length": "48",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "utype": {
+                    "name": "utype",
+                    "type": "enum",
+                    "length": "2",
+                    "value": [
+                        "agen",
+                        "user"
+                    ],
+                    "is_null": true,
+                    "default_value": "user"
+                },
+                "umur": {
+                    "name": "umur",
+                    "type": "int",
+                    "length": "3",
+                    "value": "",
+                    "is_null": true,
+                    "default_value": "20",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "api_reg_date": {
+                    "name": "api_reg_date",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "api_reg_token": {
+                    "name": "api_reg_token",
+                    "type": "string",
+                    "length": "48",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "api_web_date": {
+                    "name": "api_web_date",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "api_web_token": {
+                    "name": "api_web_token",
+                    "type": "string",
+                    "length": "24",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "api_mobile_date": {
+                    "name": "api_mobile_date",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": true,
+                    "default_value": null
+                },
+                "api_mobile_token": {
+                    "name": "api_mobile_token",
+                    "type": "string",
+                    "length": "24",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "fcm_token": {
+                    "name": "fcm_token",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "device": {
+                    "name": "device",
+                    "type": "string",
+                    "length": "24",
+                    "is_null": false,
+                    "default_value": "web"
+                },
+                "apikey": {
+                    "name": "apikey",
+                    "type": "string",
+                    "length": "28",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "foto_before": {
+                    "name": "foto_before",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "foto_after": {
+                    "name": "foto_after",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "is_agree": {
+                    "name": "is_agree",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "is_confirmed": {
+                    "name": "is_confirmed",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "is_premium": {
+                    "name": "is_premium",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "is_wa_verified": {
+                    "name": "is_wa_verified",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_wa_send": {
+                    "name": "is_wa_send",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "is_deleted": {
+                    "name": "is_deleted",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "b_user_id": {
+                    "name": "b_user_id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "b_user_alamat": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "b_user_id": {
+                    "name": "b_user_id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "deskripsi": {
+                    "name": "deskripsi",
+                    "type": "string",
+                    "length": "50",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "nama": {
+                    "name": "nama",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "telp": {
+                    "name": "telp",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "alamat": {
+                    "name": "alamat",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "alamat2": {
+                    "name": "alamat2",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": true,
+                    "default_value": null
+                },
+                "kelurahan": {
+                    "name": "kelurahan",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "kecamatan": {
+                    "name": "kecamatan",
+                    "type": "string",
+                    "length": "78",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "kabkota": {
+                    "name": "kabkota",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "provinsi": {
+                    "name": "provinsi",
+                    "type": "string",
+                    "length": "15",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "negara": {
+                    "name": "negara",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "kodepos": {
+                    "name": "kodepos",
+                    "type": "string",
+                    "length": "10",
+                    "is_null": false,
+                    "default_value": " "
+                },
+                "kode_origin": {
+                    "name": "kode_origin",
+                    "type": "string",
+                    "length": "28",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "kode_destination": {
+                    "name": "kode_destination",
+                    "type": "string",
+                    "length": "56",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "is_default": {
+                    "name": "is_default",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_deleted": {
+                    "name": "is_deleted",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "b_user_module": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "8",
+                    "value": "unsigned",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "b_user_id": {
+                    "name": "b_user_id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "unsigned",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": true,
+                    "is_zerofill": false
+                },
+                "a_modules_identifier": {
+                    "name": "a_modules_identifier",
+                    "type": "string",
+                    "length": "25",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true
+                },
+                "rule": {
+                    "name": "rule",
+                    "type": "enum",
+                    "length": "4",
+                    "value": [
+                        "allowed",
+                        "disallowed",
+                        "allowed_except",
+                        "disallowed_except"
+                    ],
+                    "is_null": false,
+                    "default_value": "allowed"
+                },
+                "tmp_active": {
+                    "name": "tmp_active",
+                    "type": "enum",
+                    "length": "2",
+                    "value": [
+                        "N",
+                        "Y"
+                    ],
+                    "is_null": false,
+                    "default_value": "N"
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "c_order": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "10",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false,
+                    "is_primary": true,
+                    "is_auto_increment": true
+                },
+                "b_user_id": {
+                    "name": "b_user_id",
+                    "type": "int",
+                    "length": "5",
+                    "value": "",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "b_user_id_agen": {
+                    "name": "b_user_id_agen",
+                    "type": "int",
+                    "length": "5",
+                    "value": "",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "b_user_id_penerima": {
+                    "name": "b_user_id_penerima",
+                    "type": "int",
+                    "length": "4",
+                    "value": "",
+                    "is_null": true,
+                    "default_value": null,
+                    "is_index": true,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "kode": {
+                    "name": "kode",
+                    "type": "string",
+                    "length": "20",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "kode_tracking": {
+                    "name": "kode_tracking",
+                    "type": "string",
+                    "length": "4",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "telp": {
+                    "name": "telp",
+                    "type": "string",
+                    "length": "13",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "cdate": {
+                    "name": "cdate",
+                    "type": "datetime",
+                    "length": "",
+                    "value": [],
+                    "is_null": false,
+                    "default_value": null
+                },
+                "tgl_pickup": {
+                    "name": "tgl_pickup",
+                    "type": "date",
+                    "length": "",
+                    "value": [],
+                    "is_null": false,
+                    "default_value": null
+                },
+                "waktu_pickup": {
+                    "name": "waktu_pickup",
+                    "type": "time",
+                    "length": "",
+                    "value": [],
+                    "is_null": false,
+                    "default_value": null
+                },
+                "alamat": {
+                    "name": "alamat",
+                    "type": "string",
+                    "length": "16777215",
+                    "is_null": false,
+                    "default_value": "''"
+                },
+                "no_resi": {
+                    "name": "no_resi",
+                    "type": "string",
+                    "length": "22",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "layanan": {
+                    "name": "layanan",
+                    "type": "string",
+                    "length": "12",
+                    "is_null": false,
+                    "default_value": ""
+                },
+                "service": {
+                    "name": "service",
+                    "type": "string",
+                    "length": "8",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "json_value": {
+                    "name": "json_value",
+                    "type": "string",
+                    "length": "16777215",
+                    "is_null": false,
+                    "default_value": null
+                },
+                "kode_branch": {
+                    "name": "kode_branch",
+                    "type": "int",
+                    "length": "10",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "harga_paket": {
+                    "name": "harga_paket",
+                    "type": "decimal(18,2)",
+                    "length": "",
+                    "value": [],
+                    "is_null": false,
+                    "default_value": null
+                },
+                "harga_cod": {
+                    "name": "harga_cod",
+                    "type": "decimal(18,2)",
+                    "length": "",
+                    "value": [],
+                    "is_null": false,
+                    "default_value": null
+                },
+                "is_cod": {
+                    "name": "is_cod",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_drop_shipper": {
+                    "name": "is_drop_shipper",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_deleted": {
+                    "name": "is_deleted",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        },
+        "d_barang": {
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "c_order_id": {
+                    "name": "c_order_id",
+                    "type": "int",
+                    "length": "11",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "qty": {
+                    "name": "qty",
+                    "type": "int",
+                    "length": "3",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "berat": {
+                    "name": "berat",
+                    "type": "int",
+                    "length": "8",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1000",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "panjang": {
+                    "name": "panjang",
+                    "type": "int",
+                    "length": "8",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "lebar": {
+                    "name": "lebar",
+                    "type": "int",
+                    "length": "8",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "tinggi": {
+                    "name": "tinggi",
+                    "type": "int",
+                    "length": "8",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": null,
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "harga": {
+                    "name": "harga",
+                    "type": "decimal(18,0)",
+                    "length": "",
+                    "value": [],
+                    "is_null": false,
+                    "default_value": null
+                },
+                "is_asuransi": {
+                    "name": "is_asuransi",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_packing_wood": {
+                    "name": "is_packing_wood",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_active": {
+                    "name": "is_active",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "1",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                },
+                "is_deleted": {
+                    "name": "is_deleted",
+                    "type": "int",
+                    "length": "1",
+                    "value": "",
+                    "is_null": false,
+                    "default_value": "0",
+                    "is_unsigned": false,
+                    "is_zerofill": false
+                }
+            },
+            "indexes": {},
+            "relations": {}
+        }
+    }
+}
