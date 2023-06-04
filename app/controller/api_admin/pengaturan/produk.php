@@ -121,9 +121,31 @@ class Produk extends JI_Controller
 		$res = $this->bpm->save();
 		if ($res) {
 			//Upload Gambar
-			$resUpload = $this->se->upload_file('gambar', 'produk', $res);
-			if ($resUpload->status == 200) {
-				$this->bpm->update($res, ['gambar' => $resUpload->file]);
+			$is_cover = $this->input->request('is_cover', 1);
+			$dig = [];
+			for ($i = 1; $i <= 5; $i++) {
+				$resUpload = $this->se->upload_file('gambar' . $i, 'produk', $res, $i);
+				if ($resUpload->status == 200) {
+					if ($is_cover == $i) {
+						$this->bpm->update($res, ['gambar' => $resUpload->file]);
+					}
+					$go = [];
+					$go['gambar'] = $resUpload->file;
+					$go['b_produk_id'] = $res;
+					$go['ke'] = $i;
+					$go['is_cover'] = $is_cover == $i ? 1 : 0;
+					$dig[] = $go;
+				}
+			}
+			$res_gambar = $this->bpgm->setMass($dig);
+			if ($res_gambar) {
+				$this->status = 200;
+				$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			} else {
+				$this->status = 110;
+				$this->message = API_ADMIN_ERROR_CODES[$this->status];
+
+				$res_hapus = $this->bpm->del($res);
 			}
 
 			//Upload Harga
@@ -269,10 +291,38 @@ class Produk extends JI_Controller
 		}
 		if ($id > 0) {
 			unset($du['id']);
-			$resUpload = $this->se->upload_file('gambar', 'produk', $id);
-			if ($resUpload->status == 200) {
-				$du['gambar'] = $resUpload->file;
+			//Upload Gambar
+			$is_cover = $this->input->request('is_cover', 1);
+			$dig = [];
+			for ($i = 1; $i <= 5; $i++) {
+				$gambar = $this->bpgm->getByProdukAndSort($id, $i);
+				$resUpload = $this->se->upload_file('gambar' . $i, 'produk', $id, $i);
+				// Jika berhasil upload
+				if ($resUpload->status == 200) {
+					// Jika ada gambar sebelumnya
+					if (isset($gambar->id)) {
+						$this->bpgm->update($gambar->id, ['gambar' => $resUpload->file, 'is_cover' => $is_cover == $i ? 1 : 0, 'ke' => $i]);
+					} else {
+						$this->bpgm->set(['b_produk_id' => $id, 'gambar' => $resUpload, 'is_cover' => $is_cover == $i ? 1 : 0, 'ke' => $i]);
+					}
+					if ($is_cover == $i) {
+						$this->bpm->update($id, ['gambar' => $resUpload->file]);
+					}
+				} else {
+					if (isset($gambar->id)) {
+						$this->bpgm->update($gambar->id, ['is_cover' => $is_cover == $i ? 1 : 0]);
+						if ($is_cover == $i) {
+							$this->bpm->update($id, ['gambar' => $gambar->gambar]);
+						}
+					}
+				}
 			}
+
+			// $resUpload1 = $this->se->upload_file('gambar1', 'produk', $id, 1);
+			// if ($resUpload1->status == 200) {
+			// 	$du['gambar'] = $resUpload1->file;
+			// }
+
 			$spec = $this->input->post('spec');
 			$count_spec = $this->input->post('count_spec');
 			if (is_array($spec) && count($spec)) {

@@ -49,12 +49,56 @@
 								<?php endif ?>
 							</select>
 						</div>
-						<div class="col-md-6 mb-2">
-							<label for="iegambar" class="control-label">Gambar</label>
-							<input id="iegambar" type="file" name="gambar" class="form-control">
+						<div class="col-md-3 mb-2">
+							<label for="iegambar1" class="control-label">Gambar 1</label>
+							<div class="input-group">
+
+								<input id="iegambar1" type="file" name="" class="form-control">
+								<div class="input-group-text">
+									<input type="radio" name="is_cover" value="1">
+								</div>
+							</div>
+							<img id="img-iegambar1" src="" alt="" class="img-fluid rounded mt-2">
 						</div>
-						<div class="col-md-1 mb-2">
-							<img id="img-iegambar" src="" alt="" class="img-fluid rounded">
+						<div class="col-md-3 mb-2">
+							<label for="iegambar2" class="control-label">Gambar 2</label>
+							<div class="input-group">
+								<input id="iegambar2" type="file" name="" class="form-control">
+								<div class="input-group-text">
+									<input type="radio" name="is_cover" value="2">
+								</div>
+							</div>
+							<img id="img-iegambar2" src="" alt="" class="img-fluid rounded mt-2">
+						</div>
+						<div class="col-md-3 mb-2">
+							<label for="iegambar3" class="control-label">Gambar 3</label>
+							<div class="input-group">
+								<input id="iegambar3" type="file" name="" class="form-control">
+								<div class="input-group-text">
+									<input type="radio" name="is_cover" value="3">
+								</div>
+							</div>
+							<img id="img-iegambar3" src="" alt="" class="img-fluid rounded mt-2">
+						</div>
+						<div class="col-md-3 mb-2">
+							<label for="iegambar4" class="control-label">Gambar 4</label>
+							<div class="input-group">
+								<input id="iegambar4" type="file" name="" class="form-control">
+								<div class="input-group-text">
+									<input type="radio" name="is_cover" value="4">
+								</div>
+							</div>
+							<img id="img-iegambar4" src="" alt="" class="img-fluid rounded mt-2">
+						</div>
+						<div class="col-md-3 mb-2">
+							<label for="iegambar5" class="control-label">Gambar 5</label>
+							<div class="input-group">
+								<input id="iegambar5" type="file" name="" class="form-control">
+								<div class="input-group-text">
+									<input type="radio" name="is_cover" value="5">
+								</div>
+							</div>
+							<img id="img-iegambar5" src="" alt="" class="img-fluid rounded mt-2">
 						</div>
 						<div class="col-md-12 mb-2">
 							<label for="iedeskripsi" class="control-label">Deskripsi</label>

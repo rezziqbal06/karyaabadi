@@ -14,7 +14,11 @@ function convertToSlug(Text) {
              .replace(/ /g, '-')
              .replace(/[^\w-]+/g, '');
 }
-initCompressingImage('igambar');
+initCompressingImage('igambar1');
+initCompressingImage('igambar2');
+initCompressingImage('igambar3');
+initCompressingImage('igambar4');
+initCompressingImage('igambar5');
 
 //submit form
 $("#ftambah").on("submit",function(e){
@@ -24,10 +28,14 @@ $("#ftambah").on("submit",function(e){
 	$('.icon-submit').addClass('fa-circle-o-notch fa-spin');
 
 	var fd = new FormData($(this)[0]);
-  var gambar = getImageData('igambarprev');
-	if(gambar){
-		fd.append('gambar', gambar.blob, 'gambar.'+gambar.extension);
-	}
+  var i = 1;
+  for(i = 1;i <= 5; i++){
+    var gambar = getImageData('igambar'+i+'prev');
+    if(gambar){
+      fd.append('gambar'+i, gambar.blob, 'gambar.'+gambar.extension);
+    }
+  }
+
 
 	var url = '<?= base_url("api_admin/pengaturan/produk/baru/")?>';
 

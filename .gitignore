@@ -21,7 +21,8 @@ app/cache/
 media/upload/*
 media/pengguna/*
 media/laporan/*
-media/apd/*
-media/monev/*
-media/hygiene/*
-media/surveilan/*
+media/produk/*
+media/kategori/*
+media/partner/*
+media/blog/*
+media/bukti/*

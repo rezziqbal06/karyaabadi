@@ -21,17 +21,31 @@ function convertToSlug(Text) {
              .replace(/ /g, '-')
              .replace(/[^\w-]+/g, '');
 }
-initCompressingImage('iegambar');
+initCompressingImage('iegambar1');
+initCompressingImage('iegambar2');
+initCompressingImage('iegambar3');
+initCompressingImage('iegambar4');
+initCompressingImage('iegambar5');
 
 //fill data
 var data_fill = <?=json_encode($bpm)?>;
 $.each(data_fill,function(k,v){
 	if(k == 'gambar'){
-    $('#img-iegambar').attr('src', '<?=base_url()?>'+v);
+    $('#img-iegambar1').attr('src', '<?=base_url()?>'+v);
   }else{
     $("#ie"+k).val(v);
   }
 });
+
+var data_fill_gambar = <?=json_encode($bpgm)?>;
+if(data_fill_gambar){
+  $.each(data_fill_gambar, function(k,v){
+    $('#img-iegambar'+v.ke).attr('src', '<?=base_url()?>'+v.gambar);
+    if(v.is_cover == 1){
+      $("[name='is_cover'][value='"+v.ke+"']").prop('checked', true)
+    } 
+  })
+}
 
 //submit form
 $("#fedit").on("submit",function(e){
@@ -41,6 +55,13 @@ $("#fedit").on("submit",function(e){
 	$('.icon-submit').addClass('fa-circle-o-notch fa-spin');
 
 	var fd = new FormData($(this)[0]);
+  var i = 1;
+  for(i = 1;i <= 5; i++){
+    var gambar = getImageData('iegambar'+i+'prev');
+    if(gambar){
+      fd.append('gambar'+i, gambar.blob, 'gambar.'+gambar.extension);
+    }
+  }
 	var url = '<?=base_url("api_admin/pengaturan/produk/edit/".$bpm->id)?>';
 
 	$.ajax({
@@ -190,19 +211,6 @@ $("#iekelurahan").select2({
     cache: true
 	}
 });
-
-
-
-<?php if(isset($bpm->id)){
-  foreach($bpm as $k => $v){ ?>
-    <?php if(isset($v) && !is_array($v) && strlen($v) && $k != 'gambar'){?>
-    $("[name='<?=$k?>']").val('<?=$v?>');
-    <?php if($k == 'a_jabatan_id' || $k == 'a_unit_id' || $k == 'a_ruangan_id'){ ?>
-      $("[name='<?=$k?>']").val('<?=$v?>').select2();
-    <?php } ?>
-    <?php } ?>
-  <?php }
-} ?>
 
 $(document).off('change', '[name="nama"]')
 $(document).on('change', '[name="nama"]', function(e){

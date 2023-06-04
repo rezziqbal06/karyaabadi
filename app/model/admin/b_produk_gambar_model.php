@@ -27,4 +27,10 @@ class B_Produk_Gambar_Model extends \Model\B_Produk_Gambar_Concern
 		$this->db->where('is_active', 1);
 		return $this->db->get('');
 	}
+
+	public function getByProduk($id)
+	{
+		$this->db->where('b_produk_id', $id);
+		return $this->db->get('');
+	}
 }

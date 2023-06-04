@@ -24,14 +24,18 @@ class B_Produk_Gambar_Concern extends \JI_Model
     const COLUMNS = [
         'b_produk_id',
         'gambar',
+        'ke',
         'deskripsi',
+        'is_cover',
         'is_active',
         'is_deleted',
     ];
     const DEFAULTS = [
         0,
         '',
+        1,
         '',
+        0,
         1,
         0,
     ];

@@ -89,6 +89,7 @@ class Produk extends \JI_Controller
 
 		$data['bpm'] = $bpm;
 		$data['akm'] = $this->akm->getAll();
+		$data['bpgm'] = $this->bpgm->getByProduk($bpm->id);
 		$data['bphm'] = $this->bphm->getByProduk($bpm->id);
 		if (isset($data['bpm']->spesifikasi)) {
 			$qty = [];

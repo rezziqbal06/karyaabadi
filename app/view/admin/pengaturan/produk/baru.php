@@ -49,12 +49,56 @@
                                 <?php endif ?>
                             </select>
                         </div>
-                        <div class="col-md-6 mb-2">
-                            <label for="igambar" class="control-label">Gambar</label>
-                            <input id="igambar" type="file" name="gambar" class="form-control" required>
+                        <div class="col-md-3 mb-2">
+                            <label for="igambar1" class="control-label">Gambar 1</label>
+                            <div class="input-group">
+
+                                <input id="igambar1" type="file" accept=".png,.jpg,.jpeg" name="" class="form-control">
+                                <div class="input-group-text">
+                                    <input type="radio" name="is_cover" value="1">
+                                </div>
+                            </div>
+                            <img id="img-igambar1" src="" alt="" class="img-fluid rounded mt-2">
                         </div>
-                        <div class="col-md-1 mb-2">
-                            <img id="img-igambar" src="" alt="" class="img-fluid rounded">
+                        <div class="col-md-3 mb-2">
+                            <label for="igambar2" class="control-label">Gambar 2</label>
+                            <div class="input-group">
+                                <input id="igambar2" type="file" accept=".png,.jpg,.jpeg" name="" class="form-control">
+                                <div class="input-group-text">
+                                    <input type="radio" name="is_cover" value="2">
+                                </div>
+                            </div>
+                            <img id="img-igambar2" src="" alt="" class="img-fluid rounded mt-2">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="igambar3" class="control-label">Gambar 3</label>
+                            <div class="input-group">
+                                <input id="igambar3" type="file" accept=".png,.jpg,.jpeg" name="" class="form-control">
+                                <div class="input-group-text">
+                                    <input type="radio" name="is_cover" value="3">
+                                </div>
+                            </div>
+                            <img id="img-igambar3" src="" alt="" class="img-fluid rounded mt-2">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="igambar4" class="control-label">Gambar 4</label>
+                            <div class="input-group">
+                                <input id="igambar4" type="file" accept=".png,.jpg,.jpeg" name="" class="form-control">
+                                <div class="input-group-text">
+                                    <input type="radio" name="is_cover" value="4">
+                                </div>
+                            </div>
+                            <img id="img-igambar4" src="" alt="" class="img-fluid rounded mt-2">
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="igambar5" class="control-label">Gambar 5</label>
+                            <div class="input-group">
+                                <input id="igambar5" type="file" accept=".png,.jpg,.jpeg" name="" class="form-control">
+                                <div class="input-group-text">
+                                    <input type="radio" name="is_cover" value="5">
+                                </div>
+                            </div>
+                            <img id="img-igambar5" src="" alt="" class="img-fluid rounded mt-2">
                         </div>
                         <div class="col-md-12 mb-2">
                             <label for="ideskripsi" class="control-label">Deskripsi</label>

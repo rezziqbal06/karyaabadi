@@ -199,14 +199,14 @@ class Seme_Upload
             $filecheck = $this->directory . $targetdir . DIRECTORY_SEPARATOR . $filename . '.' . $fileext;
             if (file_exists($filecheck)) {
                 unlink($filecheck);
-                $rand = rand(0, 999);
-                $filename = "$nation_code-$unique_id-$ke-" . $rand;
-                $filecheck = $this->directory . $targetdir . DIRECTORY_SEPARATOR . $filename . '.' . $fileext;
-                if (file_exists($filecheck)) {
-                    unlink($filecheck);
-                    $rand = rand(1000, 99999);
-                    $filename = "$nation_code-$unique_id-$ke-" . $rand;
-                }
+                // $rand = rand(0, 999);
+                // $filename = "$nation_code-$unique_id-$ke-" . $rand;
+                // $filecheck = $this->directory . $targetdir . DIRECTORY_SEPARATOR . $filename . '.' . $fileext;
+                // if (file_exists($filecheck)) {
+                //     unlink($filecheck);
+                //     $rand = rand(1000, 99999);
+                //     $filename = "$nation_code-$unique_id-$ke-" . $rand;
+                // }
             }
 
             //upload file

@@ -76,4 +76,11 @@ class B_produk_gambar_Model extends \Model\B_produk_gambar_Concern
   {
     return $this->db->insert_multi($this->tbl, $dis);
   }
+
+  public function getByProdukAndSort($id, $ke)
+  {
+    $this->db->where('b_produk_id', $id);
+    $this->db->where('ke', $ke);
+    return $this->db->get_first("object", 0);
+  }
 }
