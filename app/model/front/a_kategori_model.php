@@ -24,14 +24,15 @@ class A_kategori_Model extends \Model\A_kategori_Concern
 
 	public function getAll($is_active = 1)
 	{
-		$this->db->select('id')->select('nama')->select('slug')->select('type_form');
+		$this->db->select('id')->select('nama')->select('slug');
 		$this->db->where('is_active', $is_active);
+		$this->db->where('is_deleted', $this->db->esc(0));
 		return $this->db->get('', 0);
 	}
 
 	public function getBySlug($slug = '')
 	{
-		$this->db->select('id')->select('nama')->select('slug')->select('type_form')->select('deskripsi');
+		$this->db->select('id')->select('nama')->select('slug')->select('deskripsi');
 		if (strlen($slug)) $this->db->where('slug', $slug);
 		return $this->db->get_first('', 0);
 	}

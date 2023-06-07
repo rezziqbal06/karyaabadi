@@ -366,7 +366,7 @@ function settingPrice(){
     const res = generateCombinations(specs);
     <!-- console.log(res, 'res'); -->
     if(res.length > 1){
-      var table = '<table class="table table-bordered">';
+      var table = '<table class="table table-bordered table-striped">';
       var input_spec = '';
       table += '<tr>'
       $.each(spec, function(ks, vs){

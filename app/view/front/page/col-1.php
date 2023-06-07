@@ -24,12 +24,6 @@
 				<!-- Header -->
 				<!-- END Header -->
 
-				<!-- Main Container -->
-
-				<!-- Global Message -->
-				<?php $this->getThemeElement("page/html/global_message", $__forward); ?>
-				<!-- Global Message -->
-
 				<div class="pt-md-5">
 					<?php $this->getThemeContent(); ?>
 				</div>

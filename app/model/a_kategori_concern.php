@@ -29,6 +29,7 @@ class A_Kategori_Concern extends \JI_Model
         'is_active',
         'is_deleted',
         'cdate',
+        'count_read',
     ];
     const DEFAULTS = [
         '',
@@ -37,7 +38,8 @@ class A_Kategori_Concern extends \JI_Model
         1,
         1,
         0,
-        'NOW()'
+        'NOW()',
+        null
     ];
     const REQUIREDS = [
         'nama',

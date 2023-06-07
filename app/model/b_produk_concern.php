@@ -31,6 +31,7 @@ class B_Produk_Concern extends \JI_Model
         'is_deleted',
         'cdate',
         'spesifikasi',
+        'count_read',
     ];
     const DEFAULTS = [
         0,
@@ -41,6 +42,7 @@ class B_Produk_Concern extends \JI_Model
         1,
         0,
         'NOW()',
+        null,
         null
     ];
     const REQUIREDS = [

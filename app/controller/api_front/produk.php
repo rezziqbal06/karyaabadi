@@ -9,9 +9,9 @@ class Produk extends JI_Controller
 		$this->load('b_produk_concern');
 		$this->load('b_produk_harga_concern');
 		$this->load('b_produk_gambar_concern');
-		$this->load("api_admin/b_produk_model", 'bpm');
-		$this->load("api_admin/b_produk_harga_model", 'bphm');
-		$this->load("api_admin/b_produk_gambar_model", 'bpgm');
+		$this->load("api_front/b_produk_model", 'bpm');
+		$this->load("api_front/b_produk_harga_model", 'bphm');
+		$this->load("api_front/b_produk_gambar_model", 'bpgm');
 		$this->lib("seme_upload", 'se');
 	}
 
@@ -26,48 +26,15 @@ class Produk extends JI_Controller
 	{
 		$d = $this->__init();
 		$data = array();
-		$this->_api_auth_required($data, 'admin');
 
 		$this->status = 200;
 		$this->message = API_ADMIN_ERROR_CODES[$this->status];
 
+		$a_kategori_id = $this->input->request("a_kategori_id", "");
 
-		$is_active = $this->input->request('is_active', 1);
-		if (strlen($is_active)) {
-			$is_active = intval($is_active);
-		}
+		$data = $this->bpm->getByKategori($a_kategori_id);
 
-		$admin_login = $d['sess']->user;
-		$b_user_id = '';
-		// Jika user adalah reseller, maka mengambil kustomernya
-		// if (isset($admin_login->utype) && $admin_login->utype == 'agen') {
-		// 	$b_user_id = $admin_login->id;
-		// }
-
-		$datatable = $this->bpm->datatable()->initialize();
-		$dcount = $this->bpm->count($datatable->keyword(), $is_active);
-		$ddata = $this->bpm->data(
-			$datatable->page(),
-			$datatable->pagesize(),
-			$datatable->sort_column(),
-			$datatable->sort_direction(),
-			$datatable->keyword(),
-			$is_active
-		);
-
-		foreach ($ddata as &$gd) {
-			if (isset($gd->fnama)) {
-				$gd->fnama = htmlentities(rtrim($gd->fnama, ' - '));
-			}
-			if (isset($gd->is_active)) {
-				$gd->is_active = $this->bpm->label('is_active', $gd->is_active);
-			}
-			if (isset($gd->gambar)) {
-				$gd->gambar = '<img src="' . base_url($gd->gambar) . '" class="img-fluid rounded"/>';
-			}
-		}
-
-		$this->__jsonDataTable($ddata, $dcount);
+		$this->__json_out($data);
 	}
 
 	/**

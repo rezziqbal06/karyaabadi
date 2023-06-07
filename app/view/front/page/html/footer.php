@@ -1,7 +1,19 @@
-<footer class="clearfix">
-	<div class="pull-right teks-pudar" style="">
-		<?= $this->config->semevar->app_name ?> <?= $this->config->semevar->site_version ?> dibuat sepenuh <i class="fa fa-heart text-danger"></i> oleh <a href="https://qaanii.com" target="_blank" title="Qaanii" style="color: rgba(0,0,0,0.4);">Qaanii</a </div>
-		<div class="pull-left">
-			<?= $this->footer_text() ?> <a href="<?= base_url("releases/index/" . $this->config->semevar->site_version) ?>" target="_blank" title="Catatan rilis"><?= $this->config->semevar->site_version ?></a> &copy; 2016-<?= date("Y") ?>
+<footer class="clearfix bg-primary  text-white">
+	<div class="row">
+		<div class="col-6 col-md-3 p-4 p-md-5">
+			<img class="img-fluid" width="40%" src="<?= $this->config->semevar->site_logo->path ?>" />
+			<p><?= $this->config->semevar->site_name ?></p>
+			<p><?= $this->config->semevar->site_description ?></p>
 		</div>
+		<div class="col-6 col-md-3 p-4 p-md-5">
+			<p class="mb-5"><b>Hubungi Kami</b></p>
+			<p><?= $this->config->semevar->site_address ?></p>
+			<a href="https://wa.me/<?= $this->config->semevar->site_wa ?>" target="_blank"><b><?= $this->config->semevar->site_number ?></b></a>
+		</div>
+	</div>
+	<hr class="bg-white">
+	<div class="row p-2">
+		<div class="col-md-12"><?= $this->config->semevar->site_version ?> <a href="https://qaanii.com" target="_blank" title="Qaanii" style="color: rgba(0,0,0,0.4);">Qaanii</a></div>
+	</div>
+
 </footer>

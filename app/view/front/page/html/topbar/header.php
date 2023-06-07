@@ -4,38 +4,36 @@
         max-height: 49px;
     }
 </style>
-<header class="navbar navbar-default navbar-fixed-top p-05 bg-secondary">
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <!-- Brand/logo -->
+            <a class="navbar-brand" href="#">
+                <div class="navbar-brand-logo"><img src="<?= $this->config->semevar->site_logo->path ?>" alt="$this->config->semevar->site_name"></div>
+            </a>
 
-    <!-- Navbar Header -->
-    <div class="navbar-header">
-        <a class="navbar-brand-logo" href="#" title="rezza iqbal">
-            <img alt="<?= $this->current_reseller->nama ?>" src="<?= $this->cdn_url($this->current_reseller->logo_kotak) ?>" alt="Logo <?= $this->current_reseller->nama ?>" onerror="this.null;this.src='<?= $this->cdn_url('media/default-logo.png') ?>';" />
-        </a>
-        <!-- Horizontal Menu Toggle + Alternative Sidebar Toggle Button, Visible only in small screens (< 768px) -->
-        <ul class="nav navbar-nav-custom pull-left visible-xs">
-            <li>
-                <a href="javascript:void(0)" data-toggle="collapse" data-target="#horizontal-menu-collapse" class="collapsed" aria-expanded="false">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </li>
-            <?php $this->getThemeElement('page/html/topbar/menu/user-mobile', $__forward); ?>
-        </ul>
-        <!-- END Horizontal Menu Toggle + Alternative Sidebar Toggle Button -->
-    </div>
-    <!-- END Navbar Header -->
+            <!-- Toggler/collapsible Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="height:auto;padding:4px"><i class="fa fa-bars"></i></span>
+            </button>
 
-    <!-- Alternative Sidebar Toggle Button, Visible only in large screens (> 767px) -->
-    <ul class="nav navbar-nav-custom pull-right hidden-xs">
-        <?php $this->getThemeElement('page/html/topbar/menu/user', $__forward); ?>
-    </ul>
-    <!-- END Alternative Sidebar Toggle Button -->
-
-    <!-- Horizontal Menu + Search -->
-    <div id="horizontal-menu-collapse" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-            <?php $this->getThemeElement('page/html/topbar/menu/main', $__forward); ?>
-        </ul>
-    </div>
-    <!-- END Horizontal Menu + Search -->
-
+            <!-- Navigation links -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>

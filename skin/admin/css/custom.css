@@ -166,6 +166,83 @@ div::-webkit-scrollbar-thumb:hover {
     margin-top: 1em;
 }
 
+.kartu {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    transition: all .3s ease;
+    box-shadow: none;
+    text-decoration: none;
+
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.kartu-gambar{
+    min-height: 100%;
+    height: 310px;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    border-radius: 30px;
+    transition: transform 0.3s ease;
+}
+
+.kartu-gambar:hover{
+    transform: scale(1.02);
+}
+
+.kartu-gambar img{
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.kartu-caption{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: 30px;
+    z-index: 5;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.kartu-caption-text{
+    font-size: 18px;
+    line-height: 1.5555555556;
+    font-weight: 700;
+    background-color: #fff;
+    padding: 10px 25px;
+    letter-spacing: -.01em;
+    display: inline-block;
+    border-radius: 30px;
+}
+
+.kartu-produk{
+    padding: 8px;
+    transition: background-color 0.3s ease;
+    border-radius: 30px;
+}
+
+.kartu-produk:hover{
+    background-color: #fff;
+}
+
+.kartu-gambar-produk img{
+    border-radius: 30px;
+}
+
+
 /* set button(top and bottom of the scrollbar) */
 /* .scrollbar::-webkit-scrollbar-button {display:none} */
 

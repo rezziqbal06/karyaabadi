@@ -1,5 +1,8 @@
 <?php
 
+namespace Model\Admin;
+
+register_namespace(__NAMESPACE__);
 /**
  * Scoped `front` model for `b_user` table
  *
@@ -8,13 +11,13 @@
  * @package Model\Front
  * @since 1.0.0
  */
-class B_Produk_Model extends \Model\B_Produk_Concern
+class B_produk_harga_Model extends \Model\B_produk_harga_Concern
 {
   public function __construct()
   {
     parent::__construct();
     $this->db->from($this->tbl, $this->tbl_as);
-    $this->point_of_view = 'front';
+    $this->point_of_view = 'admin';
   }
 
   private function filters($keyword = '', $is_active = '')
@@ -27,15 +30,14 @@ class B_Produk_Model extends \Model\B_Produk_Concern
     }
     if (strlen($keyword) > 0) {
       $this->db->where_as("$this->tbl_as.nama", $keyword, "OR", "%like%", 1, 0);
-      $this->db->where_as("$this->tbl_as.deskripsi", $keyword, "AND", "%like%", 0, 0);
-      $this->db->where_as("$this->tbl_as.kd_ruangan", $keyword, "AND", "%like%", 0, 0);
+      $this->db->where_as("$this->tbl_as.deskripsi", $keyword, "AND", "%like%", 0, 1);
     }
     return $this;
   }
 
   private function join_company()
   {
-    $this->db->join($this->tbl3, $this->tbl3_as, 'id', $this->tbl_as, 'a_unit_id', 'left');
+    $this->db->join($this->tbl2, $this->tbl2_as, 'id', $this->tbl_as, 'a_kategori_id', 'left');
 
     return $this;
   }
@@ -48,11 +50,12 @@ class B_Produk_Model extends \Model\B_Produk_Concern
     return $this;
   }
 
-  public function data($b_user_id = "", $page = 0, $pagesize = 10, $sortCol = "id", $sortDir = "ASC", $keyword = '', $is_active = '')
+  public function data($page = 0, $pagesize = 10, $sortCol = "id", $sortDir = "ASC", $keyword = '', $is_active = '')
   {
     $this->datatables[$this->point_of_view]->selections($this->db);
     $this->db->from($this->tbl, $this->tbl_as);
-    $this->filters($b_user_id, $keyword, $is_active)->scoped();
+    $this->join_company();
+    $this->filters($keyword, $is_active)->scoped();
     $this->db->order_by($sortCol, $sortDir)->limit($page, $pagesize);
     return $this->db->get("object", 0);
   }
@@ -61,7 +64,8 @@ class B_Produk_Model extends \Model\B_Produk_Concern
   {
     $this->db->select_as("COUNT($this->tbl_as.id)", "jumlah", 0);
     $this->db->from($this->tbl, $this->tbl_as);
-    $this->filters($b_user_id, $keyword, $is_active)->scoped();
+    $this->join_company();
+    $this->filters($keyword, $is_active)->scoped();
     $d = $this->db->get_first("object", 0);
     if (isset($d->jumlah)) {
       return $d->jumlah;
@@ -73,16 +77,25 @@ class B_Produk_Model extends \Model\B_Produk_Concern
     return $this->db->insert_multi($this->tbl, $dis);
   }
 
-  public function getBySlug($slug)
+  public function delByProduk($id)
   {
-    $this->db->where('slug', $slug);
-    return $this->db->get_first('', 0);
+    $this->db->where('b_produk_id', $id);
+    return $this->db->delete($this->tbl);
   }
 
-  public function getByKategori($id)
+  public function getByProdukAndQty($id, $qty)
   {
-    if ($id != "all") $this->db->where('a_kategori_id', $id);
-    $this->db->where('is_deleted', $this->db->esc(0));
-    return $this->db->get('', 0);
+    $string = "SELECT
+        *
+    FROM
+        b_produk_harga
+    WHERE
+        b_produk_id = $id AND(
+            (
+                $qty >= dari_qty AND $qty <= ke_qty AND opr = '-'
+            ) OR($qty < ke_qty AND opr = '<') OR($qty > ke_qty AND opr = '>')
+        );";
+
+    return $this->db->query($string);
   }
 }

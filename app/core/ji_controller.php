@@ -796,7 +796,7 @@ class JI_Controller extends \SENE_Controller
             return $sess->user->reseller->nama;
         }
 
-        return $this->current_reseller->nama;
+        return $this->current_reseller->nama ?? '';
     }
 
     /**

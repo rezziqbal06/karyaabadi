@@ -11,10 +11,8 @@ register_namespace(__NAMESPACE__);
  * @package Model\Front
  * @since 1.0.0
  */
-class A_Indikator_Model extends \Model\A_Indikator_Concern
+class B_produk_gambar_Model extends \Model\B_produk_gambar_Concern
 {
-  public $tbl2 = 'a_jabatan';
-  public $tbl2_as = 'j';
   public function __construct()
   {
     parent::__construct();
@@ -30,35 +28,18 @@ class A_Indikator_Model extends \Model\A_Indikator_Concern
     if (strlen($is_active)) {
       $this->db->where_as("$this->tbl_as.is_active", $this->db->esc($is_active));
     }
-    // if (strlen($a_unit_id)) {
-    //   $this->db->where_as("$this->tbl_as.a_unit_id", $this->db->esc($a_unit_id));
-    // }
     if (strlen($keyword) > 0) {
       $this->db->where_as("$this->tbl_as.nama", $keyword, "OR", "%like%", 1, 0);
-      $this->db->where_as("$this->tbl_as.deskripsi", $keyword, "AND", "%like%", 0, 0);
-      $this->db->where_as("$this->tbl_as.kd_ruangan", $keyword, "AND", "%like%", 0, 0);
+      $this->db->where_as("$this->tbl_as.deskripsi", $keyword, "AND", "%like%", 0, 1);
     }
     return $this;
   }
 
   private function join_company()
   {
-    $this->db->join($this->tbl3, $this->tbl3_as, 'id', $this->tbl_as, 'a_unit_id', 'left');
+    $this->db->join($this->tbl2, $this->tbl2_as, 'id', $this->tbl_as, 'a_kategori_id', 'left');
 
     return $this;
-  }
-
-  public function getByPenilaianId($id)
-  {
-    $this->db->where('a_jpenilaian_id', $id);
-    $this->db->limit(100000);
-    return $this->db->get('', 0);
-  }
-
-  public function deleteByPenilaianId($id)
-  {
-    $this->db->where("a_jpenilaian_id", $id);
-    return $this->db->delete($this->tbl);
   }
 
   private function joins()
@@ -73,15 +54,17 @@ class A_Indikator_Model extends \Model\A_Indikator_Concern
   {
     $this->datatables[$this->point_of_view]->selections($this->db);
     $this->db->from($this->tbl, $this->tbl_as);
+    $this->join_company();
     $this->filters($keyword, $is_active)->scoped();
     $this->db->order_by($sortCol, $sortDir)->limit($page, $pagesize);
     return $this->db->get("object", 0);
   }
 
-  public function count($keyword = '', $is_active = '')
+  public function count($b_user_id = '', $keyword = '', $is_active = '')
   {
     $this->db->select_as("COUNT($this->tbl_as.id)", "jumlah", 0);
     $this->db->from($this->tbl, $this->tbl_as);
+    $this->join_company();
     $this->filters($keyword, $is_active)->scoped();
     $d = $this->db->get_first("object", 0);
     if (isset($d->jumlah)) {
@@ -89,9 +72,15 @@ class A_Indikator_Model extends \Model\A_Indikator_Concern
     }
     return 0;
   }
-
   public function setMass($dis)
   {
     return $this->db->insert_multi($this->tbl, $dis);
+  }
+
+  public function getByProdukAndSort($id, $ke)
+  {
+    $this->db->where('b_produk_id', $id);
+    $this->db->where('ke', $ke);
+    return $this->db->get_first("object", 0);
   }
 }

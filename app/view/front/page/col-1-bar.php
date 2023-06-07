@@ -5,40 +5,22 @@
 <body style="overflow-x: hidden;" class="bg-background">
 	<!-- Page Wrapper -->
 	<div id="page-wrapper" class="page-loading">
-		<!-- Preloader -->
-		<!-- <div class="preloader themed-background">
-				<h1 class="push-top-bottom text-light text-center" >
-                    <strong>rezza</strong>
-                    <br><small>Loading...</small>
-                </h1>
-				<div class="inner">
-					<h3 class="text-light visible-lt-ie10"><strong>Loading..</strong></h3>
-					<div class="preloader-spinner hidden-lt-ie10"></div>
-				</div>
-			</div> -->
-		<!-- END Preloader -->
+
 
 		<div id="page-container" class="header-fixed-top footer-fixed">
 			<!-- Main Container -->
 			<div id="main-container">
 				<!-- Header -->
-				<?php $this->getThemeElement("page/html/nav_bottom", $__forward); ?>
+				<?php $this->getThemeElement("page/html/topbar/header", $__forward); ?>
 				<!-- END Header -->
 
-				<!-- Main Container -->
 
-				<!-- Global Message -->
-				<?php $this->getThemeElement("page/html/global_message", $__forward); ?>
-				<!-- Global Message -->
+				<?php $this->getThemeContent(); ?>
 
-				<div class="pt-md-5">
-					<?php $this->getThemeContent(); ?>
-				</div>
 				<!-- Main Container End -->
 
 				<!-- Footer -->
-				<?php // $this->getThemeElement("page/html/footer",$__forward); 
-				?>
+				<?php $this->getThemeElement("page/html/footer", $__forward); ?>
 				<!-- End Footer -->
 			</div>
 			<!-- End Main Container -->
