@@ -22,7 +22,7 @@
 	<div class="card">
 
 		<div class="card-header">
-			<h6><strong>Edit User</strong></h6>
+			<h6><strong><?= $this->getTitle() ?></strong></h6>
 		</div>
 
 		<div class="card-body">

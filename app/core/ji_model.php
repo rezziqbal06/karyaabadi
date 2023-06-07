@@ -1,19 +1,20 @@
 <?php
+
 /**
-* Load manually Supporter class for data modelling
-*/
-require_once(SEMEROOT.'app/core/seme_column.php');
-require_once(SEMEROOT.'app/core/seme_datatable.php');
-require_once(SEMEROOT.'app/core/seme_viewmodel.php');
+ * Load manually Supporter class for data modelling
+ */
+require_once(SEMEROOT . 'app/core/seme_column.php');
+require_once(SEMEROOT . 'app/core/seme_datatable.php');
+require_once(SEMEROOT . 'app/core/seme_viewmodel.php');
 
 
 /**
-* Define all general method for all tables
-*   For class models
-*
-* @package Core\Model
-* @since 1.0
-*/
+ * Define all general method for all tables
+ *   For class models
+ *
+ * @package Core\Model
+ * @since 1.0
+ */
 class JI_Model extends \SENE_Model
 {
     /** @var string  */
@@ -54,19 +55,18 @@ class JI_Model extends \SENE_Model
      *
      * @return mixed                     Current validation string or current class object
      */
-    public function validation_message($validation_item='')
+    public function validation_message($validation_item = '')
     {
         if (strlen($validation_item)) {
             if (strlen($this->validation_message) == 0) {
                 $this->validation_message = 'Missing required column(s): ';
             }
-            $this->validation_message .= $validation_item.', ';
+            $this->validation_message .= $validation_item . ', ';
 
             return $this;
         } else {
             return rtrim($this->validation_message, ', ');
         }
-
     }
 
     /**
@@ -77,7 +77,7 @@ class JI_Model extends \SENE_Model
     public function data_parameters()
     {
         $data_parameters = array();
-        foreach ($this->columns as $key=>$val) {
+        foreach ($this->columns as $key => $val) {
             if (is_null($val->value)) {
                 $val->value = 'null';
             }
@@ -134,6 +134,12 @@ class JI_Model extends \SENE_Model
         return $this->db->from($this->tbl, $this->tbl_as)->get_first('', 0);
     }
 
+
+    public function last_id()
+    {
+        return $this->db->last_id;
+    }
+
     /**
      * Open the database transaction session
      * @return boolean True if succeed, otherwise false
@@ -175,15 +181,15 @@ class JI_Model extends \SENE_Model
     }
 
     /**
-    * List all table columns
-    *   If $key provided, it will show current key if exists
-    *   Otherwise will produce stdClass / empty class
-    *
-    * @param string $key    key or name of column
-    *
-    * @return array         Current defined columns in array
-    */
-    public function columns($key='')
+     * List all table columns
+     *   If $key provided, it will show current key if exists
+     *   Otherwise will produce stdClass / empty class
+     *
+     * @param string $key    key or name of column
+     *
+     * @return array         Current defined columns in array
+     */
+    public function columns($key = '')
     {
         if (strlen($key) > 0) {
             if (isset($this->columns[$key])) {
@@ -196,15 +202,15 @@ class JI_Model extends \SENE_Model
     }
 
     /**
-    * Define columns into a table by using array of string
-    *
-    * @param array $key              array of string of column name
-    * @param array $requireds        array of string of column name
-    * @param array $default_values   array of string of column name
-    *
-    * @return array                  Current defined columns in array
-    */
-    public function define_columns($keys=array(), $requireds=array(), $default_values=array())
+     * Define columns into a table by using array of string
+     *
+     * @param array $key              array of string of column name
+     * @param array $requireds        array of string of column name
+     * @param array $default_values   array of string of column name
+     *
+     * @return array                  Current defined columns in array
+     */
+    public function define_columns($keys = array(), $requireds = array(), $default_values = array())
     {
         if (is_array($keys) && count($keys)) {
             foreach ($keys as $key) {
@@ -217,14 +223,14 @@ class JI_Model extends \SENE_Model
     }
 
     /**
-    * Define a a required column into a table by a key / name of column
-    *
-    * @param string  $key        key or name of column
-    * @param bool    $override   A boolean value for enforce or override current column required state
-    *
-    * @return array              Current defined columns in array
-    */
-    public function required_column($key='', $override=true)
+     * Define a a required column into a table by a key / name of column
+     *
+     * @param string  $key        key or name of column
+     * @param bool    $override   A boolean value for enforce or override current column required state
+     *
+     * @return array              Current defined columns in array
+     */
+    public function required_column($key = '', $override = true)
     {
         if (is_string($key) && strlen($key) > 0) {
             if (!isset($this->columns[$key])) {
@@ -238,18 +244,18 @@ class JI_Model extends \SENE_Model
     }
 
     /**
-    * Define a a required column into a table by a key / name of column
-    *  by using array
-    *
-    * @param array  $key        Array of column names
-    * @param bool   $override   A boolean value for enforce or override current column required state
-    *
-    * @return array             Current defined columns in array
-    */
-    public function required_columns($keys='', $override=true)
+     * Define a a required column into a table by a key / name of column
+     *  by using array
+     *
+     * @param array  $key        Array of column names
+     * @param bool   $override   A boolean value for enforce or override current column required state
+     *
+     * @return array             Current defined columns in array
+     */
+    public function required_columns($keys = '', $override = true)
     {
         if (is_array($keys) && count($keys) > 0) {
-            foreach($keys as $key) {
+            foreach ($keys as $key) {
                 $this->required_column($key, $override);
             }
         }
@@ -258,18 +264,18 @@ class JI_Model extends \SENE_Model
     }
 
     /**
-    * Define a column default value into a table by a key / name of column
-    *
-    * @param string  $column_name   key or name of column
-    * @param mixed   $value         Current default value
-    *
-    * @return array                 Current defined columns in array
-    */
-    public function default_value($column_name='', $value='')
+     * Define a column default value into a table by a key / name of column
+     *
+     * @param string  $column_name   key or name of column
+     * @param mixed   $value         Current default value
+     *
+     * @return array                 Current defined columns in array
+     */
+    public function default_value($column_name = '', $value = '')
     {
         if (is_string($column_name) && strlen($column_name) > 0) {
             if (!isset($this->columns[$column_name])) {
-                trigger_error('$column_name = '.$column_name.' undefined!');
+                trigger_error('$column_name = ' . $column_name . ' undefined!');
                 return;
             }
             $this->columns[$column_name]->default = $value;
@@ -278,15 +284,15 @@ class JI_Model extends \SENE_Model
     }
 
     /**
-    * Define columns default value into a table by set of array values
-    *   If supplied make sure the array length are equal with defined columns
-    *
-    * @param array   $column_name   key or name of column
-    * @param mixed   $value         Current default value
-    *
-    * @return array                 Current defined columns in array
-    */
-    public function default_values($column_names=array())
+     * Define columns default value into a table by set of array values
+     *   If supplied make sure the array length are equal with defined columns
+     *
+     * @param array   $column_name   key or name of column
+     * @param mixed   $value         Current default value
+     *
+     * @return array                 Current defined columns in array
+     */
+    public function default_values($column_names = array())
     {
         if (!is_array($column_names)) {
             trigger_error('$column_names is not an array!');
@@ -300,7 +306,7 @@ class JI_Model extends \SENE_Model
                 return;
             }
             $i = 0;
-            foreach($this->columns as $key=>$value) {
+            foreach ($this->columns as $key => $value) {
                 $this->columns[$key]->default = isset($column_names[$i]) ? $column_names[$i] : '';
                 $i++;
             }
@@ -309,9 +315,9 @@ class JI_Model extends \SENE_Model
         return $this->columns;
     }
 
-    public function defined_input($method='post')
+    public function defined_input($method = 'post')
     {
-        switch(strtolower($method)){
+        switch (strtolower($method)) {
             case 'get':
                 $di = $_GET;
             case 'request':
@@ -321,7 +327,7 @@ class JI_Model extends \SENE_Model
         }
 
         $defined_input = array();
-        foreach($this->columns as $key=>$value){
+        foreach ($this->columns as $key => $value) {
             $defined_input[$key] = '';
             if (isset($defined_input[$key])) {
                 $defined_input[$key] = $di[$key];
@@ -338,10 +344,10 @@ class JI_Model extends \SENE_Model
      *
      * @return boolean           True if valid, false if not valid
      */
-    public function validates($method='post')
+    public function validates($method = 'post')
     {
         $result = true;
-        switch(strtolower($method)){
+        switch (strtolower($method)) {
             case 'get':
                 $di = $_GET;
             case 'request':
@@ -350,7 +356,7 @@ class JI_Model extends \SENE_Model
                 $di = $_POST;
         }
 
-        foreach($this->columns as $key=>$value){
+        foreach ($this->columns as $key => $value) {
             if ($value->required && !isset($di[$key])) {
                 $result = false;
                 $this->validation_message($key);
@@ -373,7 +379,7 @@ class JI_Model extends \SENE_Model
      *
      * @return int Last inserted ID or 1 for edit operation, otherwise return 0
      */
-    public function save($id=0)
+    public function save($id = 0)
     {
         if (is_int($id) && $id > 0) {
             return $this->update($id, $this->data_parameters());
@@ -383,11 +389,12 @@ class JI_Model extends \SENE_Model
         }
     }
 
+
     /**
-    * Global scoped procedure(s) for all of table when marked as deleted
-    *
-    * @return JI_Model this class
-    */
+     * Global scoped procedure(s) for all of table when marked as deleted
+     *
+     * @return JI_Model this class
+     */
     public function scoped()
     {
         $this->db->where_as("$this->tbl_as.is_deleted", $this->db->esc('0'));
@@ -395,10 +402,10 @@ class JI_Model extends \SENE_Model
     }
 
     /**
-    * Global scoped procedure(s) for all of table when is active and not deleted
-    *
-    * @return JI_Model this class
-    */
+     * Global scoped procedure(s) for all of table when is active and not deleted
+     *
+     * @return JI_Model this class
+     */
     public function active()
     {
         $this->db->where_as("$this->tbl_as.is_deleted", $this->db->esc('0'));
@@ -407,10 +414,10 @@ class JI_Model extends \SENE_Model
     }
 
     /**
-    * Get datatables support class from current $point_of_view
-    *
-    * @return Seme_Datatable if not exists will return empty Seme_Datatable object
-    */
+     * Get datatables support class from current $point_of_view
+     *
+     * @return Seme_Datatable if not exists will return empty Seme_Datatable object
+     */
     public function datatable()
     {
         if (!isset($this->datatables[$this->point_of_view])) {
@@ -420,14 +427,15 @@ class JI_Model extends \SENE_Model
     }
 
     /**
-    * Get rendered HTML for labelled column
-    *
-    * @param string $column_name name of defined column label
-    * @param mixed  $value       value for current defined column
-    *
-    * @return string formatted string label in html
-    */
-    public function label($column_name, $value){
+     * Get rendered HTML for labelled column
+     *
+     * @param string $column_name name of defined column label
+     * @param mixed  $value       value for current defined column
+     *
+     * @return string formatted string label in html
+     */
+    public function label($column_name, $value)
+    {
         return $this->labels[$column_name]->html($value);
     }
 }

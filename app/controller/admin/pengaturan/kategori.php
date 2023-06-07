@@ -35,7 +35,7 @@ class Kategori extends \JI_Controller
 		}
 
 
-		$this->setTitle('Kategori ' . $this->config_semevar('site_suffix_admin', ''));
+		$this->setTitle('Kategori ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/kategori/home_modal", $data);
 		$this->putThemeContent("pengaturan/kategori/home", $data);
@@ -58,7 +58,7 @@ class Kategori extends \JI_Controller
 		$pengguna = $data['sess']->admin;
 
 
-		$this->setTitle('Kategori - Indikator ' . $this->config_semevar('site_suffix', ''));
+		$this->setTitle('Kategori - Indikator ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/indikator/home_modal", $data);
 		$this->putThemeContent("pengaturan/indikator/home", $data);

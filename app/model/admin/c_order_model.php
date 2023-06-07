@@ -4,14 +4,14 @@ namespace Model\Admin;
 
 register_namespace(__NAMESPACE__);
 /**
- * Scoped `front` model for `B_Produk` table
+ * Scoped `front` model for `C_Order` table
  *
  * @version 5.4.1
  *
  * @package Model\Front
  * @since 1.0.0
  */
-class B_Produk_Model extends \Model\B_Produk_Concern
+class C_Order_Model extends \Model\C_Order_Concern
 {
 
 
@@ -24,8 +24,7 @@ class B_Produk_Model extends \Model\B_Produk_Concern
 
 	public function getAll()
 	{
-		$this->db->where_as("$this->tbl_as.is_active", 1, "AND", "=");
-		$this->db->where_as("$this->tbl_as.is_deleted", $this->db->esc(0), "AND", "=");
-		return $this->db->get('', 0);
+		$this->db->where('is_active', 1);
+		return $this->db->get('');
 	}
 }

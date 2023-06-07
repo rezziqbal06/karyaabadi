@@ -12,40 +12,44 @@ register_namespace(__NAMESPACE__);
  * @package Model\B_User
  * @since 1.0.0
  */
-class B_Produk_Harga_Concern extends \JI_Model
+class C_Order_Concern extends \JI_Model
 {
-    public $tbl = 'b_produk_harga';
-    public $tbl_as = 'bph';
-    public $tbl2 = 'b_produk';
-    public $tbl2_as = 'bp';
-    // public $tbl3 = 'a_company';
-    // public $tbl3_as = 'ac';
+    public $tbl = 'c_order';
+    public $tbl_as = 'co';
+    public $tbl2 = 'c_order_produk';
+    public $tbl2_as = 'cop';
+    public $tbl3 = 'b_produk';
+    public $tbl3_as = 'bp';
+    public $tbl4 = 'b_produk_harga';
+    public $tbl4_as = 'bph';
+    public $tbl5 = 'b_user';
+    public $tbl5_as = 'bu';
 
     const COLUMNS = [
-        'b_produk_id',
-        'spesifikasi',
-        'dari_qty',
-        'ke_qty',
-        'opr',
-        'harga',
+        'kode',
+        'b_user_id',
+        'cdate',
+        'tgl_pesan',
+        'tgl_selesai',
+        'status',
+        'total_harga',
         'is_active',
         'is_deleted',
     ];
     const DEFAULTS = [
-        0,
-        '',
         null,
         null,
-        '',
-        0,
+        null,
+        null,
+        null,
+        null,
+        null,
         1,
         0,
     ];
     const REQUIREDS = [
-        'b_produk_id',
-        'spesifikasi',
-        'ke_qty',
-        'harga'
+        'b_user_id',
+        'tgl_pesan'
     ];
     const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
@@ -75,21 +79,13 @@ class B_Produk_Harga_Concern extends \JI_Model
 
         $this->datatables['admin'] = new \Seme_Datatable([
             ["$this->tbl_as.id", 'id', 'ID'],
-            ["$this->tbl_as.nama", 'nama', 'Produk'],
-            ["$this->tbl2_as.nama", 'kategori', 'Kategori'],
-            ["$this->tbl_as.slug", 'slug', 'Slug'],
-            ["$this->tbl_as.gambar", 'gambar', 'Gambar'],
+            ["$this->tbl_as.kode", 'kode', 'Kode'],
+            ["$this->tbl3_as.nama", 'produk', 'Produk'],
+            ["$this->tbl4_as.spesifikasi", 'spesifikasi', 'Spesifikasi'],
+            ["$this->tbl5_as.fnama", 'pembeli', 'Pembeli'],
+            ["$this->tbl_as.total_harga", 'total_harga', 'Total Harga'],
             ["$this->tbl_as.is_active", 'is_active', 'Status']
         ]);
-
-        // $this->datatables['front'] = new \Seme_Datatable([
-        //     ["$this->tbl_as.id", 'id', 'ID'],
-        //     ["$this->tbl_as.fnama", 'fnama', 'Nama'],
-        //     ["$this->tbl_as.telp", 'telp', 'Telp'],
-        //     ["$this->tbl_as.email", 'email', 'Email'],
-        //     ["$this->tbl_as.utype", 'utype', 'Utype'],
-        //     ["$this->tbl_as.is_active", 'is_active', 'Status']
-        // ]);
 
         // $this->datatables['download'] = new \Seme_Datatable([
         //     ["$this->tbl_as.fnama", 'fnama', 'Nama'],

@@ -537,4 +537,52 @@ class Produk extends JI_Controller
 		array_unshift($data, $p);
 		$this->__json_select2($data);
 	}
+
+	/**
+	 * Get detailed information by idea
+	 *
+	 * @param  int   $id               ID value from a_fasilitas table
+	 *
+	 * @api
+	 * @return void
+	 */
+	public function get_spesifikasi($id, $qty)
+	{
+		$d = $this->__init();
+		$data = array();
+		if (!$this->admin_login) {
+			$this->status = 400;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			header("HTTP/1.0 400 Harus login");
+			$this->__json_out($data);
+			die();
+		}
+		$id = (int) $id;
+		if (!isset($qty) || !$qty) {
+			$data = new \stdClass();
+			$this->status = 441;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			$this->__json_out($data);
+			die();
+		}
+
+		$this->status = 200;
+		$this->message = API_ADMIN_ERROR_CODES[$this->status];
+		$data = $this->bpm->id($id);
+		if (!isset($data->id)) {
+			$data = new \stdClass();
+			$this->status = 441;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			$this->__json_out($data);
+			die();
+		}
+
+		$spesifikasi = $this->bphm->getByProdukAndQty($id, $qty);
+		foreach ($spesifikasi as $k => $v) {
+			$arr_spec = json_decode($v->spesifikasi);
+			$v->option = implode(" | ", $arr_spec);
+		}
+		$data->spesifikasi = $spesifikasi;
+		$this->__json_out($data);
+	}
 }

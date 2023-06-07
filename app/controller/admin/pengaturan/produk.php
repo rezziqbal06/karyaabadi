@@ -42,7 +42,7 @@ class Produk extends \JI_Controller
 
 		$data['akm'] = $this->akm->getAll();
 
-		$this->setTitle('produk ' . $this->config_semevar('site_suffix_admin', ''));
+		$this->setTitle('Produk ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/produk/home_modal", $data);
 		$this->putThemeContent("pengaturan/produk/home", $data);
@@ -60,7 +60,7 @@ class Produk extends \JI_Controller
 		$pengguna = $data['sess']->admin;
 		$data['akm'] = $this->akm->getAll();
 
-		$this->setTitle('Produk Baru ' . $this->config_semevar('site_suffix', ''));
+		$this->setTitle('Produk Baru ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/produk/baru_modal", $data);
 		$this->putThemeContent("pengaturan/produk/baru", $data);
@@ -117,7 +117,7 @@ class Produk extends \JI_Controller
 		}
 
 		// dd($data['bphm']);
-		$this->setTitle('Produk Edit #' . $bpm->id . ' ' . $this->config_semevar('site_suffix', ''));
+		$this->setTitle('Produk Edit #' . $bpm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
 		$this->putThemeContent("pengaturan/produk/edit_modal", $data);
 		$this->putThemeContent("pengaturan/produk/edit", $data);
 		$this->putJsContent("pengaturan/produk/edit_bottom", $data);

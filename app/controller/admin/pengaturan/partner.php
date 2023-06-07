@@ -35,7 +35,7 @@ class Partner extends \JI_Controller
 		}
 
 
-		$this->setTitle('Member ' . $this->config_semevar('site_suffix_admin', ''));
+		$this->setTitle('Member ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/partner/home_modal", $data);
 		$this->putThemeContent("pengaturan/partner/home", $data);
@@ -53,7 +53,7 @@ class Partner extends \JI_Controller
 		$pengguna = $data['sess']->admin;
 
 
-		$this->setTitle('Member Baru ' . $this->config_semevar('site_suffix', ''));
+		$this->setTitle('Member Baru ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/partner/baru_modal", $data);
 		$this->putThemeContent("pengaturan/partner/baru", $data);
@@ -88,7 +88,7 @@ class Partner extends \JI_Controller
 		$data['apm'] = $apm;
 
 
-		$this->setTitle('Member Edit #' . $apm->id . ' ' . $this->config_semevar('site_suffix', ''));
+		$this->setTitle('Member Edit #' . $apm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
 		$this->putThemeContent("pengaturan/partner/edit_modal", $data);
 		$this->putThemeContent("pengaturan/partner/edit", $data);
 		$this->putJsContent("pengaturan/partner/edit_bottom", $data);
@@ -112,7 +112,7 @@ class Partner extends \JI_Controller
 			redir(base_url_admin('pengaturan/partner/'));
 			die();
 		}
-		$this->setTitle('Member Detail #' . $apm->id . ' ' . $this->config_semevar('site_suffix', ''));
+		$this->setTitle('Member Detail #' . $apm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$apm->fnama = htmlentities($apm->fnama);
 		$data['apm'] = $apm;
@@ -142,7 +142,7 @@ class Partner extends \JI_Controller
 			die();
 		}
 
-		$this->setTitle('Manage partner Module #' . $apm->id . ' ' . $this->config_semevar('site_suffix', ''));
+		$this->setTitle('Manage partner Module #' . $apm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$data['apm'] = $apm;
 

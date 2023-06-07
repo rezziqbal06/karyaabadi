@@ -76,4 +76,19 @@ class B_produk_Model extends \Model\B_produk_Concern
   {
     return $this->db->insert_multi($this->tbl, $dis);
   }
+
+  public function cari($keyword = "")
+  {
+    $this->db->select_as("$this->tbl_as.id", "id", 0);
+    $this->db->select_as("$this->tbl_as.nama", "text", 0);
+    // $this->db->select_as("CONCAT($this->tbl_as.fnama,' - ', $this->tbl_as.email)", "text", 0);
+    $this->db->from($this->tbl, $this->tbl_as);
+    $this->db->join_company();
+    if (strlen($keyword) > 0) {
+      $this->db->where_as("$this->tbl_as.nama", ($keyword), "OR", "LIKE%%", 1, 0);
+      $this->db->where_as("$this->tbl2_as.nama", ($keyword), "OR", "LIKE%%", 0, 1);
+    }
+    $this->db->order_by("$this->tbl_as.nama", "asc");
+    return $this->db->get('', 0);
+  }
 }

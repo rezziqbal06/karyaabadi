@@ -35,7 +35,7 @@ class Unit extends \JI_Controller
 		}
 
 
-		$this->setTitle('Member ' . $this->config_semevar('site_suffix_admin', ''));
+		$this->setTitle('Member ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/unit/home_modal", $data);
 		$this->putThemeContent("pengaturan/unit/home", $data);
@@ -53,7 +53,7 @@ class Unit extends \JI_Controller
 		$pengguna = $data['sess']->admin;
 
 
-		$this->setTitle('Member Baru ' . $this->config_semevar('site_suffix', ''));
+		$this->setTitle('Member Baru ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("akun/user/baru_modal", $data);
 		$this->putThemeContent("akun/user/baru", $data);
@@ -88,7 +88,7 @@ class Unit extends \JI_Controller
 		$data['aum'] = $aum;
 
 
-		$this->setTitle('Member Edit #' . $aum->id . ' ' . $this->config_semevar('site_suffix', ''));
+		$this->setTitle('Member Edit #' . $aum->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
 		$this->putThemeContent("akun/user/edit_modal", $data);
 		$this->putThemeContent("akun/user/edit", $data);
 		$this->putJsContent("akun/user/edit_bottom", $data);
@@ -112,7 +112,7 @@ class Unit extends \JI_Controller
 			redir(base_url_admin('akun/user/'));
 			die();
 		}
-		$this->setTitle('Member Detail #' . $aum->id . ' ' . $this->config_semevar('site_suffix', ''));
+		$this->setTitle('Member Detail #' . $aum->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$aum->fnama = htmlentities($aum->fnama);
 		$aum->alamat = htmlentities($aum->alamat);

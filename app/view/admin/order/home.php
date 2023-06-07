@@ -42,7 +42,7 @@
 			<div class="table-responsive">
 				<table id="drTable" class="table table-vcenter table-hover">
 					<thead>
-						<?= $this->akm->datatable()->table_headers() ?>
+						<?= $this->com->datatable()->table_headers() ?>
 					</thead>
 					<tbody>
 					</tbody>
