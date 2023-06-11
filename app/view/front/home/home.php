@@ -1,10 +1,24 @@
 <section>
-	<div class="row mt-7">
+	<div class=" mt-7">
 		<!-- <h6 class="text-center">Dapatkan Kemudahan Layanan Kami</h6> -->
 		<!-- <h2 class="text-center"><b class="text-primary">Percetakan</b> Kustom dengan <b class="text-primary">Mudah</b> dalam Sekali Genggaman</h2> -->
+
 	</div>
 </section>
-<section class="p-3">
+<div id="banner" class="">
+	<?php if (isset($abm) && count($abm)) : ?>
+		<?php foreach ($abm as $k => $v) : ?>
+			<div>
+				<img src="<?= base_url("$v->gambar") ?>" class="d-block w-100" alt="<?= $v->slug ?>">
+			</div>
+		<?php endforeach ?>
+	<?php endif ?>
+</div>
+<div class="carousel-indicators">
+	<ul></ul>
+</div>
+<!-- List Produk Popular -->
+<section class="p-3 p-md-5">
 	<div class="row mt-5">
 		<h4>Produk Populer</h4>
 		<div class="col-md-6">
@@ -54,7 +68,8 @@
 		</div>
 	</div>
 </section>
-<section class="row p-3">
+<!-- List Produk -->
+<section class="row p-3 p-md-5">
 	<div class="col-md-4">&nbsp;</div>
 	<div class="col-md-4">
 		<div class="row text-center">

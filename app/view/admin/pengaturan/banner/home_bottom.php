@@ -19,7 +19,7 @@ if(jQuery('#drTable').length>0){
 			"responsive"	  : true,
 			"bProcessing"		: true,
 			"bServerSide"		: true,
-			"sAjaxSource"		: "<?=base_url("api_admin/pengaturan/partner/")?>",
+			"sAjaxSource"		: "<?=base_url("api_admin/pengaturan/banner/")?>",
 			"fnServerParams": function ( aoData ) {
 				aoData.push(
 					{ "name": "a_company_id", "value": $("#fl_a_company_id").val() },
@@ -38,7 +38,7 @@ if(jQuery('#drTable').length>0){
 						e.preventDefault();
 						var id = $(this).find("td").html();
 						ieid = id;
-						$.get('<?=base_url("api_admin/pengaturan/partner/detail/")?>'+ieid).done(function(dt){
+						$.get('<?=base_url("api_admin/pengaturan/banner/detail/")?>'+ieid).done(function(dt){
 							if(dt.data){
 								$.each(dt.data, function(k,v){
 									if(k == "gambar"){
@@ -50,10 +50,10 @@ if(jQuery('#drTable').length>0){
 								})
 							}
 						})
-						$("#adetail").attr("href","<?=base_url_admin("pengaturan/partner/detail/")?>"+ieid);
-						//$("#aedit").attr("href","<?=base_url_admin("pengaturan/partner/edit/")?>"+ieid);
-						$("#amodule").attr("href","<?=base_url_admin("pengaturan/partner/module/")?>"+ieid);
-						$("#areseller").attr("href","<?=base_url_admin("partner/reseller/baru/")?>"+ieid);
+						$("#adetail").attr("href","<?=base_url_admin("pengaturan/banner/detail/")?>"+ieid);
+						//$("#aedit").attr("href","<?=base_url_admin("pengaturan/banner/edit/")?>"+ieid);
+						$("#amodule").attr("href","<?=base_url_admin("pengaturan/banner/module/")?>"+ieid);
+						$("#areseller").attr("href","<?=base_url_admin("banner/reseller/baru/")?>"+ieid);
 						$("#modal_option").modal("show");
 						
 					});
@@ -85,7 +85,7 @@ $("#ftambah").on("submit",function(e){
 	$('.icon-submit').addClass('fa-circle-o-notch fa-spin');
 
 	var fd = new FormData($(this)[0]);
-	var url = '<?= base_url("api_admin/pengaturan/partner/baru/")?>';
+	var url = '<?= base_url("api_admin/pengaturan/banner/baru/")?>';
 	var gambar = getImageData('igambarprev');
 	if(gambar){
 		fd.append('gambar', gambar.blob, 'gambar.'+gambar.extension);
@@ -100,7 +100,7 @@ $("#ftambah").on("submit",function(e){
 			if(respon.status==200){
 				gritter('<h4>Sukses</h4><p>Data berhasil ditambahkan</p>','success');
 				setTimeout(function(){
-					window.location = '<?=base_url_admin('pengaturan/partner/')?>';
+					window.location = '<?=base_url_admin('pengaturan/banner/')?>';
 				},500);
 			}else{
 				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','danger');
@@ -130,7 +130,7 @@ $("#fedit").on("submit",function(e){
 	$('.icon-submit').addClass('fa-circle-o-notch fa-spin');
 
 	var fd = new FormData($(this)[0]);
-	var url = '<?=base_url("api_admin/pengaturan/partner/edit/")?>';
+	var url = '<?=base_url("api_admin/pengaturan/banner/edit/")?>';
 	var gambar = getImageData('iegambarprev');
 	if(gambar){
 		fd.append('gambar', gambar.blob, 'gambar.'+gambar.extension);
@@ -145,7 +145,7 @@ $("#fedit").on("submit",function(e){
 			if(respon.status==200){
 				gritter('<h4>Sukses</h4><p>Data berhasil diubah</p>','success');
 				setTimeout(function(){
-					window.location = '<?=base_url_admin('pengaturan/partner/')?>';
+					window.location = '<?=base_url_admin('pengaturan/banner/')?>';
 				},500);
 			}else{
 				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','danger');
@@ -178,7 +178,7 @@ $("#bhapus").on("click",function(e){
 			NProgress.start();
 			$('.btn-submit').prop('disabled',true);
 			$('.icon-submit').addClass('fa-circle-o-notch fa-spin');
-			var url = '<?=base_url('api_admin/pengaturan/partner/hapus/')?>'+ieid;
+			var url = '<?=base_url('api_admin/pengaturan/banner/hapus/')?>'+ieid;
 			$.get(url).done(function(response){
 				NProgress.done();
 				if(response.status==200){
@@ -211,7 +211,7 @@ $("#bhapus").on("click",function(e){
 $("#fl_a_company_id_parent").select2({
 	ajax: {
 		method: 'post',
-		url: '<?=base_url("api_admin/pengaturan/partner/get_parent/")?>',
+		url: '<?=base_url("api_admin/pengaturan/banner/get_parent/")?>',
 		dataType: 'json',
     delay: 250,
 		data: function (params) {

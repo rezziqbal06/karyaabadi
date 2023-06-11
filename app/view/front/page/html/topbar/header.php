@@ -1,39 +1,62 @@
-<style>
-    .navbar-brand-logo img {
-        width: auto;
-        max-height: 49px;
-    }
-</style>
-<header>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <!-- Brand/logo -->
-            <a class="navbar-brand" href="#">
-                <div class="navbar-brand-logo"><img src="<?= $this->config->semevar->site_logo->path ?>" alt="$this->config->semevar->site_name"></div>
+<header id="nav-menu" aria-label="navigation bar">
+    <div class="container">
+        <div class="nav-center">
+            <a class="logo" href="/">
+                <img src="<?= $this->config->semevar->site_logo->path ?>" width="35" height="35" alt="Inc Logo" />
             </a>
+            <nav class="menu">
+                <ul class="menu-bar">
+                    <li>
+                        <button class="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="produk">
+                            Produk
+                            <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div id="dropdown1" class="dropdown">
+                            <?php if (isset($bpm) && count($bpm)) : ?>
+                                <?php $temp_kategori = ""; ?>
+                                <?php foreach ($bpm as $k => $v) : ?>
+                                    <?php if ($k == 0) : ?>
+                                        <?php $temp_kategori = $v->a_kategori_nama; ?>
+                                        <ul role="menu" class="border-right">
+                                            <li><span class="dropdown-link-title"><?= $v->a_kategori_nama ?></span></li>
+                                        <?php else : ?>
+                                            <?php if ($temp_kategori != $v->a_kategori_nama) : ?>
+                                                <?php $temp_kategori = $v->a_kategori_nama; ?>
+                                        </ul>
+                                        <ul role="menu" class="<?= ($k == count($bpm) - 1) ? "" : "border-right" ?>">
+                                            <li><span class="dropdown-link-title"><?= $v->a_kategori_nama ?></span></li>
+                                        <?php endif ?>
+                                        <li role="menuitem"><a class="dropdown-link" href="<?= base_url("produk/" . $v->slug) ?>"><?= $v->nama ?></a></li>
+                                    <?php endif ?>
+                                    <?php if ($k == count($bpm) - 1) : ?>
+                                        </ul>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                        </div>
+                    </li>
 
-            <!-- Toggler/collapsible Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon" style="height:auto;padding:4px"><i class="fa fa-bars"></i></span>
-            </button>
-
-            <!-- Navigation links -->
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
+                    <li><a class="nav-link" href="/tentang_kami">Tentang Kami</a></li>
+                    <li><a class="nav-link" href="/blog">Blog</a></li>
                 </ul>
-            </div>
+            </nav>
         </div>
-    </nav>
+
+        <div class="nav-end">
+            <!-- <div class="right-container">
+                <form class="search" role="search">
+                    <input type="search" name="search" placeholder="Search" />
+                    <i class="bx bx-search" aria-hidden="true"></i>
+                </form>
+                <a href="#profile">
+                    <img src="https://github.com/Evavic44/responsive-navbar-with-dropdown/blob/main/assets/images/user.jpg?raw=true" width="30" height="30" alt="user image" />
+                </a>
+                <button class="btn btn-primary">Create</button>
+            </div> -->
+
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
 </header>

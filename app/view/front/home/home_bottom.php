@@ -32,3 +32,16 @@ $(document).on('click', '.btn-kategori', function(e){
 		}
 	})
 });
+
+$('#banner').slick({
+    autoplay: true,
+    autoplaySpeed: 2000,
+    fade: true,
+    cssEase: 'linear',
+	dots: true, // Enable dots (indicator bullets)
+	appendDots: '.carousel-indicators ul', // Append dots to the specified element
+    customPaging : function(slider, i) {
+      // Custom function to create the dot indicators
+      return '<button class="dot"></button>';
+    }
+  });

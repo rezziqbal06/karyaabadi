@@ -242,6 +242,15 @@ div::-webkit-scrollbar-thumb:hover {
     border-radius: 30px;
 }
 
+.border-bottom {
+    border-bottom: var(--border) !important;
+}
+
+.border-right {
+    border-right: var(--border) !important;
+}
+
+
 
 /* set button(top and bottom of the scrollbar) */
 /* .scrollbar::-webkit-scrollbar-button {display:none} */
