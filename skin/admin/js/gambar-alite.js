@@ -97,29 +97,35 @@ function initCompressingImage(selector, type="single"){
         var context=canvas.getContext("2d");
             // console.log('image.width: '+image.width);
             // console.log('image.height: '+image.height);
-            var sx = 1;
-            if(image.width >= wmax && image.height >= hmax){
-                if(image.width >= image.height){
-                    sx = wmax / image.width;
-                    sx = Math.round((sx + Number.EPSILON) * 100) / 100;
-                }else{
-                    sx = hmax / image.height;
-                    sx = Math.round((sx + Number.EPSILON) * 100) / 100;
-                }
-            }else if(image.width >= wmax && image.height < hmax){
-                sx = wmax / image.width;
-                sx = Math.round((sx + Number.EPSILON) * 100) / 100;
-            }else if(image.width < wmax && image.height >= hmax){
-                sx = hmax / image.height;
-                sx = Math.round((sx + Number.EPSILON) * 100) / 100;
-            }
-            canvas.width = image.width*sx;
-            canvas.height = image.height*sx;
+            // var sx = 1;
+            // if(image.width >= wmax && image.height >= hmax){
+            //     if(image.width >= image.height){
+            //         sx = wmax / image.width;
+            //         sx = Math.round((sx + Number.EPSILON) * 100) / 100;
+            //     }else{
+            //         sx = hmax / image.height;
+            //         sx = Math.round((sx + Number.EPSILON) * 100) / 100;
+            //     }
+            // }else if(image.width >= wmax && image.height < hmax){
+            //     sx = wmax / image.width;
+            //     sx = Math.round((sx + Number.EPSILON) * 100) / 100;
+            // }else if(image.width < wmax && image.height >= hmax){
+            //     sx = hmax / image.height;
+            //     sx = Math.round((sx + Number.EPSILON) * 100) / 100;
+            // }
+            // canvas.width = image.width*sx;
+            // canvas.height = image.height*sx;
+            canvas.width = image.width;
+            canvas.height = image.height;
+            
 
             // console.log('canvas.width: '+canvas.width);
             // console.log('canvas.height: '+canvas.height);
-        context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
-        document.getElementById(selector_imgprev).src = canvas.toDataURL();
+        // context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
+        context.drawImage(image, 0, 0, image.width, image.height);
+        // document.getElementById(selector_imgprev).src = canvas.toDataURL();
+        var compressionQuality = 0.5;
+        document.getElementById(selector_imgprev).src = canvas.toDataURL('image/jpeg', compressionQuality);
     }
     image.src=event.target.result;
         // console.log('final image.width: '+image.width);
@@ -134,9 +140,11 @@ function initCompressingImage(selector, type="single"){
             success: function() {
                 // alert('Allowed extension icon!');
                 // console.log('Max file size: '+ufsmax+'MB');
-                var flsz = $('#'+selector)[0].files[0].size/1920/1080;
+                var flsz = $('#'+selector)[0].files[0].size;
+                console.log("original size: "+flsz)
+                if(flsz > 100000) flsz = flsz/1920/1080;
                 flsz = flsz.toFixed(2);
-                console.log(flsz,'flsz');
+                console.log("compressed size: "+flsz)
                 if(flsz > ufsmax){
                     // console.log('File too big, maximum is '+ufsmax+'MB');
                     $('#'+selector).val('');

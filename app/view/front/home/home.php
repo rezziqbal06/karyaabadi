@@ -68,6 +68,20 @@
 		</div>
 	</div>
 </section>
+<!-- List Kustomer -->
+<section class="row p-3 p-md-5">
+	<div id="kustomer" class="text-center align-middle">
+		<?php if (isset($apm) && count($apm)) : ?>
+			<?php foreach ($apm as $k => $v) : ?>
+				<div class="m-2 text-center">
+					<div class="kartu-partner">
+						<img src="<?= base_url("$v->gambar") ?>" class="kartu-partner-gambar" alt="<?= $v->slug ?>">
+					</div>
+				</div>
+			<?php endforeach ?>
+		<?php endif ?>
+	</div>
+</section>
 <!-- List Produk -->
 <section class="row p-3 p-md-5">
 	<div class="col-md-4">&nbsp;</div>

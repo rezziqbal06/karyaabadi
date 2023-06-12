@@ -11,10 +11,12 @@ class Home extends JI_Controller
 
 		$this->load('a_kategori_concern');
 		$this->load('a_banner_concern');
+		$this->load('a_partner_concern');
 		$this->load('b_produk_concern');
 
 		$this->load('front/a_kategori_model', 'akm');
 		$this->load('front/a_banner_model', 'abm');
+		$this->load('front/a_partner_model', 'apm');
 		$this->load('front/b_produk_model', 'bpm');
 	}
 
@@ -50,6 +52,12 @@ class Home extends JI_Controller
 
 		$data['abm'] = $abm;
 		unset($abm);
+
+		$apm = $this->apm->getAll();
+		if (isset($apm[0]->id)) $data['apm'] = $apm;
+
+		$data['apm'] = $apm;
+		unset($apm);
 
 		// $data['jp'] = $this->input->request('jp', 2);
 

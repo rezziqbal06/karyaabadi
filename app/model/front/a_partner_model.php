@@ -22,9 +22,10 @@ class A_Partner_Model extends \Model\A_Partner_Concern
 		$this->point_of_view = 'front';
 	}
 
-	public function getAll($is_active = 1)
+	public function getAll($is_active = 1, $is_deleted = 1)
 	{
 		$this->db->where('is_active', $is_active);
+		$this->db->where('is_deleted', $this->db->esc($is_deleted));
 		return $this->db->get('', 0);
 	}
 

@@ -57,13 +57,13 @@
 									<label for="islug" class="control-label">Slug</label>
 									<input id="islug" type="text" name="slug" class="form-control" required>
 								</div>
-								<div class="col-md-4 mb-2">
+								<!-- <div class="col-md-4 mb-2">
 									<label for="itype" class="control-label">Tipe</label>
 									<select id="itype" type="text" name="type" class="form-control" required>
 										<option value="header" selected>header</option>
 										<option value="promo">promo</option>
 									</select>
-								</div>
+								</div> -->
 								<div class="col-md-6 mb-2">
 									<label for="igambar" class="control-label">Gambar</label>
 									<input id="igambar" type="file" name="gambar" class="form-control" required>
@@ -118,13 +118,13 @@
 									<label for="ieslug" class="control-label">Slug</label>
 									<input id="ieslug" type="text" name="slug" class="form-control" required>
 								</div>
-								<div class="col-md-4 mb-2">
+								<!-- <div class="col-md-4 mb-2">
 									<label for="ietype" class="control-label">Tipe</label>
 									<select id="ietype" type="text" name="type" class="form-control" required>
 										<option value="header" selected>header</option>
 										<option value="promo">promo</option>
 									</select>
-								</div>
+								</div> -->
 								<div class="col-md-6 mb-2">
 									<label for="iegambar" class="control-label">Gambar</label>
 									<input id="iegambar" type="file" name="gambar" class="form-control">
