@@ -71,9 +71,14 @@ function DataURIToBlob(dataURI) {
     return new Blob([ia], { type: mimeString })
 }
 
+function getFileExtension(file) {
+    var fileName = file.name;
+    var extension = fileName.substr(fileName.lastIndexOf('.') + 1);
+    return extension;
+}
+
 function initCompressingImage(selector, type="single"){
     if(!$("#panel_temp_image").length){
-        console.log('create panel_temp_image');
         $('body').append('<div id="panel_temp_image"></div>');
     }
     var fileReader = new FileReader();
@@ -118,14 +123,15 @@ function initCompressingImage(selector, type="single"){
             canvas.width = image.width;
             canvas.height = image.height;
             
-
+        var file = event.target.file;
+        var fileExtension = getFileExtension(file);
             // console.log('canvas.width: '+canvas.width);
             // console.log('canvas.height: '+canvas.height);
         // context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
         context.drawImage(image, 0, 0, image.width, image.height);
         // document.getElementById(selector_imgprev).src = canvas.toDataURL();
         var compressionQuality = 0.5;
-        document.getElementById(selector_imgprev).src = canvas.toDataURL('image/jpeg', compressionQuality);
+        document.getElementById(selector_imgprev).src = canvas.toDataURL('image/'+fileExtension, compressionQuality);
     }
     image.src=event.target.result;
         // console.log('final image.width: '+image.width);
@@ -141,16 +147,16 @@ function initCompressingImage(selector, type="single"){
                 // alert('Allowed extension icon!');
                 // console.log('Max file size: '+ufsmax+'MB');
                 var flsz = $('#'+selector)[0].files[0].size;
-                console.log("original size: "+flsz)
-                if(flsz > 100000) flsz = flsz/1920/1080;
+                // console.log("original size: "+flsz)
+                flsz = flsz/1920/1080;
                 flsz = flsz.toFixed(2);
-                console.log("compressed size: "+flsz)
+                console.log("original size: "+flsz)
                 if(flsz > ufsmax){
                     // console.log('File too big, maximum is '+ufsmax+'MB');
                     $('#'+selector).val('');
                     alert('File too big, maximum is '+ufsmax+'MB')
                     return false;
-                }else if (flsz <= 0){
+                }else if (flsz <= -1){
                     // console.log('unselected file');
                     alert('Pilih file terlebih dahulu')
                     $('#'+selector).val('');

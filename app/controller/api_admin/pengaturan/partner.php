@@ -98,6 +98,7 @@ class Partner extends JI_Controller
 			die();
 		}
 
+		$this->apm->columns['cdate']->value = 'NOW()';
 
 		$res = $this->apm->save();
 		if ($res) {
@@ -206,6 +207,8 @@ class Partner extends JI_Controller
 			$this->__json_out($data);
 			die();
 		}
+		$this->apm->columns['cdate']->value = 'NOW()';
+
 		if ($id > 0) {
 			unset($du['id']);
 			$resUpload = $this->se->upload_file('gambar', 'partner', $id);

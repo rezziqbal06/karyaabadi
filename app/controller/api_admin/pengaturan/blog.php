@@ -1,13 +1,13 @@
 <?php
-class Banner extends JI_Controller
+class Blog extends JI_Controller
 {
 	var $media_pengguna = 'media/pengguna';
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load('a_banner_concern');
-		$this->load("api_admin/a_banner_model", 'abm');
+		$this->load('a_blog_concern');
+		$this->load("api_admin/a_blog_model", 'abm');
 		$this->lib("seme_upload", 'se');
 	}
 
@@ -97,12 +97,12 @@ class Banner extends JI_Controller
 			$this->__json_out($data);
 			die();
 		}
-
 		$this->abm->columns['cdate']->value = 'NOW()';
+
 
 		$res = $this->abm->save();
 		if ($res) {
-			$resUpload = $this->se->upload_file('gambar', 'banner', $res);
+			$resUpload = $this->se->upload_file('gambar', 'blog', $res);
 			if ($resUpload->status == 200) {
 				$this->abm->update($res, ['gambar' => $resUpload->file]);
 			}
@@ -211,7 +211,7 @@ class Banner extends JI_Controller
 
 		if ($id > 0) {
 			unset($du['id']);
-			$resUpload = $this->se->upload_file('gambar', 'banner', $id);
+			$resUpload = $this->se->upload_file('gambar', 'blog', $id);
 			if ($resUpload->status == 200) {
 				$du['gambar'] = $resUpload->file;
 			}

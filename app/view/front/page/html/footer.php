@@ -12,8 +12,9 @@
 		</div>
 	</div>
 	<hr class="bg-white">
-	<div class="row p-2">
-		<div class="col-md-12"><?= $this->config->semevar->site_version ?> <a href="https://qaanii.com" target="_blank" title="Qaanii" style="color: rgba(0,0,0,0.4);">Qaanii</a></div>
+	<div class="row p-3 text-sm" style="color: rgba(0,0,0,0.4);">
+		<div class="col-md-6"><a href="https://qaanii.com" target="_blank" title="Qaanii">Copyright © Qaanii</a></div>
+		<div class="col-md-6"><small class="pull-right">Image by <a href="https://www.freepik.com/free-vector/organic-flat-illustration-printing-industry_13176038.htm">Freepik</a></small></div>
 	</div>
 
 </footer>

@@ -254,7 +254,7 @@ div::-webkit-scrollbar-thumb:hover {
 .kartu-partner{
     width: 250px;
     height: 100px;
-    padding: 16px;
+    padding: 32px;
     transition: background-color 0.3s ease;
     border-radius: 24px;
     background-color: #fff;
@@ -267,6 +267,25 @@ div::-webkit-scrollbar-thumb:hover {
     max-width: 100%;
     max-height: 100%;
     text-align: center !important;
+}
+
+.scale-up{
+    transition: transform 0.3s ease;
+}
+
+.scale-up:hover{
+    transform: scale(1.02);
+}
+
+
+.ck-editor__editable[role="textbox"] {
+    /* editing area */
+    min-height: 200px;
+}
+.ck-content .image {
+    /* block images */
+    max-width: 80%;
+    margin: 20px auto;
 }
 
 
@@ -466,5 +485,17 @@ div::-webkit-scrollbar-thumb:hover {
 @media screen and (max-width: 765px) {
     .card-filter{
         top: 0px;
+    }
+
+    .kartu-partner{
+        width: 150px;
+        height: 70px;
+        padding: 24px;
+        transition: background-color 0.3s ease;
+        border-radius: 12px;
+        background-color: #fff;
+        display: flex!important;
+        align-items: center;
+        justify-content: center;
     }
 }

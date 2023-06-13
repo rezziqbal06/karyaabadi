@@ -28,4 +28,16 @@ class B_Produk_Model extends \Model\B_Produk_Concern
 		$this->db->where_as("$this->tbl_as.is_deleted", $this->db->esc(0), "AND", "=");
 		return $this->db->get('', 0);
 	}
+
+	public function countAll()
+	{
+		$this->db->select_as("COUNT(*)", 'jumlah', 0);
+		$this->db->where_as("$this->tbl_as.is_active", 1, "AND", "=");
+		$this->db->where_as("$this->tbl_as.is_deleted", $this->db->esc(0), "AND", "=");
+		$d = $this->db->get_first("object", 0);
+		if (isset($d->jumlah)) {
+			return $d->jumlah;
+		}
+		return 0;
+	}
 }
