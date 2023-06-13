@@ -152,16 +152,16 @@ var option_produk = "";
   <?php } ?>
 <?php } ?>
 
-function addProduk(id, b_produk_id="", qty="", b_produk_id_harga="", harga=""){
+function addProduk(id, b_produk_id="", qty="", b_produk_id_harga="", harga="", status="pending"){
   if(!window['produk_'+id]) window['produk_'+id] = 0;
   var s = `<div id="ps_${id}" class="row">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
                 <label for="ib_produk_id_${id}">Nama</label>
                 <select name="b_produk_id[]" id="ib_produk_id_${id}" data-count="${id}" class="form-control select2">
                     ${option_produk}
                 </select>
             </div>
-            <div class="col-md-2 mb-3">
+            <div class="col-md-1 mb-3">
                 <label for="iqty_${id}" data-count="${id}">Qty</label>
                 <input type="number" name="qty[]" id="iqty_${id}" data-count="${id}" class="form-control">
             </div>
@@ -175,6 +175,15 @@ function addProduk(id, b_produk_id="", qty="", b_produk_id_harga="", harga=""){
                 <label for="iharga_${id}" data-count="${id}">Harga</label>
                 <input type="text" name="harga[]" id="iharga_${id}" data-count="${id}" class="form-control text-end">
             </div>
+            <div class="col-md-2 mb-3">
+                <label for="istatus_${id}" data-count="${id}">Status</label>
+                <select name="status[]" id="istatus_${id}" data-count="${id}" class="form-control">
+                   <option value="pending">pending</option>
+                   <option value="progress">progress</option>
+                   <option value="done">done</option>
+                   <option value="cancel">cancel</option>
+                </select>
+            </div>
             <div class="col-md-1 mb-3">
                 <label for="" class="text-white">Aksi</label>
                 <button class="btn btn-danger btn-remove-produk pull-right" type="button" data-count="${id}" data-count-detail="${window['produk_'+id]}"><i class="fa fa-minus"></i></button>
@@ -186,9 +195,11 @@ function addProduk(id, b_produk_id="", qty="", b_produk_id_harga="", harga=""){
 
   if(b_produk_id) $("#ib_produk_id_"+id).val(b_produk_id)
   if(qty) $("#iqty_"+id).val(qty)
+  if(status) $("#istatus_"+id).val(status)
   if(b_produk_id && qty){
     setSpesifikasi(id)
     setTimeout(function(){
+      console.log("#ib_produk_id_harga_"+id, b_produk_id_harga)
       if(b_produk_id_harga) $("#ib_produk_id_harga_"+id).val(b_produk_id_harga).trigger('change')
     },333)
   }
@@ -260,7 +271,7 @@ $('.datepicker').datepicker({format: 'yyyy-mm-dd'})
 setTimeout(function(){
 <?php if(isset($copm) && count($copm)){ ?>
   <?php foreach($copm as $kpm => $vpm){ ?>
-      addProduk(id_produk, "<?=$vpm->b_produk_id?>", "<?=$vpm->qty?>", "<?=$vpm->b_produk_id_harga?>", "<?=$vpm->sub_harga?>")
+      addProduk(id_produk, "<?=$vpm->b_produk_id?>", "<?=$vpm->qty?>", "<?=$vpm->b_produk_id_harga?>", "<?=$vpm->sub_harga?>", "<?=$vpm->status ?? "pending"?>")
   <?php } ?>
 <?php } ?>
 },333)

@@ -55,5 +55,33 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    Order Bulan Ini
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Kode</th>
+                            <th>Produk</th>
+                            <th>Pembeli</th>
+                            <th>Tanggal Pesan</th>
+                            <th>Status</th>
+                        </tr>
+                        <?php foreach ($orders as $o) : ?>
+                            <tr>
+                                <td><?= $o->kode ?></td>
+                                <td><?= $o->produk ?></td>
+                                <td><?= $o->pembeli ?></td>
+                                <td><?= $o->tgl_pesan ?></td>
+                                <td><?= $o->status_badge ?></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

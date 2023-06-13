@@ -1,19 +1,20 @@
-function initLineChart(context, label_title, labels, data, color, backgroundColor){
+function initLineChart(context, type_chart, label_title, labels, data, color, backgroundColor){
     new Chart(context, {
-    type: "line",
+    type: type_chart,
     data: {
         labels: labels,
         datasets: [{
             label: label_title,
             tension: 0.4,
-            borderWidth: 0,
+            weight: 5,
+            borderRadius: 5,
             pointRadius: 0,
             borderColor: color,
-            borderWidth: 3,
+            borderWidth: type_chart == 'line' ? 3 : 0,
             backgroundColor: backgroundColor,
             fill: true,
             data: data,
-            maxBarThickness: 6
+            maxBarThickness: type_chart == 'line' ? 6 : 35
 
         },
         ],
@@ -91,5 +92,5 @@ gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
 gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
 gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
 
-initLineChart(ctx1, "Omset", <?=$chart->bulan?>, <?=$chart->omset?>, "#5e72e4", gradientStroke1)
-initLineChart(ctx2, "Omset", <?=$chart->bulan?>, <?=$chart->jumlah?>, "#3A416F", gradientStroke2)
+initLineChart(ctx1, "line", "Omset", <?=$chart->bulan?>, <?=$chart->omset?>, "#5e72e4", gradientStroke1)
+initLineChart(ctx2, "bar", "Order", <?=$chart->bulan?>, <?=$chart->jumlah?>, "#3A416F", "#3A416F")

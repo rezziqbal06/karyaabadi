@@ -56,7 +56,42 @@ class Home extends JI_Controller
 		$data['chart']->bulan = json_encode($bulan);
 		$data['chart']->omset = json_encode($omset);
 		$data['chart']->jumlah = json_encode($jumlah);
+		$orders = $this->copm->getBulanIni();
+		foreach ($orders as $o) {
+			if (isset($o->sub_harga)) {
+				$o->sub_harga = number_format((float) $o->sub_harga, 0, ',', '.');
+			}
+			if ($o->tgl_pesan == "0000-00-00 00:00:00") $o->tgl_pesan = "";
+			if ($o->tgl_selesai == "0000-00-00 00:00:00") $o->tgl_selesai = "";
 
+			if (isset($o->tgl_pesan) && strlen($o->tgl_pesan)) {
+				$o->tgl_pesan = $this->__dateIndonesia($o->tgl_pesan);
+			}
+			if (isset($o->tgl_selesai) && strlen($o->tgl_selesai)) {
+				$o->tgl_selesai = $this->__dateIndonesia($o->tgl_selesai);
+			}
+
+			if (isset($o->status)) {
+				switch ($o->status) {
+					case "pending":
+						$o->status_badge = '<span class="badge badge-sm bg-gradient-secondary">' . $o->status . '</span>';
+						break;
+					case "progress":
+						$o->status_badge = '<span class="badge badge-sm bg-gradient-info">' . $o->status . '</span>';
+						break;
+					case "done":
+						$o->status_badge = '<span class="badge badge-sm bg-gradient-success">selesai</span>';
+						break;
+					case "cancel":
+						$o->status_badge = '<span class="badge badge-sm bg-gradient-danger">' . $o->status . '</span>';
+						break;
+					default:
+						$o->status_badge = '<span class="badge badge-sm bg-gradient-info">Pending</span>';
+						break;
+				}
+			}
+		}
+		$data['orders'] = $orders;
 		$this->setTitle('Dashboard ' . $this->config->semevar->site_suffix);
 
 		$this->putJsFooter($this->cdn_url('skin/admin/') . 'js/pages/index');

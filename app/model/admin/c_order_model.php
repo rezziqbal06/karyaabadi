@@ -28,6 +28,7 @@ class C_Order_Model extends \Model\C_Order_Concern
 		return $this->db->get('');
 	}
 
+
 	public function countAll($status = "")
 	{
 		$this->db->select_as("COUNT(*)", 'jumlah', 0);

@@ -123,13 +123,13 @@ var option_produk = "";
 function addProduk(id, value="", value_detail=""){
   if(!window['produk_'+id]) window['produk_'+id] = 0;
   var s = `<div id="ps_${id}" class="row">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
                 <label for="ib_produk_id_${id}">Nama</label>
                 <select name="b_produk_id[]" id="ib_produk_id_${id}" data-count="${id}" class="form-control select2">
                     ${option_produk}
                 </select>
             </div>
-            <div class="col-md-2 mb-3">
+            <div class="col-md-1 mb-3">
                 <label for="iqty_${id}" data-count="${id}">Qty</label>
                 <input type="number" name="qty[]" id="iqty_${id}" data-count="${id}" class="form-control">
             </div>
@@ -142,6 +142,15 @@ function addProduk(id, value="", value_detail=""){
             <div class="col-md-2 mb-3">
                 <label for="iharga_${id}" data-count="${id}">Harga</label>
                 <input type="text" name="harga[]" id="iharga_${id}" data-count="${id}" class="form-control">
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="istatus_${id}" data-count="${id}">Status</label>
+                <select name="status[]" id="istatus_${id}" data-count="${id}" class="form-control">
+                   <option value="pending">pending</option>
+                   <option value="progress">progress</option>
+                   <option value="done">done</option>
+                   <option value="cancel">cancel</option>
+                </select>
             </div>
             <div class="col-md-1 mb-3">
                 <label for="" class="text-white">Aksi</label>

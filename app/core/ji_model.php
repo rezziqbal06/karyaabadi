@@ -137,7 +137,14 @@ class JI_Model extends \SENE_Model
 
     public function last_id()
     {
-        return $this->db->last_id;
+        $this->db->select('id');
+        $this->db->from($this->tbl, $this->tbl_as);
+        $this->db->order_by('id', 'desc');
+        $d = $this->db->get_first();
+        if (isset($d->id)) {
+            return $d->id + 1;
+        }
+        return 0;
     }
 
     /**

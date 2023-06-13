@@ -52,17 +52,30 @@ if(jQuery('#drTable').length>0){
 						var id = $(this).find("td").html();
 						ieid = id;
 						$.get('<?=base_url("api_admin/order/detail/")?>'+ieid).done(function(dt){
-							if(dt.data){
-								$.each(dt.data, function(k,v){
-									if(k == 'gambar'){
-										$('#img-iegambar').attr('src', '<?=base_url()?>'+v);
-									}else{
-										$("#ie"+k).val(v);
-									}
+							if(dt.data.produk){
+								var s = '';
+								$.each(dt.data.produk, function(k,v){
+									s += `<tr>
+										<td>${(k+1)}</td>
+										<td>${v.produk}</td>
+										<td>${v.spesifikasi}</td>
+										<td>${v.qty}</td>
+										<td>${v.tgl_pesan}</td>
+										<td>${v.status}</td>
+										<td>${v.tgl_selesai}</td>
+										<td class="text-end">${v.sub_harga}</td>
+									</tr>`
 								})
+								s += `<tr class="table-warning">
+									<td colspan="7">Total</td>
+									<td class="text-end">${dt.data.detail.total_harga}</td>
+								</tr>`
+								$("#table_produk").html(s);
+								
+
 							}
 						})
-						$("#adetail").attr("href","<?=base_url_admin("order/detail/")?>"+ieid);
+						
 						$("#aedit").attr("href","<?=base_url_admin("order/edit/")?>"+ieid);
 						$("#areseller").attr("href","<?=base_url_admin("partner/reseller/baru/")?>"+ieid);
 						$("#modal_option").modal("show");
@@ -293,3 +306,72 @@ $(document).on('change', 'input[type="file"]', function(e){
 });
 
 $('.select2').select2();
+
+$("#adetail").on('click', function(e){
+	e.preventDefault();
+	$("#modal_option").modal('hide');
+	$("#modal_produk").modal('show');
+})
+
+function setStatus(status, tgl_selesai, id){
+	var fd = new FormData();
+
+	fd.append('tgl_selesai', tgl_selesai)
+	fd.append('status', status)
+	fd.append('id', id)
+	$.ajax({
+		type: 'POST',
+		url: '<?=base_url("api_admin/order/set_status")?>',
+		data: fd,
+		processData: false,
+		contentType: false,
+		success: function(respon){
+			if(respon.status==200){
+				drTable.ajax.reload();
+			}else{
+				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','danger');
+			}
+			
+			NProgress.done();
+		},
+		error:function(){
+			setTimeout(function(){
+				gritter('<h4>Error</h4><p>Tidak dapat menambah data, silahkan coba beberapa saat lagi</p>','warning');
+			}, 666);
+
+			$('.icon-submit').removeClass('fa-circle-o-notch fa-spin');
+			$('.btn-submit').prop('disabled',false);
+			NProgress.done();
+			return false;
+		}
+	});
+}
+
+$(document).off('change', '.rd-status')
+$(document).on('change', '.rd-status', function(e){
+	e.preventDefault();
+	NProgress.start();
+	var status = $(this).val()
+	var k = $(this).attr('data-k')
+	var id = $(this).attr('data-id')
+	if(status == 'done' || status == 'cancel'){
+		$("#tgl_selesai"+k).show()
+	}else{
+		$("#tgl_selesai"+k).hide()
+	}
+	var tgl_selesai = $("#tgl_selesai"+k).val()
+
+	setStatus(status, tgl_selesai, id)
+})
+
+$(document).off('change', '.tgl_selesai')
+$(document).on('change', '.tgl_selesai', function(e){
+	e.preventDefault();
+	NProgress.start();
+	var k = $(this).attr('data-k')
+	var id = $(this).attr('data-id')
+	var status = $('input[name="status'+k+'"]:checked').val();
+	var tgl_selesai = $("#tgl_selesai"+k).val()
+
+	setStatus(status, tgl_selesai, id)
+})

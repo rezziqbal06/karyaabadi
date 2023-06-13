@@ -289,6 +289,37 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 
+.form-check:not(.form-switch) .form-check-input[type="radio"]:after {
+    transition: opacity 0.25s ease-in-out;
+    content: none !important;
+    position: absolute;
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0;
+}
+
+.rd-pending:checked[type="radio"] {
+    background-color: var(--dark-secondary) !important;
+}
+
+.rd-progress:checked[type="radio"] {
+    background-color: #11cdef !important;
+}
+
+.rd-cancel:checked[type="radio"] {
+    background-color: #f5365c !important;
+}
+
+.rd-done:checked[type="radio"] {
+    background-color: #2dce89 !important;
+}
+
+.form-check-input:checked[type="radio"] {
+    background-image: none;
+}
+
 
 /* set button(top and bottom of the scrollbar) */
 /* .scrollbar::-webkit-scrollbar-button {display:none} */

@@ -24,7 +24,6 @@ class Order extends JI_Controller
 	public function __generateKodeProduk($sitename)
 	{
 		$last_id = $this->com->last_id();
-
 		$words = preg_split('/[^a-zA-Z0-9]+/', $sitename);
 		$acronym = '';
 		// Iterate over the words and extract the first character
@@ -87,6 +86,31 @@ class Order extends JI_Controller
 			if (isset($gd->total_harga)) {
 				$gd->total_harga = number_format((int) $gd->total_harga, 0, ',', '.');
 			}
+			if ($gd->tgl_pesan == "0000-00-00 00:00:00") $gd->tgl_pesan = "";
+			if ($gd->tgl_selesai == "0000-00-00 00:00:00") $gd->tgl_selesai = "";
+			if (isset($gd->tgl_pesan) && strlen($gd->tgl_pesan)) {
+				$gd->tgl_pesan = $this->__dateIndonesia($gd->tgl_pesan);
+			}
+			if (isset($gd->tgl_selesai) && strlen($gd->tgl_selesai)) {
+				$gd->tgl_selesai = $this->__dateIndonesia($gd->tgl_selesai);
+			}
+			switch ($gd->status) {
+				case "pending":
+					$gd->status = '<span class="badge badge-sm bg-gradient-secondary">' . $gd->status . '</span>';
+					break;
+				case "progress":
+					$gd->status = '<span class="badge badge-sm bg-gradient-info">' . $gd->status . '</span>';
+					break;
+				case "done":
+					$gd->status = '<span class="badge badge-sm bg-gradient-success">selesai</span>';
+					break;
+				case "cancel":
+					$gd->status = '<span class="badge badge-sm bg-gradient-danger">' . $gd->status . '</span>';
+					break;
+				default:
+					$gd->status = '<span class="badge badge-sm bg-gradient-info">Pending</span>';
+					break;
+			}
 		}
 
 		$this->__jsonDataTable($ddata, $dcount);
@@ -119,10 +143,27 @@ class Order extends JI_Controller
 		$this->com->columns['cdate']->value = 'NOW()';
 		$total_harga = $this->input->post('total_harga');
 		$this->com->columns['total_harga']->value = (int) str_replace('.', '', $total_harga);
+		$status = $this->input->post('status');
+		if (!isset($status[0])) {
+			$this->status = 444;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			$validation_message = $this->com->validation_message();
+			$this->__json_out($data);
+			die();
+		}
+		$this->com->columns['status']->value = "done";
+
+		foreach ($status as $s) {
+			if ($s == 'progress' || $s == 'pending') {
+				$this->com->columns['status']->value = "progress";
+				break;
+			}
+		}
 
 		$b_user_id = $this->input->post('b_user_id');
-		if (!$b_user_id) {
-			$b_user_nama = $this->input->post("b_user_nama");
+		$user = $this->bum->id($b_user_id);
+		$b_user_nama = $this->input->post("b_user_nama");
+		if (!$b_user_id || $user->fnama != $b_user_nama) {
 			if (!$b_user_nama) {
 				$this->status = 444;
 				$this->message = API_ADMIN_ERROR_CODES[$this->status];
@@ -139,6 +180,7 @@ class Order extends JI_Controller
 				die();
 			}
 			$this->com->columns['b_user_id']->value = $res_user;
+		} else {
 		}
 
 		$res = $this->com->save();
@@ -155,6 +197,7 @@ class Order extends JI_Controller
 					$dip[$k]['b_produk_id'] = $v;
 					$dip[$k]['b_produk_id_harga'] = $b_produk_id_harga[$k];
 					$dip[$k]['qty'] = $qty[$k];
+					$dip[$k]['status'] = $status[$k];
 					$dip[$k]['sub_harga'] = (int) str_replace('.', '', $harga[$k]);
 					$dip[$k]['tgl_pesan'] = $this->input->post('tgl_pesan');
 					$dip[$k]['cdate'] = "NOW()";
@@ -203,14 +246,74 @@ class Order extends JI_Controller
 
 		$this->status = 200;
 		$this->message = API_ADMIN_ERROR_CODES[$this->status];
-		$data = $this->com->id($id);
-		if (!isset($data->id)) {
+		$data['detail'] = $this->com->id($id);
+		if (!isset($data['detail']->id)) {
 			$data = new \stdClass();
 			$this->status = 441;
 			$this->message = API_ADMIN_ERROR_CODES[$this->status];
 			$this->__json_out($data);
 			die();
 		}
+
+		if (isset($data['detail']->total_harga)) {
+			$data['detail']->total_harga = number_format((int) $data['detail']->total_harga, 0, ',', '.');
+		}
+
+		$produk = $this->copm->data($id);
+
+		foreach ($produk as $k => $p) {
+			if ($p->tgl_pesan == "0000-00-00 00:00:00") $p->tgl_pesan = "";
+			if ($p->tgl_selesai == "0000-00-00 00:00:00") $p->tgl_selesai = "";
+			if (isset($p->tgl_pesan) && strlen($p->tgl_pesan)) $p->tgl_pesan = $this->__dateIndonesia($p->tgl_pesan);
+			if (isset($p->tgl_selesai) && strlen($p->tgl_selesai)) {
+				$tgl_selesai = date("Y-m-d", strtotime($p->tgl_selesai));
+			} else {
+				$tgl_selesai = date("Y-m-d");
+			}
+			$is_show = 'block';
+			if ($p->status == 'pending' || $p->status == 'progress') {
+				$is_show = 'none';
+			}
+			// if (isset($p->tgl_selesai) && strlen($p->tgl_selesai)) $p->tgl_selesai = $this->__dateIndonesia($p->tgl_selesai);
+			$p->tgl_selesai = '<input type="date" id="tgl_selesai' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" class="form-control tgl_selesai" style="display:' . $is_show . '" value="' . $tgl_selesai . '" >';
+			if (isset($p->status)) {
+				$status =
+					'<div class="form-check form-check-inline">
+						<input class="form-check-input rd-status rd-pending" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status1" ';
+				$status .= $p->status == 'pending' ?  'checked' : '';
+				$status .= ' value="pending">
+						<label class="form-check-label" for="status1">pending</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input rd-status rd-progress" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status2" ';
+				$status .= $p->status == 'progress' ?  'checked' : '';
+				$status .= ' value="progress">
+						<label class="form-check-label" for="status2">progress</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input rd-status rd-done" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status3" ';
+				$status .= $p->status == 'done' ?  'checked' : '';
+				$status .= ' value="done">
+						<label class="form-check-label" for="status3">done</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input rd-status rd-cancel" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status4" ';
+				$status .= $p->status == 'cancel' ?  'checked' : '';
+				$status .= ' value="cancel">
+						<label class="form-check-label" for="status4">cancel</label>
+					</div>';
+				$p->status = $status;
+			}
+
+			if (isset($p->sub_harga)) {
+				$p->sub_harga = number_format((int) $p->sub_harga, 0, ',', '.');
+			}
+
+			if (isset($p->harga)) {
+				$p->harga = number_format((int) $p->harga, 0, ',', '.');
+			}
+		}
+		$data['produk'] = $produk;
 
 		// dd(count($data->indikator));
 		$this->__json_out($data);
@@ -270,12 +373,30 @@ class Order extends JI_Controller
 			die();
 		}
 
+		$status = $this->input->post('status');
+		if (!isset($status[0])) {
+			$this->status = 444;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			$validation_message = $this->com->validation_message();
+			$this->__json_out($data);
+			die();
+		}
+		$du['status'] = "done";
+
+		foreach ($status as $s) {
+			if ($s == 'progress' || $s == 'pending') {
+				$du['status'] = "progress";
+				break;
+			}
+		}
+
 		$total_harga = $this->input->post('total_harga');
 		$du['total_harga'] = (int) str_replace('.', '', $total_harga);
 
 		$b_user_id = $this->input->post('b_user_id');
-		if (!$b_user_id) {
-			$b_user_nama = $this->input->post("b_user_nama");
+		$user = $this->bum->id($b_user_id);
+		$b_user_nama = $this->input->post("b_user_nama");
+		if (!$b_user_id || $user->fnama != $b_user_nama) {
 			if (!$b_user_nama) {
 				$this->status = 444;
 				$this->message = API_ADMIN_ERROR_CODES[$this->status];
@@ -291,7 +412,7 @@ class Order extends JI_Controller
 				$this->__json_out($data);
 				die();
 			}
-			$du['b_user_id']->value = $res_user;
+			$du['b_user_id'] = $res_user;
 		}
 
 		if ($id > 0) {
@@ -314,6 +435,7 @@ class Order extends JI_Controller
 							$dip[$k]['b_produk_id'] = $v;
 							$dip[$k]['b_produk_id_harga'] = $b_produk_id_harga[$k];
 							$dip[$k]['qty'] = $qty[$k];
+							$dip[$k]['status'] = $status[$k];
 							$dip[$k]['sub_harga'] = (int) str_replace('.', '', $harga[$k]);
 							$dip[$k]['tgl_pesan'] = $this->input->post('tgl_pesan');
 							$dip[$k]['cdate'] = "NOW()";
@@ -395,6 +517,85 @@ class Order extends JI_Controller
 
 		$res = $this->com->update($id, array('is_deleted' => 1));
 		if ($res) {
+			$this->status = 200;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+		} else {
+			$this->status = 902;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+		}
+		$this->__json_out($data);
+	}
+
+	/**
+	 * Delete data by supplied ID
+	 *
+	 * @param  int   $id               ID value from a_fasilitas table
+	 *
+	 * @api
+	 *
+	 * @return void
+	 */
+	public function set_status()
+	{
+		$d = $this->__init();
+		$id = $this->input->post('id');
+
+		$data = array();
+		if (!$this->admin_login) {
+			$this->status = 400;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			header("HTTP/1.0 400 Harus login");
+			$this->__json_out($data);
+			die();
+		}
+
+		$id = (int) $id;
+		if ($id <= 0) {
+			$this->status = 520;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			$this->__json_out($data);
+			die();
+		}
+		$pengguna = $d['sess']->admin;
+
+		$copm = $this->copm->id($id);
+		if (!isset($copm->id)) {
+			$this->status = 521;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			$this->__json_out($data);
+			die();
+		}
+
+		$com = $this->com->id($copm->c_order_id);
+		if (!isset($com->id)) {
+			$this->status = 521;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			$this->__json_out($data);
+			die();
+		}
+
+		$status = $this->input->post('status');
+		$du = [];
+		$du['status'] = $status;
+		if ($status == "done" || $status == "cancel") {
+			$du["tgl_selesai"] = date("Y-m-d", strtotime($this->input->post('tgl_selesai'))) ?? date("Y-m-d H:i:s");
+		} else {
+			$du["tgl_selesai"] = null;
+		}
+		$res = $this->copm->update($id, $du);
+		if ($res) {
+			$copm = $this->copm->getByOrder($com->id);
+			$status_order = 'done';
+			$tgl_selesai = date("Y-m-d H:i:s");
+			foreach ($copm as $s) {
+				if (!isset($s->tgl_selesai) || $s->tgl_selesai == "0000-00-00 00:00:00") {
+					$tgl_selesai = null;
+				}
+				if ($s->status == 'progress' || $s->status == 'pending') {
+					$status_order = "progress";
+				}
+			}
+			$res = $this->com->update($com->id, array('status' => $status_order, "tgl_selesai" => $tgl_selesai));
 			$this->status = 200;
 			$this->message = API_ADMIN_ERROR_CODES[$this->status];
 		} else {

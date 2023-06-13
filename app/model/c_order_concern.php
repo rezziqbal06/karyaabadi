@@ -80,10 +80,13 @@ class C_Order_Concern extends \JI_Model
         $this->datatables['admin'] = new \Seme_Datatable([
             ["$this->tbl_as.id", 'id', 'ID'],
             ["$this->tbl_as.kode", 'kode', 'Kode'],
-            ["$this->tbl2_as.nama", 'produk', 'Produk'],
-            ["$this->tbl3_as.spesifikasi", 'spesifikasi', 'Spesifikasi'],
-            ["$this->tbl3_as.harga", 'harga', 'Harga'],
-            ["$this->tbl_as.is_active", 'is_active', 'Status']
+            ["$this->tbl5_as.fnama", 'pembeli', 'Pembeli'],
+            ["$this->tbl3_as.nama", 'produk', 'Salah Satu Produk'],
+            ["$this->tbl2_as.tgl_pesan", 'tgl_pesan', 'Tgl Pemesanan'],
+            ["$this->tbl2_as.tgl_selesai", 'tgl_selesai', 'Tgl Selesai'],
+            // ["$this->tbl3_as.spesifikasi", 'spesifikasi', 'Spesifikasi'],
+            ["$this->tbl_as.total_harga", 'total_harga', 'Total Harga'],
+            ["$this->tbl_as.status", 'status', 'Status']
         ]);
 
         // $this->datatables['download'] = new \Seme_Datatable([

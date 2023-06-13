@@ -62,7 +62,7 @@ class C_Order_Model extends \Model\C_Order_Concern
   {
     $this->db->select_as("COUNT($this->tbl_as.id)", "jumlah", 0);
     $this->db->from($this->tbl, $this->tbl_as);
-    // $this->join_company();
+    $this->join_company();
     $this->filters($keyword, $is_active)->scoped();
     // $this->db->group_by("$this->tbl_as.kode");
     $d = $this->db->get_first("object", 0);

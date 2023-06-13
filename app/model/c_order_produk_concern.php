@@ -36,6 +36,7 @@ class C_Order_Produk_Concern extends \JI_Model
         'status',
         'rating',
         'penilaian',
+        'sub_harga',
         'is_active',
         'is_deleted',
     ];
@@ -43,6 +44,7 @@ class C_Order_Produk_Concern extends \JI_Model
         0,
         0,
         0,
+        null,
         null,
         null,
         null,
@@ -86,11 +88,14 @@ class C_Order_Produk_Concern extends \JI_Model
 
         $this->datatables['admin'] = new \Seme_Datatable([
             ["$this->tbl_as.id", 'id', 'ID'],
-            ["$this->tbl_as.kode", 'kode', 'Kode'],
-            ["$this->tbl2_as.nama", 'produk', 'Produk'],
-            ["$this->tbl3_as.spesifikasi", 'spesifikasi', 'Spesifikasi'],
-            ["$this->tbl3_as.harga", 'harga', 'Harga'],
-            ["$this->tbl_as.is_active", 'is_active', 'Status']
+            ["$this->tbl_as.qty", 'qty', 'qty'],
+            ["$this->tbl_as.sub_harga", 'sub_harga', 'sub_harga'],
+            ["$this->tbl_as.tgl_pesan", 'tgl_pesan', 'Tgl Pesan'],
+            ["$this->tbl_as.tgl_selesai", 'tgl_selesai', 'Tgl Selesai'],
+            ["$this->tbl3_as.nama", 'produk', 'Produk'],
+            ["$this->tbl4_as.spesifikasi", 'spesifikasi', 'Spesifikasi'],
+            ["$this->tbl4_as.harga", 'harga', 'Harga'],
+            ["$this->tbl_as.status", 'status', 'Status']
         ]);
 
         // $this->datatables['download'] = new \Seme_Datatable([

@@ -237,6 +237,9 @@ class B_User_Model extends \Model\B_User_Concern
       $this->db->where_as("$this->tbl_as.username", ($keyword), "OR", "LIKE%%", 0, 0);
       $this->db->where_as("$this->tbl_as.email", ($keyword), "OR", "LIKE%%", 0, 1);
     }
+    $this->db->where_as("$this->tbl_as.is_active", 1);
+    $this->db->where_as("$this->tbl_as.is_deleted", $this->db->esc(0));
+
     $this->db->order_by("$this->tbl_as.fnama", "asc");
     return $this->db->get('', 0);
   }
