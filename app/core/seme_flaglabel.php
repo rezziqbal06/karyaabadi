@@ -63,7 +63,7 @@ class Seme_Flaglabel
      */
     public function init_is_active()
     {
-        $this->labels[0] = new \Seme_Label('Tidak Aktif', 'default');
+        $this->labels[0] = new \Seme_Label('Draft', 'secondary');
         $this->labels[1] = new \Seme_Label('Aktif', 'info');
 
         return $this;

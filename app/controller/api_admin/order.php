@@ -276,31 +276,26 @@ class Order extends JI_Controller
 			}
 			// if (isset($p->tgl_selesai) && strlen($p->tgl_selesai)) $p->tgl_selesai = $this->__dateIndonesia($p->tgl_selesai);
 			$p->tgl_selesai = '<input type="date" id="tgl_selesai' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" class="form-control tgl_selesai" style="display:' . $is_show . '" value="' . $tgl_selesai . '" >';
+
 			if (isset($p->status)) {
 				$status =
 					'<div class="form-check form-check-inline">
-						<input class="form-check-input rd-status rd-pending" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status1" ';
+						<input class="form-check-input rd-status rd-pending" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status1' . $k . '" ';
 				$status .= $p->status == 'pending' ?  'checked' : '';
 				$status .= ' value="pending">
-						<label class="form-check-label" for="status1">pending</label>
+						<label class="form-check-label" for="status1' . $k . '">pending</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input rd-status rd-progress" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status2" ';
+						<input class="form-check-input rd-status rd-progress" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status2' . $k . '" ';
 				$status .= $p->status == 'progress' ?  'checked' : '';
 				$status .= ' value="progress">
-						<label class="form-check-label" for="status2">progress</label>
+						<label class="form-check-label" for="status2' . $k . '">progress</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input rd-status rd-done" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status3" ';
+						<input class="form-check-input rd-status rd-done" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status3' . $k . '" ';
 				$status .= $p->status == 'done' ?  'checked' : '';
 				$status .= ' value="done">
-						<label class="form-check-label" for="status3">done</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input rd-status rd-cancel" type="radio" name="status' . $k . '" data-k="' . $k . '" data-id="' . $p->id . '" id="status4" ';
-				$status .= $p->status == 'cancel' ?  'checked' : '';
-				$status .= ' value="cancel">
-						<label class="form-check-label" for="status4">cancel</label>
+						<label class="form-check-label" for="status3' . $k . '">done</label>
 					</div>';
 				$p->status = $status;
 			}
@@ -586,7 +581,7 @@ class Order extends JI_Controller
 		if ($res) {
 			$copm = $this->copm->getByOrder($com->id);
 			$status_order = 'done';
-			$tgl_selesai = date("Y-m-d H:i:s");
+			$tgl_selesai = $du['tgl_selesai'];
 			foreach ($copm as $s) {
 				if (!isset($s->tgl_selesai) || $s->tgl_selesai == "0000-00-00 00:00:00") {
 					$tgl_selesai = null;

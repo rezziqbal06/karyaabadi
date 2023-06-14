@@ -132,9 +132,9 @@ $("#ftambah").on("submit",function(e){
 		success: function(respon){
 			if(respon.status==200){
 				gritter('<h4>Sukses</h4><p>Data berhasil ditambahkan</p>','success');
-				setTimeout(function(){
-					window.location = '<?=base_url_admin('pengaturan/blog/')?>';
-				},500);
+					$("#modal_option").modal('hide');
+				$("#modal_tambah").modal('hide');
+				drTable.ajax.reload()
 			}else{
 				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','danger');
 				$('.icon-submit').removeClass('fa-circle-o-notch fa-spin');
@@ -179,9 +179,9 @@ $("#fedit").on("submit",function(e){
 		success: function(respon){
 			if(respon.status==200){
 				gritter('<h4>Sukses</h4><p>Data berhasil diubah</p>','success');
-				setTimeout(function(){
-					window.location = '<?=base_url_admin('pengaturan/blog/')?>';
-				},500);
+				$("#modal_option").modal('hide');
+				$("#modal_edit").modal('hide');
+				drTable.ajax.reload()
 			}else{
 				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','danger');
 

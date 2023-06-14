@@ -254,6 +254,7 @@ class Produk extends JI_Controller
 		$du['nama'] = $_POST['nama'];
 		$du['deskripsi'] = $_POST['deskripsi'];
 		$du['slug'] = $_POST['slug'];
+		$du['is_active'] = $_POST['is_active'];
 
 		if (!$this->admin_login) {
 			$this->status = 400;

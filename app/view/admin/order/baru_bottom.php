@@ -149,7 +149,6 @@ function addProduk(id, value="", value_detail=""){
                    <option value="pending">pending</option>
                    <option value="progress">progress</option>
                    <option value="done">done</option>
-                   <option value="cancel">cancel</option>
                 </select>
             </div>
             <div class="col-md-1 mb-3">

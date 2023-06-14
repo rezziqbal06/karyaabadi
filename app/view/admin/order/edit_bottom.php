@@ -181,7 +181,6 @@ function addProduk(id, b_produk_id="", qty="", b_produk_id_harga="", harga="", s
                    <option value="pending">pending</option>
                    <option value="progress">progress</option>
                    <option value="done">done</option>
-                   <option value="cancel">cancel</option>
                 </select>
             </div>
             <div class="col-md-1 mb-3">

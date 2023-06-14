@@ -28,10 +28,8 @@ class Kategori extends JI_Controller
 		$this->message = API_ADMIN_ERROR_CODES[$this->status];
 
 
-		$is_active = $this->input->request('is_active', 1);
-		if (strlen($is_active)) {
-			$is_active = intval($is_active);
-		}
+		$is_active = "";
+
 
 		$admin_login = $d['sess']->user;
 		$b_user_id = '';
@@ -164,6 +162,7 @@ class Kategori extends JI_Controller
 		$du['nama'] = $_POST['nama'];
 		$du['deskripsi'] = $_POST['deskripsi'];
 		$du['slug'] = $_POST['slug'];
+		$du['is_active'] = $_POST['is_active'];
 
 		if (!$this->admin_login) {
 			$this->status = 400;

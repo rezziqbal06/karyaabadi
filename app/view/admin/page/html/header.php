@@ -43,11 +43,30 @@ $admin_foto = base_url($admin_foto);
 				</div>
 			</div>
 			<ul class="navbar-nav  justify-content-end">
-				<li class="nav-item d-flex align-items-center">
-					<a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-						<i class="fa fa-user me-sm-1"></i>
-						<span class="d-sm-inline d-none"><?= $sess->admin->nama ?></span>
+				<li class="nav-item dropdown pe-2 d-flex align-items-center">
+					<a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="fa fa-user cursor-pointer" aria-hidden="true"></i>
 					</a>
+					<ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+						<li>
+							<a class="dropdown-item border-radius-md" href="javascript:;">
+								<div class="d-flex py-1">
+									<div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
+										<i class="fa fa-user"></i>
+									</div>
+									<div class="d-flex flex-column justify-content-center">
+										<h6 class="text-sm font-weight-normal mb-1">
+											<?= $sess->admin->nama ?>
+										</h6>
+										<p class="text-xs text-secondary mb-0">
+											<i class="fa fa-pencil me-1" aria-hidden="true"></i>
+											edit profil
+										</p>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
 				</li>
 
 				<li class="nav-item px-3 d-flex align-items-center d-none">

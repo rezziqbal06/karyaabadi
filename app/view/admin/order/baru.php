@@ -31,18 +31,22 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-4 mb-2">
+                        <div class="col-md-3 mb-2">
                             <label for="ib_user_id_cari" class="control-label">Cari Pembeli</label>
                             <select id="ib_user_id_cari" class="form-control select2"></select>
                         </div>
-                        <div class="col-md-4 mb-2">
+                        <div class="col-md-3 mb-2">
                             <label for="ib_user_nama" class="control-label">Pembeli</label>
                             <input id="ib_user_nama" type="text" name="b_user_nama" class="form-control" required>
                             <input type="hidden" id="ib_user_id" name="b_user_id">
                         </div>
-                        <div class="col-md-4 mb-2">
+                        <div class="col-md-3 mb-2">
                             <label for="itgl_pesan" class="control-label">Tanggal Pesan</label>
                             <input id="itgl_pesan" type="text" name="tgl_pesan" class="form-control datepicker" value="<?= date('Y-m-d') ?>" required />
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="itgl_selesai" class="control-label">Tanggal Selesai</label>
+                            <input id="itgl_selesai" type="text" name="tgl_selesai" class="form-control datepicker" value="" />
                         </div>
                     </div>
                 </div>

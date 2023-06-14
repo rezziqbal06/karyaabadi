@@ -43,6 +43,10 @@
 							<label for="ietgl_pesan" class="control-label">Tanggal Pesan</label>
 							<input id="ietgl_pesan" type="text" name="tgl_pesan" class="form-control datepicker" value="<?= date('Y-m-d') ?>" required />
 						</div>
+						<div class="col-md-3 mb-2">
+							<label for="ietgl_selesai" class="control-label">Tanggal Selesai</label>
+							<input id="ietgl_selesai" type="text" name="tgl_selesai" class="form-control datepicker" value="" />
+						</div>
 					</div>
 				</div>
 

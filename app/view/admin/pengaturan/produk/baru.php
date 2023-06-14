@@ -104,6 +104,13 @@
                             <label for="ideskripsi" class="control-label">Deskripsi</label>
                             <textarea name="deskripsi" id="ideskripsi" class="form-control" cols="30" rows="10"></textarea>
                         </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="iis_active" class="control-label">Status</label>
+                            <select name="is_active" id="iis_active" class="form-control">
+                                <option value="1">Aktif</option>
+                                <option value="0">Draft</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
