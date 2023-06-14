@@ -124,6 +124,7 @@ function initCompressingImage(selector, type="single"){
             canvas.height = image.height;
             
         var file = event.target.file;
+        console.log(file, 'file')
         var fileExtension = getFileExtension(file);
             // console.log('canvas.width: '+canvas.width);
             // console.log('canvas.height: '+canvas.height);

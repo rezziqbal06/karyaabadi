@@ -45,7 +45,7 @@ $("#fedit").on("submit",function(e){
 					window.location = '<?=base_url_admin('akun/user/')?>';
 				},500);
 			}else{
-				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','danger');
+				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','warning');
 
 				$('.icon-submit').removeClass('fa-circle-o-notch fa-spin');
 				$('.btn-submit').prop('disabled',false);
@@ -54,7 +54,7 @@ $("#fedit").on("submit",function(e){
 		},
 		error:function(){
 			setTimeout(function(){
-				gritter('<h4>Error</h4><p>Tidak dapat mengubah data sekarang, silahkan coba lagi nanti</p>','warning');
+				gritter('<h4>Error</h4><p>Tidak dapat mengubah data sekarang, silahkan coba lagi nanti</p>','danger');
 			}, 666);
 
 			$('.icon-submit').removeClass('fa-circle-o-notch fa-spin');

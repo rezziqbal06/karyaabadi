@@ -514,7 +514,7 @@ function closeDropdownMenu() {
 }
 
 function toggleHamburger() {
-  navMenu.classList.toggle("show");
+  if(navMenu) navMenu.classList.toggle("show");
 }
 
 dropdownBtn.forEach((btn) => {

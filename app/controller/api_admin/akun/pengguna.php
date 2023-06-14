@@ -1,27 +1,31 @@
 <?php
-class Pengguna extends JI_Controller{
+class Pengguna extends JI_Controller
+{
 	var $media_pengguna = 'media/pengguna';
 
-	public function __construct(){
-    parent::__construct();
-		$this->load("api_front/a_pengguna_model",'apm');
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load("api_front/a_pengguna_model", 'apm');
+		$this->lib("seme_upload", 'se');
 	}
 
-	private function __uploadFoto($admin_id){
+	private function __uploadFoto($admin_id)
+	{
 		//building path target
 		$fldr = $this->media_pengguna;
-		$folder = SEMEROOT.DIRECTORY_SEPARATOR.$fldr.DIRECTORY_SEPARATOR;
-		$folder = str_replace('\\','/',$folder);
-		$folder = str_replace('//','/',$folder);
+		$folder = SEMEROOT . DIRECTORY_SEPARATOR . $fldr . DIRECTORY_SEPARATOR;
+		$folder = str_replace('\\', '/', $folder);
+		$folder = str_replace('//', '/', $folder);
 		$ifol = realpath($folder);
 
 		//check folder
-		if(!$ifol) mkdir($folder); //create folder
+		if (!$ifol) mkdir($folder); //create folder
 		$ifol = realpath($folder); //get current realpath
 
 		reset($_FILES);
 		$temp = current($_FILES);
-		if (is_uploaded_file($temp['tmp_name'])){
+		if (is_uploaded_file($temp['tmp_name'])) {
 			if (isset($_SERVER['HTTP_ORIGIN'])) {
 				// same-origin requests won't set an origin. If the origin is set, it must be valid.
 				header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
@@ -31,48 +35,48 @@ class Pengguna extends JI_Controller{
 
 			// Sanitize input
 			if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
-					header("HTTP/1.0 500 Invalid file name.");
-					return 0;
+				header("HTTP/1.0 500 Invalid file name.");
+				return 0;
 			}
 			// Verify extension
 			$ext = strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION));
 			if (!in_array($ext, array("gif", "jpg", "png"))) {
-					header("HTTP/1.0 500 Invalid extension.");
-					return 0;
+				header("HTTP/1.0 500 Invalid extension.");
+				return 0;
 			}
 
 			// Create magento style media directory
-			$temp['name'] = md5($admin_id).date('is').'.'.$ext;
+			$temp['name'] = md5($admin_id) . date('is') . '.' . $ext;
 			$name  = $temp['name'];
 			$name1 = date("Y");
 			$name2 = date("m");
 
 			//building directory structure
-			if(PHP_OS == "WINNT"){
-				if(!is_dir($ifol)) mkdir($ifol);
-				$ifol = $ifol.DIRECTORY_SEPARATOR.$name1.DIRECTORY_SEPARATOR;
-				if(!is_dir($ifol)) mkdir($ifol);
-				$ifol = $ifol.DIRECTORY_SEPARATOR.$name2.DIRECTORY_SEPARATOR;
-				if(!is_dir($ifol)) mkdir($ifol);
-			}else{
-				if(!is_dir($ifol)) mkdir($ifol,0775);
-				$ifol = $ifol.DIRECTORY_SEPARATOR.$name1.DIRECTORY_SEPARATOR;
-				if(!is_dir($ifol)) mkdir($ifol,0775);
-				$ifol = $ifol.DIRECTORY_SEPARATOR.$name2.DIRECTORY_SEPARATOR;
-				if(!is_dir($ifol)) mkdir($ifol,0775);
+			if (PHP_OS == "WINNT") {
+				if (!is_dir($ifol)) mkdir($ifol);
+				$ifol = $ifol . DIRECTORY_SEPARATOR . $name1 . DIRECTORY_SEPARATOR;
+				if (!is_dir($ifol)) mkdir($ifol);
+				$ifol = $ifol . DIRECTORY_SEPARATOR . $name2 . DIRECTORY_SEPARATOR;
+				if (!is_dir($ifol)) mkdir($ifol);
+			} else {
+				if (!is_dir($ifol)) mkdir($ifol, 0775);
+				$ifol = $ifol . DIRECTORY_SEPARATOR . $name1 . DIRECTORY_SEPARATOR;
+				if (!is_dir($ifol)) mkdir($ifol, 0775);
+				$ifol = $ifol . DIRECTORY_SEPARATOR . $name2 . DIRECTORY_SEPARATOR;
+				if (!is_dir($ifol)) mkdir($ifol, 0775);
 			}
 
 			// Accept upload if there was no origin, or if it is an accepted origin
 
 			$filetowrite = $ifol . $temp['name'];
 
-			if(file_exists($filetowrite)) unlink($filetowrite);
+			if (file_exists($filetowrite)) unlink($filetowrite);
 			move_uploaded_file($temp['tmp_name'], $filetowrite);
-			if(file_exists($filetowrite)){
-				$this->lib("wideimage/WideImage",'wideimage',"inc");
+			if (file_exists($filetowrite)) {
+				$this->lib("wideimage/WideImage", 'wideimage', "inc");
 				WideImage::load($filetowrite)->resize(320)->saveToFile($filetowrite);
-				return $fldr."/".$name1."/".$name2."/".$name;
-			}else{
+				return $fldr . "/" . $name1 . "/" . $name2 . "/" . $name;
+			} else {
 				return 0;
 			}
 		} else {
@@ -82,10 +86,11 @@ class Pengguna extends JI_Controller{
 		}
 	}
 
-	public function index(){
+	public function index()
+	{
 		$d = $this->__init();
 		$data = array();
-		if(!$this->user_login){
+		if (!$this->user_login) {
 			$this->status = 400;
 			$this->message = 'Harus login';
 			header("HTTP/1.0 400 Harus login");
@@ -106,12 +111,12 @@ class Pengguna extends JI_Controller{
 
 		$sortCol = "date";
 		$sortDir = strtoupper($sSortDir_0);
-		if(empty($sortDir)) $sortDir = "DESC";
-		if(strtolower($sortDir) != "desc"){
+		if (empty($sortDir)) $sortDir = "DESC";
+		if (strtolower($sortDir) != "desc") {
 			$sortDir = "ASC";
 		}
 
-		switch($iSortCol_0){
+		switch ($iSortCol_0) {
 			case 0:
 				$sortCol = "id";
 				break;
@@ -124,16 +129,16 @@ class Pengguna extends JI_Controller{
 			case 3:
 				$sortCol = "username";
 				break;
-      case 4:
-        $sortCol = "is_active";
-        break;
+			case 4:
+				$sortCol = "is_active";
+				break;
 			default:
 				$sortCol = "id";
 		}
 
-		if(empty($draw)) $draw = 0;
-		if(empty($pagesize)) $pagesize=10;
-		if(empty($page)) $page=0;
+		if (empty($draw)) $draw = 0;
+		if (empty($pagesize)) $pagesize = 10;
+		if (empty($page)) $page = 0;
 
 		$keyword = $sSearch;
 
@@ -141,32 +146,33 @@ class Pengguna extends JI_Controller{
 		$this->status = 200;
 		$this->message = 'Berhasil';
 		$jenis_count = $this->apm->countPengguna($keyword);
-		$jenis_data = $this->apm->getPengguna($page,$pagesize,$sortCol,$sortDir,$keyword);
+		$jenis_data = $this->apm->getPengguna($page, $pagesize, $sortCol, $sortDir, $keyword);
 
-		foreach($jenis_data as &$gd){
-			if(isset($gd->foto)){
-				if(!empty($gd->foto)){
-					$gd->foto = '<img src='.base_url($gd->foto).' class="img-responsive" />';
-				}else{
-					$gd->foto = '<img src='.base_url('media/pengguna/default.png').' class="img-responsive" />';
+		foreach ($jenis_data as &$gd) {
+			if (isset($gd->foto)) {
+				if (!empty($gd->foto)) {
+					$gd->foto = '<img src=' . base_url($gd->foto) . ' class="img-responsive" />';
+				} else {
+					$gd->foto = '<img src=' . base_url('media/pengguna/default.png') . ' class="img-responsive" />';
 				}
 			}
-			if(isset($gd->is_active)){
-				if(!empty($gd->is_active)){
+			if (isset($gd->is_active)) {
+				if (!empty($gd->is_active)) {
 					$gd->is_active = '<span class="label label-success">Aktif</span>';
-				}else{
+				} else {
 					$gd->is_active = '<span class="label label-danger">Tidak Aktif</span>';
 				}
 			}
 		}
 		//usleep(3);
 		$another = array();
-		$this->__jsonDataTable($jenis_data,$jenis_count);
+		$this->__jsonDataTable($jenis_data, $jenis_count);
 	}
-	public function tambah(){
+	public function tambah()
+	{
 		$d = $this->__init();
 		$data = array();
-		if(!$this->user_login){
+		if (!$this->user_login) {
 			$this->status = 400;
 			$this->message = 'Harus login';
 			header("HTTP/1.0 400 Harus login");
@@ -174,40 +180,41 @@ class Pengguna extends JI_Controller{
 			die();
 		}
 		$di = $_POST;
-		if(!isset($di['username'])) $di['username'] = "";
-		if(!isset($di['email'])) $di['email'] = "";
-		if(strlen($di['email'])>1  && strlen($di['username'])>1){
+		if (!isset($di['username'])) $di['username'] = "";
+		if (!isset($di['email'])) $di['email'] = "";
+		if (strlen($di['email']) > 1  && strlen($di['username']) > 1) {
 			$check = $this->apm->checkusername($di['username']); //1 = sudah digunakan
-			if(empty($check)){
-				if(isset($di['password'])) $di['password'] = md5($di['password']);
+			if (empty($check)) {
+				if (isset($di['password'])) $di['password'] = md5($di['password']);
 				$res = $this->apm->set($di);
-				if($res){
+				if ($res) {
 					$last_pengguna_id = $res;
 					$this->status = 200;
 					$this->message = 'Data baru berhasil ditambahkan';
 					$penguna_foto = $this->__uploadFoto($last_pengguna_id);
-					if(strlen($penguna_foto)>4){
+					if (strlen($penguna_foto) > 4) {
 						$du = array();
 						$du['foto'] = $penguna_foto;
-						$this->apm->update($last_pengguna_id,$du);
+						$this->apm->update($last_pengguna_id, $du);
 						$this->message .= ', Foto profil berhasil diupload';
 					}
-				}else{
+				} else {
 					$this->status = 900;
 					$this->message = 'Tidak dapat menyimpan data baru, silakan coba beberapa saat lagi';
 				}
-			}else{
+			} else {
 				$this->status = 104;
 				$this->message = 'Kode sudah digunakan, silakan coba kode lain';
 			}
 		}
 		$this->__json_out($data);
 	}
-	public function detail($id){
+	public function detail($id)
+	{
 		$id = (int) $id;
 		$d = $this->__init();
 		$data = array();
-		if(!$this->user_login && empty($id)){
+		if (!$this->user_login && empty($id)) {
 			$this->status = 400;
 			$this->message = 'Harus login';
 			header("HTTP/1.0 400 Harus login");
@@ -219,10 +226,11 @@ class Pengguna extends JI_Controller{
 		$data = $this->apm->getById($id);
 		$this->__json_out($data);
 	}
-	public function edit(){
+	public function edit()
+	{
 		$d = $this->__init();
 		$data = array();
-		if(!$this->user_login){
+		if (!$this->admin_login) {
 			$this->status = 400;
 			$this->message = 'Harus login';
 			header("HTTP/1.0 400 Harus login");
@@ -230,38 +238,64 @@ class Pengguna extends JI_Controller{
 			die();
 		}
 		$du = $_POST;
-		if(!isset($du['id'])) $du['id'] = 0;
+		if (!isset($du['id'])) $du['id'] = 0;
 		$id = (int) $du['id'];
 		unset($du['id']);
-		if($id>0){
+		if ($id > 0) {
 			$check = 0;
-			if(isset($du['username'])){
-				$check = $this->apm->checkusername($du['username'],$id); //1 = sudah digunakan
+			if (isset($du['username'])) {
+				$check = $this->apm->checkusername($du['username'], $id); //1 = sudah digunakan
 			}
 
-			if(empty($check)){
-				$res = $this->apm->update($id,$du);
-				if($res){
+			if (empty($check)) {
+				if (isset($du['new_password']) && isset($du['re_password'])) {
+					if ($du['new_password'] != $du['re_password']) {
+						$this->status = 401;
+						$this->message = 'Password Tidak sama';
+						$this->__json_out($data);
+						die();
+					}
+					$du['password'] = md5($du['new_password']);
+				}
+				unset($du['new_password']);
+				unset($du['re_password']);
+				$resUpload = $this->se->upload_file('gambar', 'pengguna', $id);
+				if ($resUpload->status == 200) {
+					$du['foto'] = $resUpload->file;
+				}
+				$res = $this->apm->update($id, $du);
+				if ($res) {
+					$admin = $this->apm->getById($id);
+					$sess = new stdClass();
+					if (!isset($sess->admin)) $sess->admin = new stdClass();
+					$sess->admin = $admin;
+
+
+					$sess->admin->menus = new stdClass();
+					$sess->admin->menus->left = array();
+
+					$this->setKey($sess);
 					$this->status = 200;
 					$this->message = 'Perubahan berhasil diterapkan';
-				}else{
+				} else {
 					$this->status = 901;
 					$this->message = 'Tidak dapat melakukan perubahan ke basis data';
 				}
-			}else{
+			} else {
 				$this->status = 104;
 				$this->message = 'Username sudah digunakan, silakan coba yang lain';
 			}
-		}else{
+		} else {
 			$this->status = 448;
 			$this->message = 'ID Tidak ditemukan';
 		}
 		$this->__json_out($data);
 	}
-	public function editpass($id=""){
+	public function editpass($id = "")
+	{
 		$d = $this->__init();
 		$data = array();
-		if(!$this->user_login){
+		if (!$this->user_login) {
 			$this->status = 400;
 			$this->message = 'Harus login';
 			header("HTTP/1.0 400 Harus login");
@@ -270,30 +304,31 @@ class Pengguna extends JI_Controller{
 		}
 		$id = (int) $id;
 		$du = $_POST;
-		if(!isset($du['id'])) $du['id'] = 0;
+		if (!isset($du['id'])) $du['id'] = 0;
 		unset($du['id']);
-		if($id>0){
-			if(strlen($du['password'])){
+		if ($id > 0) {
+			if (strlen($du['password'])) {
 				$du['password'] = md5($du['password']);
-				$res = $this->apm->update($id,$du);
+				$res = $this->apm->update($id, $du);
 				$this->status = 200;
 				$this->message = 'Perubahan berhasil diterapkan';
-			}else{
+			} else {
 				$this->status = 901;
 				$this->message = 'Password terlalu pendek';
 			}
-		}else{
+		} else {
 			$this->status = 447;
 			$this->message = 'ID Pengguna tidak valid';
 		}
 		$this->__json_out($data);
 	}
 
-	public function hapus($id){
+	public function hapus($id)
+	{
 		$id = (int) $id;
 		$d = $this->__init();
 		$data = array();
-		if(!$this->user_login && empty($id)){
+		if (!$this->user_login && empty($id)) {
 			$this->status = 400;
 			$this->message = 'Harus login';
 			header("HTTP/1.0 400 Harus login");
@@ -303,16 +338,17 @@ class Pengguna extends JI_Controller{
 		$this->status = 200;
 		$this->message = 'Berhasil';
 		$res = $this->apm->del($id);
-		if(!$res){
+		if (!$res) {
 			$this->status = 902;
 			$this->message = 'Data gagal dihapus';
 		}
 		$this->__json_out($data);
 	}
-	public function edit_foto($id){
+	public function edit_foto($id)
+	{
 		$d = $this->__init();
 		$data = array();
-		if(!$this->user_login){
+		if (!$this->user_login) {
 			$this->status = 400;
 			$this->message = 'Harus login';
 			header("HTTP/1.0 400 Harus login");
@@ -321,34 +357,34 @@ class Pengguna extends JI_Controller{
 		}
 		$id = (int) $id;
 		$du = $_POST;
-		if(!isset($du['id'])) $du['id'] = 0;
-		if(empty($id)){
+		if (!isset($du['id'])) $du['id'] = 0;
+		if (empty($id)) {
 			$id = (int) $du['id'];
 			unset($du['id']);
 		}
 		$pengguna = $this->apm->getById($id);
-		if( $id>0 && isset($pengguna->id) ){
+		if ($id > 0 && isset($pengguna->id)) {
 			$penguna_foto = $this->__uploadFoto($pengguna->id);
-			if(!empty($penguna_foto)){
-				if(strlen($pengguna->foto)>4){
-					$foto = SEMEROOT.DIRECTORY_SEPARATOR.$pengguna->foto;
-					if(file_exists($foto)) unlink($foto);
+			if (!empty($penguna_foto)) {
+				if (strlen($pengguna->foto) > 4) {
+					$foto = SEMEROOT . DIRECTORY_SEPARATOR . $pengguna->foto;
+					if (file_exists($foto)) unlink($foto);
 				}
 				$du = array();
 				$du['foto'] = $penguna_foto;
-				$res = $this->apm->update($id,$du);
-				if($res){
+				$res = $this->apm->update($id, $du);
+				if ($res) {
 					$this->status = 200;
 					$this->message = 'Upload foto berhasil';
-				}else{
+				} else {
 					$this->status = 901;
 					$this->message = 'Upload foto gagal';
 				}
-			}else{
+			} else {
 				$this->status = 459;
 				$this->message = 'Tidak ada file gambar yang terupload';
 			}
-		}else{
+		} else {
 			$this->status = 550;
 			$this->message = 'Dont hack this :P';
 		}
@@ -358,14 +394,14 @@ class Pengguna extends JI_Controller{
 	//Temporary Select2 di Pengguna API
 	public function select2()
 	{
-		$this->load("api_admin/b_user_model",'bum');
+		$this->load("api_admin/b_user_model", 'bum');
 		$d = $this->__init();
 		$keyword = $this->input->request('q');
 		$ddata = $this->bum->select2($keyword);
 		$datares = array();
 		$i = 0;
 		foreach ($ddata as $key => $value) {
-			$datares["results"][$i++] = array("id"=>$value->id,"text"=>$value->kode." - ".$value->fnama);
+			$datares["results"][$i++] = array("id" => $value->id, "text" => $value->kode . " - " . $value->fnama);
 		}
 		header('Content-Type: application/json');
 		echo json_encode($datares);
@@ -375,8 +411,7 @@ class Pengguna extends JI_Controller{
 	{
 		$d = $this->__init();
 		$data = array();
-		if (!$this->user_login)
-		{
+		if (!$this->user_login) {
 			$this->status = 400;
 			$this->message = 'Harus login';
 			header("HTTP/1.0 400 Harus login");
@@ -389,8 +424,7 @@ class Pengguna extends JI_Controller{
 
 		$this->apmm->updateModule(array('tmp_active' => 'N'), $a_pengguna_id);
 
-		foreach ($a_modules_identifier as $ami)
-		{
+		foreach ($a_modules_identifier as $ami) {
 			$arr							= array();
 			$arr['a_pengguna_id']			= $a_pengguna_id;
 			$arr['a_modules_identifier']	= $ami;
@@ -398,25 +432,19 @@ class Pengguna extends JI_Controller{
 			$arr['tmp_active']				= 'Y';
 
 			$check_ami = $this->apmm->check_access($a_pengguna_id, $ami);
-			if ($check_ami == 0)
-			{
+			if ($check_ami == 0) {
 				$this->apmm->set($arr);
-			}
-			else
-			{
+			} else {
 				$this->apmm->updateModule($arr, $a_pengguna_id, $ami);
 			}
 		}
 
 		$res = $this->apmm->delModule($a_pengguna_id);
 
-		if ($res)
-		{
+		if ($res) {
 			$this->status 	= 200;
 			$this->message 	= 'Berhasil disimpan';
-		}
-		else
-		{
+		} else {
 			$this->status 	= 901;
 			$this->message 	= 'Terjadi kesalahan dalam proses';
 		}
@@ -431,16 +459,16 @@ class Pengguna extends JI_Controller{
 		$ddata 		= $this->apmm->pengguna_module($id);
 		$datares 	= array();
 		$i 			= 0;
-		foreach ($ddata as $key => $value)
-		{
+		foreach ($ddata as $key => $value) {
 			$datares[$i++] = $value->a_modules_identifier;
 		}
 		header('Content-Type: application/json');
 		echo json_encode($datares);
 	}
-	public function cari(){
+	public function cari()
+	{
 		$keyword = $this->input->request("keyword");
-		if(empty($keyword)) $keyword="";
+		if (empty($keyword)) $keyword = "";
 		$p = new stdClass();
 		$p->id = 'NULL';
 		$p->text = '-';

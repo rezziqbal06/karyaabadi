@@ -176,7 +176,7 @@ $controller_404 = 'notfound';
 /* @var array of string */
 /****************************/
 // $routes['produk/(:any)'] = 'produk/detail/index/$1';
-$routes['asesmen/(:any)'] = 'asesmen/detail/$1';
+$routes['admin/edit'] = 'admin/home/edit';
 $routes['asesmen/(:any)/(:num)'] = 'asesmen/edit/$1/$2';
 
 

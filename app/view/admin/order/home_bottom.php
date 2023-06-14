@@ -125,7 +125,7 @@ $("#ftambah").on("submit",function(e){
 					window.location = '<?=base_url_admin('order/')?>';
 				},500);
 			}else{
-				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','danger');
+				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','warning');
 				$('.icon-submit').removeClass('fa-circle-o-notch fa-spin');
 				$('.btn-submit').prop('disabled',false);
 				NProgress.done();
@@ -133,7 +133,7 @@ $("#ftambah").on("submit",function(e){
 		},
 		error:function(){
 			setTimeout(function(){
-				gritter('<h4>Error</h4><p>Tidak dapat menambah data, silahkan coba beberapa saat lagi</p>','warning');
+				gritter('<h4>Error</h4><p>Tidak dapat menambah data, silahkan coba beberapa saat lagi</p>','danger');
 			}, 666);
 
 			$('.icon-submit').removeClass('fa-circle-o-notch fa-spin');
@@ -171,7 +171,7 @@ $("#fedit").on("submit",function(e){
 					window.location = '<?=base_url_admin('order/')?>';
 				},500);
 			}else{
-				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','danger');
+				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','warning');
 
 				$('.icon-submit').removeClass('fa-circle-o-notch fa-spin');
 				$('.btn-submit').prop('disabled',false);
@@ -180,7 +180,7 @@ $("#fedit").on("submit",function(e){
 		},
 		error:function(){
 			setTimeout(function(){
-				gritter('<h4>Error</h4><p>Tidak dapat mengubah data sekarang, silahkan coba lagi nanti</p>','warning');
+				gritter('<h4>Error</h4><p>Tidak dapat mengubah data sekarang, silahkan coba lagi nanti</p>','danger');
 			}, 666);
 
 			$('.icon-submit').removeClass('fa-circle-o-notch fa-spin');
@@ -329,14 +329,14 @@ function setStatus(status, tgl_selesai, id){
 			if(respon.status==200){
 				drTable.ajax.reload();
 			}else{
-				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','danger');
+				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','warning');
 			}
 			
 			NProgress.done();
 		},
 		error:function(){
 			setTimeout(function(){
-				gritter('<h4>Error</h4><p>Tidak dapat menambah data, silahkan coba beberapa saat lagi</p>','warning');
+				gritter('<h4>Error</h4><p>Tidak dapat menambah data, silahkan coba beberapa saat lagi</p>','danger');
 			}, 666);
 
 			$('.icon-submit').removeClass('fa-circle-o-notch fa-spin');
