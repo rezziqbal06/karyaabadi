@@ -36,8 +36,32 @@
                         </div>
                     </li>
 
-                    <li><a class="nav-link" href="/tentang_kami">Tentang Kami</a></li>
-                    <li><a class="nav-link" href="/blog">Blog</a></li>
+                    <li>
+                        <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true" aria-expanded="false" aria-label="sosmed">
+                            Follow
+                            <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div id="dropdown2" class="dropdown">
+                            <ul role="menu" class="">
+                                <li role="menuitem"><a class="dropdown-link" target="_blank" href="<?= $this->config->semevar->site_ig ?>">Instagram</a></li>
+                                <li role="menuitem"><a class="dropdown-link" target="_blank" href="<?= $this->config->semevar->site_fb ?>">Facebook</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="nav-link dropdown-btn" data-dropdown="dropdown3" aria-haspopup="true" aria-expanded="false" aria-label="sosmed">
+                            Marketplace
+                            <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div id="dropdown3" class="dropdown">
+                            <ul role="menu" class="">
+                                <li role="menuitem"><a class="dropdown-link" target="_blank" href="<?= $this->config->semevar->site_tokopedia ?>">Tokopedia</a></li>
+                                <!-- <li role="menuitem"><a class="dropdown-link" target="_blank" href="<?= $this->config->semevar->site_shopee ?>">Shopee</a></li> -->
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a class="nav-link" href="<?= base_url() ?>tentang_kami">Tentang Kami</a></li>
+                    <li><a class="nav-link" href="<?= base_url() ?>blog">Blog</a></li>
                 </ul>
             </nav>
         </div>

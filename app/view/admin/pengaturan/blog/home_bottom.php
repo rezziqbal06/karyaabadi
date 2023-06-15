@@ -106,8 +106,6 @@ if(jQuery('#drTable').length>0){
 	});
 }
 
-initCompressingImage('igambar');
-initCompressingImage('iegambar');
 
 //submit form
 $("#ftambah").on("submit",function(e){
@@ -302,6 +300,7 @@ $(document).on('change', '[name="judul"]', function(e){
 $(document).off('change', 'input[type="file"]');
 $(document).on('change', 'input[type="file"]', function(e){
 	e.preventDefault();
+	setCompressedImage(e)
 	var id = $(this).attr('id');
 	readURLImage(this, 'img-'+id);
 });

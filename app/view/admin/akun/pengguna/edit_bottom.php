@@ -11,7 +11,6 @@ function gritter(gpesan,gtype="info"){
 	});
 }
 
-initCompressingImage("iprofil_gambar");
 
 function detail(){
 	$.get('<?=base_url("api_admin/akun/pengguna/detail/").$sess->admin->id?>').done(function(dt){
@@ -77,6 +76,7 @@ detail();
 $(document).off('change', 'input[type="file"]');
 $(document).on('change', 'input[type="file"]', function(e){
 	e.preventDefault();
+	setCompressedImage(e)
 	var id = $(this).attr('id');
 	readURLImage(this, 'img-'+id);
 });

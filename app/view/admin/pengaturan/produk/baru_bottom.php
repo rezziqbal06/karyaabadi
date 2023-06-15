@@ -14,11 +14,7 @@ function convertToSlug(Text) {
              .replace(/ /g, '-')
              .replace(/[^\w-]+/g, '');
 }
-initCompressingImage('igambar1');
-initCompressingImage('igambar2');
-initCompressingImage('igambar3');
-initCompressingImage('igambar4');
-initCompressingImage('igambar5');
+
 
 //submit form
 $("#ftambah").on("submit",function(e){
@@ -196,6 +192,7 @@ $(document).on('change', '[name="nama"]', function(e){
 $(document).off('change', 'input[type="file"]');
 $(document).on('change', 'input[type="file"]', function(e){
 	e.preventDefault();
+  setCompressedImage(e)
 	var id = $(this).attr('id');
 	readURLImage(this, 'img-'+id);
 });

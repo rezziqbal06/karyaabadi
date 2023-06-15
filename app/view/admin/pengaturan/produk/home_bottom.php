@@ -16,8 +16,6 @@ function convertToSlug(Text) {
              .replace(/[^\w-]+/g, '');
 }
 
-initCompressingImage('igambar');
-initCompressingImage('iegambar');
 
 
 App.datatables();
@@ -288,6 +286,7 @@ $(document).on('change', '[name="nama"]', function(e){
 $(document).off('change', 'input[type="file"]');
 $(document).on('change', 'input[type="file"]', function(e){
 	e.preventDefault();
+	setCompressedImage(e)
 	var id = $(this).attr('id');
 	readURLImage(this, 'img-'+id);
 });

@@ -21,11 +21,7 @@ function convertToSlug(Text) {
              .replace(/ /g, '-')
              .replace(/[^\w-]+/g, '');
 }
-initCompressingImage('iegambar1');
-initCompressingImage('iegambar2');
-initCompressingImage('iegambar3');
-initCompressingImage('iegambar4');
-initCompressingImage('iegambar5');
+
 
 //fill data
 var data_fill = <?=json_encode($bpm)?>;
@@ -223,6 +219,7 @@ $(document).on('change', '[name="nama"]', function(e){
 $(document).off('change', 'input[type="file"]');
 $(document).on('change', 'input[type="file"]', function(e){
 	e.preventDefault();
+  setCompressedImage(e)
 	var id = $(this).attr('id');
 	readURLImage(this, 'img-'+id);
 });
