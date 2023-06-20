@@ -22,7 +22,7 @@ function convertToSlug(Text) {
              .replace(/[^\w-]+/g, '');
 }
 
-initEditor('#iedeskripsi')
+initEditor('#ietext')
 
 //fill data
 setTimeout(function(){
@@ -31,8 +31,8 @@ setTimeout(function(){
   $.each(data_fill,function(k,v){
     if(k == 'gambar'){
       $('#img-iegambar').attr('src', '<?=base_url()?>'+v);
-    }else if(k == "deskripsi"){
-      editor["#iedeskripsi"].setData(v)
+    }else if(k == "text"){
+      editor["#ietext"].setData(v)
     }else{
       $("#ie"+k).val(v);
     }
@@ -55,7 +55,7 @@ $("#fedit").on("submit",function(e){
       fd.append('gambar'+i, gambar.blob, 'gambar.'+gambar.extension);
     }
   }
-	var url = '<?=base_url("api_admin/pengaturan/banner/edit/".$abm->id)?>';
+	var url = '<?=base_url("api_admin/pengaturan/blog/edit/".$abm->id)?>';
 
 	$.ajax({
 		type: $(this).attr('method'),
@@ -67,7 +67,7 @@ $("#fedit").on("submit",function(e){
 			if(respon.status==200){
 				gritter('<h4>Sukses</h4><p>Data berhasil diubah</p>','success');
 				setTimeout(function(){
-					window.location = '<?=base_url_admin('pengaturan/banner/')?>';
+					window.location = '<?=base_url_admin('pengaturan/blog/')?>';
 				},500);
 			}else{
 				gritter('<h4>Gagal</h4><p>'+respon.message+'</p>','danger');
@@ -91,10 +91,10 @@ $("#fedit").on("submit",function(e){
 
 });
 
-$(document).off('change', '[name="nama"]')
-$(document).on('change', '[name="nama"]', function(e){
+$(document).off('change', '[name="judul"]')
+$(document).on('change', '[name="judul"]', function(e){
 	e.preventDefault();
-	var type = $(this).attr('id').replace('nama','');
+	var type = $(this).attr('id').replace('judul','');
 	var slug = convertToSlug($(this).val());
 	$("#"+type+"slug").val(slug);
 })
