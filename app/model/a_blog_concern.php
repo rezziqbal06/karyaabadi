@@ -25,12 +25,16 @@ class A_Blog_Concern extends \JI_Model
         'kategori',
         'slug',
         'gambar',
+        'meta_desc',
+        'meta_keyword',
         'count_read',
         'cdate',
         'is_active',
         'is_deleted'
     ];
     const DEFAULTS = [
+        '',
+        '',
         '',
         '',
         '',

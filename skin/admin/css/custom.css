@@ -328,6 +328,15 @@ div::-webkit-scrollbar-thumb:hover {
     top: 0rem !important;
 }
 
+.text-grey{
+    color: #808080;
+}
+
+.selected{
+    border: 3px solid var(--accent);   
+}
+
+
 
 @media (prefers-color-scheme:light){
     .bg-primary{

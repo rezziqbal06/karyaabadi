@@ -8,5 +8,6 @@
 	"<link rel=\"stylesheet\" href=\"{{cdn_url}}skin/admin/css/nucleo-icons.css\" \/>",
 	"<link rel=\"stylesheet\" href=\"{{cdn_url}}skin/front/css/font-awesome.min.css\" \/>",
 	"<link rel=\"stylesheet\" href=\"{{cdn_url}}skin/admin/css/custom-navbar.css?v=1.0.8\" \/>",
+	"<link rel=\"stylesheet\" href=\"{{cdn_url}}skin/front/css/xzoom.min.css\" \/>",
 	"<link rel=\"stylesheet\" href=\"{{cdn_url}}skin/admin/css/custom.css?v=1.0.8\" \/>"
 ]

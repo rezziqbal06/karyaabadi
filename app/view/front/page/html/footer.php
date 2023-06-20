@@ -1,7 +1,7 @@
 <footer class="clearfix bg-primary  text-white">
 	<div class="row">
 		<div class="col-6 col-md-3 p-4 p-md-5">
-			<img class="img-fluid" width="40%" src="<?= $this->config->semevar->site_logo->path ?>" />
+			<img class="img-fluid" width="40%" src="<?= base_url().$this->config->semevar->site_logo->path ?>" />
 			<p><?= $this->config->semevar->site_name ?></p>
 			<p><?= $this->config->semevar->site_description ?></p>
 		</div>

@@ -66,7 +66,7 @@
 								</div> -->
 								<div class="col-md-6 mb-2">
 									<label for="igambar" class="control-label">Gambar</label>
-									<input id="igambar" type="file" name="gambar" class="form-control" required>
+									<input id="igambar" type="file" name="gambar" accept=".jpg, .jpeg" class="form-control" required>
 								</div>
 								<div class="col-md-1 mb-2">
 									<img id="img-igambar" src="" alt="" class="img-fluid rounded">
@@ -134,7 +134,7 @@
 								</div> -->
 								<div class="col-md-6 mb-2">
 									<label for="iegambar" class="control-label">Gambar</label>
-									<input id="iegambar" type="file" name="gambar" class="form-control">
+									<input id="iegambar" type="file" name="gambar" accept=".jpg, .jpeg" class="form-control">
 								</div>
 								<div class="col-md-1 mb-2">
 									<img id="img-iegambar" src="" alt="" class="img-fluid rounded">

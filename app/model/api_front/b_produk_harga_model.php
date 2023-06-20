@@ -83,14 +83,15 @@ class B_produk_harga_Model extends \Model\B_produk_harga_Concern
     return $this->db->delete($this->tbl);
   }
 
-  public function getByProdukAndQty($id, $qty)
+  public function getByProdukSpecAndQty($id, $specs, $qty)
   {
     $string = "SELECT
         *
     FROM
         b_produk_harga
     WHERE
-        b_produk_id = $id AND(
+        b_produk_id = $id AND spesifikasi LIKE '%" . $specs . "%' AND 
+        (
             (
                 $qty >= dari_qty AND $qty <= ke_qty AND opr = '-'
             ) OR($qty < ke_qty AND opr = '<') OR($qty > ke_qty AND opr = '>')

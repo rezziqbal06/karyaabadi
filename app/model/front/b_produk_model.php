@@ -44,11 +44,20 @@ class B_Produk_Model extends \Model\B_Produk_Concern
 
 	public function getBySlug($slug = '')
 	{
-		$this->db->select('id')->select('nama')->select('slug')->select('deskripsi');
+		$this->db->select('id')->select('nama')->select('slug')->select('deskripsi')->select('gambar')->select('a_kategori_id')->select('spesifikasi');
 		if (strlen($slug)) $this->db->where('slug', $slug);
 		return $this->db->get_first('', 0);
 	}
 
+	public function getByKategori($a_kategori_id = '', $id = '')
+	{
+		$this->db->select('id')->select('nama')->select('slug')->select('gambar')->select('a_kategori_id');
+		if (strlen($a_kategori_id)) $this->db->where('a_kategori_id', $a_kategori_id);
+		if (strlen($id)) $this->db->where('id', $id, 'AND', '<>');
+		$this->db->where('is_active', 1);
+		$this->db->where('is_deleted', $this->db->esc(0));
+		return $this->db->get('', 0);
+	}
 
 	public function getAllPermit($a_jabatan_id, $b_user_id, $type = "create")
 	{

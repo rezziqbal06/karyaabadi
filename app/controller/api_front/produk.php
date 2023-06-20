@@ -552,4 +552,51 @@ class Produk extends JI_Controller
 		$data->spesifikasi = $spesifikasi;
 		$this->__json_out($data);
 	}
+
+	/**
+	 * Get detailed information by idea
+	 *
+	 * @param  int   $id               ID value from a_fasilitas table
+	 *
+	 * @api
+	 * @return void
+	 */
+	public function hitung_harga()
+	{
+		$d = $this->__init();
+		$data = array();
+
+		$id = (int) $this->input->request("id");
+
+		$this->status = 200;
+		$this->message = API_ADMIN_ERROR_CODES[$this->status];
+		$data = $this->bpm->id($id);
+		if (!isset($data->id)) {
+			$data = new \stdClass();
+			$this->status = 441;
+			$this->message = API_ADMIN_ERROR_CODES[$this->status];
+			$this->__json_out($data);
+			die();
+		}
+
+		$specs = $this->input->post('specs');
+		$specs = json_encode($specs);
+		$specs = str_replace(']', '', $specs);
+		$qty = $this->input->post('qty');
+
+		$harga_produk = $this->bphm->getByProdukSpecAndQty($id, $specs, $qty);
+		$harga = 0;
+		if ($harga_produk[0]) {
+			$harga_total = $qty * $harga_produk[0]->harga;
+			$harga_total = number_format((float) $harga_total, 0, ',', '.');
+			$harga_produk[0]->harga = number_format((float) $harga_produk[0]->harga, 0, ',', '.');
+			$harga_produk[0]->total = $harga_total;
+			$data = $harga_produk[0];
+		}
+
+		// $data['harga'] = $harga;
+
+		// dd(count($data->indikator));
+		$this->__json_out($data);
+	}
 }

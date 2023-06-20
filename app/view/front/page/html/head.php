@@ -22,6 +22,8 @@
 		<meta name="theme-color" content="#ffffff">
 		<!-- END Icons -->
 
+		<meta property="og:image" content="<?= $this->getOGImage() ?>">
+
 		<!-- Stylesheets -->
 		<!-- END Stylesheets -->
 

@@ -79,6 +79,10 @@
 									<label for="itext" class="control-label">Text</label>
 									<textarea name="text" id="itext" class="form-control" cols="30" rows="10"></textarea>
 								</div>
+								<div class="col-md-6 mb-2">
+									<label for="imeta_keyword" class="control-label">Keyword</label>
+									<input id="imeta_keyword" type="text" name="meta_keyword" class="form-control" required>
+								</div>
 								<div class="col-md-2 mb-2">
 									<label for="iis_active" class="control-label">Status</label>
 									<select name="is_active" id="iis_active" class="form-control">
@@ -150,6 +154,10 @@
 								<div class="col-md-12 mb-2">
 									<label for="ietext" class="control-label">Text</label>
 									<textarea name="text" id="ietext" class="form-control" cols="30" rows="10"></textarea>
+								</div>
+								<div class="col-md-6 mb-2">
+									<label for="iemeta_keyword" class="control-label">Keyword</label>
+									<input id="iemeta_keyword" type="text" name="meta_keyword" class="form-control" required>
 								</div>
 								<div class="col-md-2 mb-2">
 									<label for="ieis_active" class="control-label">Status</label>

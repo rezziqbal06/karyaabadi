@@ -2,7 +2,7 @@
     <div class="container">
         <div class="nav-center">
             <a class="logo" href="/">
-                <img src="<?= $this->config->semevar->site_logo->path ?>" width="35" height="35" alt="Inc Logo" />
+                <img src="<?= base_url() . $this->config->semevar->site_logo->path ?>" width="35" height="35" alt="Inc Logo" />
             </a>
             <nav class="menu">
                 <ul class="menu-bar">
