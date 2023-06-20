@@ -6,9 +6,9 @@
 <div id="banner" class="">
 	<?php if (isset($abm) && count($abm)) : ?>
 		<?php foreach ($abm as $k => $v) : ?>
-			<div>
+			<a href="<?= base_url('banner/') . $v->slug ?>">
 				<img src="<?= base_url("$v->gambar") ?>" class="d-block w-100" alt="<?= $v->nama ?>">
-			</div>
+			</a>
 		<?php endforeach ?>
 	<?php endif ?>
 </div>

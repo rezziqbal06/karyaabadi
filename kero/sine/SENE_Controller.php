@@ -736,6 +736,8 @@ abstract class SENE_Controller
             $string = mb_substr($string, 0, 157);
             // Trim the string to the last complete word
             $string = mb_substr($string, 0, mb_strrpos($string, ' '));
+            $pattern = '/<a\b[^>]*>(.*?)<\/a>/i';
+            $string = preg_replace($pattern, '', $string);
             $string .= '...';
         }
         return $string;

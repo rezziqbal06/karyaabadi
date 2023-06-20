@@ -1,7 +1,7 @@
 <header id="nav-menu" aria-label="navigation bar">
     <div class="container">
         <div class="nav-center">
-            <a class="logo" href="/">
+            <a class="logo" href="<?= base_url() ?>">
                 <img src="<?= base_url() . $this->config->semevar->site_logo->path ?>" width="35" height="35" alt="Inc Logo" />
             </a>
             <nav class="menu">

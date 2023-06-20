@@ -35,7 +35,7 @@ class Banner extends \JI_Controller
 		}
 
 
-		$this->setTitle('Member ' . $this->config_semevar('admin_site_suffix', ''));
+		$this->setTitle('Banner ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/banner/home_modal", $data);
 		$this->putThemeContent("pengaturan/banner/home", $data);
@@ -53,7 +53,7 @@ class Banner extends \JI_Controller
 		$pengguna = $data['sess']->admin;
 
 
-		$this->setTitle('Member Baru ' . $this->config_semevar('admin_site_suffix', ''));
+		$this->setTitle('Banner Baru ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/banner/baru_modal", $data);
 		$this->putThemeContent("pengaturan/banner/baru", $data);
@@ -88,7 +88,7 @@ class Banner extends \JI_Controller
 		$data['abm'] = $abm;
 
 
-		$this->setTitle('Member Edit #' . $abm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
+		$this->setTitle('Banner Edit #' . $abm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
 		$this->putThemeContent("pengaturan/banner/edit_modal", $data);
 		$this->putThemeContent("pengaturan/banner/edit", $data);
 		$this->putJsContent("pengaturan/banner/edit_bottom", $data);
@@ -112,7 +112,7 @@ class Banner extends \JI_Controller
 			redir(base_url_admin('pengaturan/banner/'));
 			die();
 		}
-		$this->setTitle('Member Detail #' . $abm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
+		$this->setTitle('Banner Detail #' . $abm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$abm->fnama = htmlentities($abm->fnama);
 		$data['abm'] = $abm;

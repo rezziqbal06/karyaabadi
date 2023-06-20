@@ -27,4 +27,20 @@ class A_Banner_Model extends \Model\A_Banner_Concern
 		$this->db->where('is_deleted', $this->db->esc($is_deleted));
 		return $this->db->get('', 0);
 	}
+
+	public function getBySlug($slug = '')
+	{
+		$this->db->select('id')->select('nama')->select('slug')->select('deskripsi')->select('gambar');
+		if (strlen($slug)) $this->db->where('slug', $slug);
+		return $this->db->get_first('', 0);
+	}
+
+	public function getLainnya($id = '')
+	{
+		$this->db->select('id')->select('nama')->select('slug')->select('gambar');
+		if (strlen($id)) $this->db->where('id', $id, 'AND', '<>');
+		$this->db->where('is_active', 1);
+		$this->db->where('is_deleted', $this->db->esc(0));
+		return $this->db->get('', 0);
+	}
 }

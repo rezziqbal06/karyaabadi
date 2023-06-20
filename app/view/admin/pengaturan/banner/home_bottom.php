@@ -44,6 +44,8 @@ if(jQuery('#drTable').length>0){
 									if(k == "gambar"){
 										console.log(k);
 										$("#img-iegambar").attr('src', '<?=base_url()?>'+v);
+									}else if(k == "deskripsi"){
+										editor["#iedeskripsi"].setData(v)
 									}else{
 										$("#ie"+k).val(v);
 									}
@@ -51,9 +53,7 @@ if(jQuery('#drTable').length>0){
 							}
 						})
 						$("#adetail").attr("href","<?=base_url_admin("pengaturan/banner/detail/")?>"+ieid);
-						//$("#aedit").attr("href","<?=base_url_admin("pengaturan/banner/edit/")?>"+ieid);
-						$("#amodule").attr("href","<?=base_url_admin("pengaturan/banner/module/")?>"+ieid);
-						$("#areseller").attr("href","<?=base_url_admin("banner/reseller/baru/")?>"+ieid);
+						$("#aedit").attr("href","<?=base_url_admin("pengaturan/banner/edit/")?>"+ieid);
 						$("#modal_option").modal("show");
 						
 					});
@@ -88,6 +88,8 @@ $("#ftambah").on("submit",function(e){
 	if(gambar){
 		fd.append('gambar', gambar.blob, 'gambar.'+gambar.extension);
 	}
+	fd.append('deskripsi', editor["#ideskripsi"].getData())
+
 	$.ajax({
 		type: $(this).attr('method'),
 		url: url,
@@ -133,6 +135,8 @@ $("#fedit").on("submit",function(e){
 	if(gambar){
 		fd.append('gambar', gambar.blob, 'gambar.'+gambar.extension);
 	}
+	fd.append('deskripsi', editor["#iedeskripsi"].getData())
+
 	$.ajax({
 		type: $(this).attr('method'),
 		url: url,
@@ -245,15 +249,10 @@ $("#fl_do").on("click",function(e){
 	
 $("#atambah").on("click",function(e){
 		e.preventDefault();
-		$("#modal_tambah").modal("show");
+		window.location.href = '<?=base_url_admin("pengaturan/banner/baru")?>'
 	});
 
-// edit modal
-$("#aedit").on("click",function(e){
-	e.preventDefault();
-	$("#modal_option").modal("hide");
-	$("#modal_edit").modal("show");
-});
+
 $(document).off('change', '[name="nama"]')
 $(document).on('change', '[name="nama"]', function(e){
 	e.preventDefault();

@@ -35,7 +35,7 @@ class Blog extends \JI_Controller
 		}
 
 
-		$this->setTitle('Member ' . $this->config_semevar('admin_site_suffix', ''));
+		$this->setTitle('Blog ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/blog/home_modal", $data);
 		$this->putThemeContent("pengaturan/blog/home", $data);
@@ -53,7 +53,7 @@ class Blog extends \JI_Controller
 		$pengguna = $data['sess']->admin;
 
 
-		$this->setTitle('Member Baru ' . $this->config_semevar('admin_site_suffix', ''));
+		$this->setTitle('Blog Baru ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$this->putThemeContent("pengaturan/blog/baru_modal", $data);
 		$this->putThemeContent("pengaturan/blog/baru", $data);
@@ -88,7 +88,7 @@ class Blog extends \JI_Controller
 		$data['abm'] = $abm;
 
 
-		$this->setTitle('Member Edit #' . $abm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
+		$this->setTitle('Blog Edit #' . $abm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
 		$this->putThemeContent("pengaturan/blog/edit_modal", $data);
 		$this->putThemeContent("pengaturan/blog/edit", $data);
 		$this->putJsContent("pengaturan/blog/edit_bottom", $data);
@@ -112,7 +112,7 @@ class Blog extends \JI_Controller
 			redir(base_url_admin('pengaturan/blog/'));
 			die();
 		}
-		$this->setTitle('Member Detail #' . $abm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
+		$this->setTitle('Blog Detail #' . $abm->id . ' ' . $this->config_semevar('admin_site_suffix', ''));
 
 		$abm->fnama = htmlentities($abm->fnama);
 		$data['abm'] = $abm;

@@ -7,6 +7,9 @@
     --dark-accent:#6B728E;
     --dark-secondary:#474E68;
     --dark-background:#404258;
+
+    --ck-z-default: 100;
+    --ck-z-modal: calc( var(--ck-z-default) + 999 );
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital@1&family=Poppins&display=swap');
@@ -335,6 +338,7 @@ div::-webkit-scrollbar-thumb:hover {
 .selected{
     border: 3px solid var(--accent);   
 }
+
 
 
 

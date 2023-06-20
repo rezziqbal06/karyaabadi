@@ -1,5 +1,5 @@
 <!-- modal option -->
-<div id="modal_option" class="modal fade " tabindex="-1" role="dialog" aria-hidden="true">
+<div id="modal_option" class="modal fade " role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-md">
 		<div class="modal-content">
 
@@ -32,7 +32,7 @@
 </div>
 
 <!-- modal tambah -->
-<div id="modal_tambah" class="modal fade " tabindex="-1" role="dialog" aria-hidden="true">
+<div id="modal_tambah" class="modal fade " role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-fullscreen">
 		<div class="modal-content">
 
@@ -99,7 +99,7 @@
 </div>
 
 <!-- modal edit -->
-<div id="modal_edit" class="modal fade " tabindex="-1" role="dialog" aria-hidden="true">
+<div id="modal_edit" class="modal fade " role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-fullscreen">
 		<div class="modal-content">
 

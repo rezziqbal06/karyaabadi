@@ -35,8 +35,8 @@
 		$(document).ready(function(e) {
 			<?php $this->getJsReady(); ?>
 			<?php $this->getThemeElement('page/html/script', $__forward); ?>
+			<?php $this->getJsContent(); ?>
 		});
-		<?php $this->getJsContent(); ?>
 	</script>
 </body>
 
