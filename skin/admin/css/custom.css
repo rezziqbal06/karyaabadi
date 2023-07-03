@@ -167,6 +167,7 @@ div::-webkit-scrollbar-thumb:hover {
 
 .card {
     margin-top: 1em;
+    border-radius: 32px;
 }
 
 .kartu {
