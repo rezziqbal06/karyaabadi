@@ -11,16 +11,7 @@
       "src": "{{cdn_url}}skin/front/js/moment.min.js"
     },
     {
-      "src": "{{cdn_url}}skin/front/js/moment-with-locales.min.js"
-    },
-    {
       "src": "{{cdn_url}}skin/admin/js/vendor/jquery.min.js"
-    },
-    {
-      "src": "{{cdn_url}}skin/front/js/datatables.min.js"
-    },
-    {
-      "src": "{{cdn_url}}skin/front/js/datatables.rspnsv.bs.min.js"
     },
     {
       "src": "{{cdn_url}}skin/front/js/bootstrap-datepicker.min.js"
@@ -41,9 +32,6 @@
       "src": "{{cdn_url}}skin/front/js/fontawesome.min.js"
     },
     {
-      "src": "{{cdn_url}}skin/front/js/choices.min.js"
-    },
-    {
       "src": "{{cdn_url}}skin/front/js/app.js?v=0.0.4"
     },
     {
@@ -53,16 +41,7 @@
       "src":"{{cdn_url}}skin/front/js/signature-pad.min.js"
     },
     {
-      "src":"{{cdn_url}}skin/admin/js/plugins.js"
-    },
-    {
       "src":"{{cdn_url}}skin/admin/js/gambar-alite.js"
-    },
-    {
-      "src":"{{cdn_url}}skin/front/js/html-docx.js"
-    },
-    {
-      "src":"https://cdn.jsdelivr.net/npm/apexcharts"
     },
     {
       "src":"{{cdn_url}}skin/front/js/xzoom.min.js"
