@@ -15,7 +15,7 @@ $(document).on('click', '.btn-kategori', function(e){
 			var s = ""
 			$.each(dt.data, function(k,v){
 			s += `	<div class="col-6 col-md-2 p-3 kartu-produk" data-kategori-id="${v.a_kategori_id}">
-					<a href="<?= base_url("produk/") ?>${v.slug}" class="btn-kategori" data-id="${v.id}" data-kategori-id="${v.a_kategori_id}" alt="${v.nama}">
+					<a href="<?= base_url("produk/") ?>${v.slug}" class="" data-id="${v.id}" data-kategori-id="${v.a_kategori_id}" alt="${v.nama}">
 						<div class="kartu-gambar-produk">
 							<img src="<?= base_url("") ?>${v.gambar}" alt="${v.nama}" aria-describedby="${v.nama}" class="img-fluid">
 						</div>

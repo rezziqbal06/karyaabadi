@@ -212,7 +212,10 @@ $semevar['site_version'] = '1.0.0-dev';
 $semevar['site_name'] = 'Percetakan Karya Abadi';
 $semevar['admin_site_suffix'] = ' - Percetakan Karya Abadi';
 $semevar['site_suffix'] = ' - Percetakan Karya Abadi';
-$semevar['site_description'] = 'Inovasi dalam Percetakan, Kualitas Abadi';
+$semevar['site_motto'] = 'Inovasi dalam Percetakan, Kualitas Abadi';
+$semevar['site_description'] = 'Kami bangga menjadi bagian dari industri percetakan dan telah memberikan pelayanan berkualitas tinggi kepada pelanggan kami sejak tahun [tahun didirikan]. Dalam perjalanan kami, kami telah menjadi pilihan utama bagi banyak bisnis dan individu yang menginginkan solusi cetak yang luar biasa.
+
+Kami percaya bahwa cetakan adalah representasi visual dari identitas merek Anda. Oleh karena itu, kami berkomitmen untuk menyediakan solusi cetak inovatif, profesional, dan berkualitas untuk memenuhi kebutuhan unik bisnis Anda.';
 $semevar['site_address'] = 'Jl. Gatot Subroto No.503, Karangmekar, Kec. Cimahi Tengah, Kota Cimahi, Jawa Barat 40523';
 $semevar['site_map'] = 'https://goo.gl/maps/4xDEwPDd2ML3txc59';
 $semevar['site_fb'] = 'https://www.facebook.com/profile.php?id=100054244250465';

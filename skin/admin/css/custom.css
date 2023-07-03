@@ -382,7 +382,7 @@ div::-webkit-scrollbar-thumb:hover {
     
     a:hover{
         text-decoration: none;
-        color: var(--dark-secondary)
+        color: var(--dark-secondary) !important
     }
 }
 
@@ -519,7 +519,7 @@ div::-webkit-scrollbar-thumb:hover {
     
     a:hover{
         text-decoration: none;
-        color: var(--background)
+        color: var(--background) !important
     }
 
     td, th, a, btn {

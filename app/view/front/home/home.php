@@ -127,7 +127,7 @@
 			<?php if (isset($bpm) && count($bpm)) : ?>
 				<?php foreach ($bpm as $produk) : ?>
 					<div class="col-6 col-md-2 p-3 kartu-produk" data-kategori-id="<?= $produk->a_kategori_id ?>">
-						<a href="<?= base_url("produk/") ?><?= $produk->slug ?>" class="btn-kategori" data-id="<?= $produk->id ?>" data-kategori-id="<?= $produk->a_kategori_id ?>" alt="<?= $produk->nama ?>">
+						<a href="<?= base_url("produk/") ?><?= $produk->slug ?>" class="" data-id="<?= $produk->id ?>" data-kategori-id="<?= $produk->a_kategori_id ?>" alt="<?= $produk->nama ?>">
 							<div class="kartu-gambar-produk">
 								<img src="<?= base_url("") ?><?= $produk->gambar ?? '' ?>" alt="<?= $produk->nama ?? '' ?>" aria-describedby="<?= $produk->nama ?? '' ?>" class="img-fluid">
 							</div>

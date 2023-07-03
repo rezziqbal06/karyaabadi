@@ -4,7 +4,7 @@
 		<div class="col-md-5 flex">
 			<img id="display-gambar" class="w-100" src="<?= base_url($produk->gambar) ?>" data-zoom-image="<?= base_url($produk->gambar) ?>" alt="<?= $produk->nama ?>" style="border-radius:16px;">
 			<?php if (isset($bpgm)) : ?>
-				<div class=" mt-3 d-flex flex-row">
+				<div class="mb-2 mt-3 d-flex flex-row">
 					<?php $i = 0; ?>
 					<?php foreach ($bpgm as $k => $v) : ?>
 						<a href="#" class="image-selected p-2" data-count="<?= $k ?>" class="p-2"><img id="gambar-item-<?= $k ?>" src="<?= base_url() . $v->gambar ?>" alt="Gambar <?= $produk->nama ?> <?= ($i + 1) ?>" height="100px" class="gambar-item rounded <?= $v->gambar == $produk->gambar ? 'selected' : '' ?>"></a>
@@ -15,10 +15,9 @@
 		</div>
 		<div class="col-md-7">
 			<form method="POST" id="fhitung">
-				<p class="text-accent"><?= $akm->nama ?></p>
-				<h3><b><?= $produk->nama ?></b></h3>
-				<hr>
-				<p class="text-grey" style="text-align:justify"><?= $produk->deskripsi ?></p>
+				<span class="text-accent"><?= $akm->nama ?></span>
+				<h3 class="mb-3"><b><?= $produk->nama ?></b></h3>
+
 				<input type="hidden" name="id" value="<?= $produk->id ?>" />
 				<div class="row">
 					<?php if (isset($produk->spesifikasi)) : ?>
@@ -42,24 +41,27 @@
 				</div>
 
 				<div class="row">
-					<div class="col-12 mb-2">
+					<div class="col-12 mb-3">
 						<h6 id="harga_peritem"></h6>
 						<h3 id="harga_total" class="text-primary"></h3>
 					</div>
-					<div class="col-4">
+					<div class="col-6 col-md-4 mb-3">
 						<div class="input-group">
 							<a href="#" id="kurang" class="btn bg-secondary ">-</a>
 							<input type="number" name="qty" min="1" class="form-control text-center" value="1">
 							<a href="#" id="tambah" class="btn bg-secondary ">+</a>
 						</div>
 					</div>
-					<div class="col-8 col-md-4 d-grid">
+					<div class="col-6 col-md-4 d-grid mb-3">
 						<button type="submit" id="hitung" class="btn bg-success">Hitung</button>
 					</div>
-					<div class="col-md-4 d-grid">
+					<div class="col-md-4 d-grid mb-3">
 						<button id="pesan" class="btn bg-accent" disabled>Pesan</button>
 					</div>
 				</div>
+				<span>Deskripsi</span>
+				<hr>
+				<p class="text-grey" style="text-align:justify"><?= $produk->deskripsi ?></p>
 			</form>
 		</div>
 	</div>

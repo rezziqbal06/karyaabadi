@@ -12,9 +12,6 @@
 <!-- List banner Popular -->
 <section class="p-3 p-md-5">
 	<div class="row">
-		<div class="col-md-5 flex text-center">
-			<img id="display-gambar" class="w-100" src="<?= base_url($banner->gambar) ?>" data-zoom-image="<?= base_url($banner->gambar) ?>" alt="<?= $banner->nama ?>" style="border-radius:16px;">
-		</div>
 		<div class="col-md-7">
 			<form method="POST" id="fhitung">
 				<h3><b><?= $banner->nama ?></b></h3>
@@ -22,6 +19,9 @@
 				<p class="text-grey" style="text-align:justify"><?= $banner->deskripsi ?></p>
 				<input type="hidden" name="id" value="<?= $banner->id ?>" />
 			</form>
+		</div>
+		<div class="col-md-5 flex text-center">
+			<img id="display-gambar" class="w-100" src="<?= base_url($banner->gambar) ?>" data-zoom-image="<?= base_url($banner->gambar) ?>" alt="<?= $banner->nama ?>" style="border-radius:16px;">
 		</div>
 	</div>
 </section>
