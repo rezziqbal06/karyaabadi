@@ -45,6 +45,9 @@
     },
     {
       "src":"{{cdn_url}}skin/front/js/xzoom.min.js"
+    },
+    {
+      "src": "{{cdn_url}}skin/admin/js/custom-navbar.js"
     }
     
   ]

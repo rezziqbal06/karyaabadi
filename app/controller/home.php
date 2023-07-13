@@ -28,7 +28,7 @@ class Home extends JI_Controller
 		// 	die();
 		// }
 		$this->setTitle("Beranda" . $this->config->semevar->site_suffix);
-
+		$this->setOGImage(base_url("media/logo.png"));
 		$bpm_popular = $this->bpm->getPopular();
 		if (isset($bpm_popular[0]->id)) $data['bpm'] = $bpm_popular;
 
