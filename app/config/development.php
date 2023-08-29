@@ -77,7 +77,7 @@
  * Site Base URL with http:// or https:// prefix and trailing slash
  * @var string
  */
-$site = "http://" . $_SERVER['HTTP_HOST'] . "/karyaabadi/";
+$site = "http://" . $_SERVER['HTTP_HOST'] . "/almaas98/";
 
 /**
  * URL parse method
@@ -130,7 +130,7 @@ $cdn_url = '';
 $db['host']  = 'localhost';
 $db['user']  = 'root';
 $db['pass']  = '';
-$db['name']  = 'karyaabadi_db';
+$db['name']  = 'almaas98_db';
 $db['port'] = '3306';
 $db['charset'] = 'utf8mb4';
 $db['engine'] = 'mysqli';
@@ -205,18 +205,15 @@ $semevar['fcm']->storageBucket = '';
 $semevar['fcm']->messagingSenderId = '';
 $semevar['fcm']->appId = '';
 
-$semevar['site_title'] = 'Percetakan Karya Abadi';
+$semevar['site_title'] = 'Almaas 98';
 $semevar['site_author'] = $semevar['site_title'];
 $semevar['site_keyword'] = $semevar['site_title'];
 $semevar['site_version'] = '1.0.0-dev';
-$semevar['site_name'] = 'Percetakan Karya Abadi';
-$semevar['admin_site_suffix'] = ' - Percetakan Karya Abadi';
-$semevar['site_suffix'] = ' - Percetakan Karya Abadi';
-$semevar['site_motto'] = 'Inovasi dalam Percetakan, Kualitas Abadi';
-$semevar['site_description'] = 'Kami bangga menjadi bagian dari industri percetakan dan telah memberikan pelayanan berkualitas tinggi kepada pelanggan kami sejak tahun [tahun didirikan]. Dalam perjalanan kami, kami telah menjadi pilihan utama bagi banyak bisnis dan individu yang menginginkan solusi cetak yang luar biasa.
-
-Kami percaya bahwa cetakan adalah representasi visual dari identitas merek Anda. Oleh karena itu, kami berkomitmen untuk menyediakan solusi cetak inovatif, profesional, dan berkualitas untuk memenuhi kebutuhan unik bisnis Anda.';
-$semevar['site_address'] = 'Jl. Gatot Subroto No.503, Karangmekar, Kec. Cimahi Tengah, Kota Cimahi, Jawa Barat 40523';
+$semevar['site_name'] = 'Almaas 98';
+$semevar['admin_site_suffix'] = ' - Almaas 98';
+$semevar['site_suffix'] = ' - Almaas 98';
+$semevar['site_motto'] = '';
+$semevar['site_description'] = '';
 $semevar['site_map'] = 'https://goo.gl/maps/4xDEwPDd2ML3txc59';
 $semevar['site_fb'] = 'https://www.facebook.com/profile.php?id=100054244250465';
 $semevar['site_ig'] = 'https://www.instagram.com/karyaabadi.percetakan/';

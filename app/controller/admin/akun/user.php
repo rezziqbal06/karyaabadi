@@ -1,6 +1,5 @@
 <?php
 
-namespace Controller\Partner;
 
 register_namespace(__NAMESPACE__);
 

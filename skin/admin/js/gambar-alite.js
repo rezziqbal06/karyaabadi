@@ -186,6 +186,7 @@ function setCompressedImage(event, quality=0.8, maxWidth=800, maxHeight=600) {
 
     var file = event.target.files[0];
     if (file) {
+        var originalFormat = file.type.toLowerCase();
         var reader = new FileReader();
         reader.onload = function(readerEvent) {
             var originalImage = new Image();
@@ -217,7 +218,6 @@ function setCompressedImage(event, quality=0.8, maxWidth=800, maxHeight=600) {
         
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(originalImage, 0, 0, width, height);
-                var originalFormat = file.type.toLowerCase();
         
                 const compressedDataUrl = canvas.toDataURL(originalFormat, quality);
                 const compressedDataUrl08 = canvas.toDataURL(originalFormat, 0.8);

@@ -61,23 +61,32 @@ $admin_foto = $this->cdn_url($admin_foto);
 					<span class="nav-link-text ms-1">Pelanggan</span>
 				</a>
 			</li>
+
+			<li class="nav-item">
+				<a class="nav-link " href="<?= base_url_admin() ?>akun/pegawai">
+					<div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+						<i class="ni ni-badge text-info text-sm opacity-10"></i>
+					</div>
+					<span class="nav-link-text ms-1">Pegawai</span>
+				</a>
+			</li>
 			<li class="nav-item mt-3">
 				<h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pengaturan</h6>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link " href="<?= base_url_admin() ?>pengaturan/kategori">
 					<div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-						<i class="ni ni-app text-info text-sm opacity-10"></i>
+						<i class="ni ni-building text-info text-sm opacity-10"></i>
 					</div>
-					<span class="nav-link-text ms-1">Kategori</span>
+					<span class="nav-link-text ms-1">Kawasan</span>
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link " href="<?= base_url_admin() ?>pengaturan/produk">
 					<div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-						<i class="ni ni-app text-danger text-sm opacity-10"></i>
+						<i class="ni ni-shop text-danger text-sm opacity-10"></i>
 					</div>
-					<span class="nav-link-text ms-1">Produk</span>
+					<span class="nav-link-text ms-1">Kavling / Rumah</span>
 				</a>
 			</li>
 			<li class="nav-item">
@@ -88,14 +97,14 @@ $admin_foto = $this->cdn_url($admin_foto);
 					<span class="nav-link-text ms-1">Banner / Promotion</span>
 				</a>
 			</li>
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link " href="<?= base_url_admin() ?>pengaturan/partner">
 					<div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
 						<i class="ni ni-building text-success text-sm opacity-10"></i>
 					</div>
 					<span class="nav-link-text ms-1">Partner</span>
 				</a>
-			</li>
+			</li> -->
 			<li class="nav-item">
 				<a class="nav-link " href="<?= base_url_admin() ?>pengaturan/blog">
 					<div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
