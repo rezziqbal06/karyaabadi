@@ -1,9 +1,5 @@
 <?php
-
-namespace Model\Admin;
-
-register_namespace(__NAMESPACE__);
-class A_Pengguna_Model extends  \Model\A_Pengguna_Concern
+class A_Pengguna_Model extends \Sene_Model
 {
 	var $tbl = 'a_pengguna';
 	var $tbl_as = 'ap';
@@ -29,7 +25,6 @@ class A_Pengguna_Model extends  \Model\A_Pengguna_Concern
 	{
 		parent::__construct();
 		$this->db->from($this->tbl, $this->tbl_as);
-		$this->point_of_view = 'admin';
 	}
 	public function auth($username)
 	{
@@ -39,7 +34,7 @@ class A_Pengguna_Model extends  \Model\A_Pengguna_Concern
 			->where_as("username", $this->db->esc($username), "OR", "=", 0, 1);
 		return $this->db->get_first('object', 0); //
 	}
-	public function checkToken($token, $kind = "api_web")
+	public function checkToken( $token, $kind = "api_web")
 	{
 		$dt = $this->db->where($kind . '_token', $token)->get();
 		if (count($dt) > 1) {
@@ -109,7 +104,104 @@ class A_Pengguna_Model extends  \Model\A_Pengguna_Concern
 		}
 		return $this->db->get('', 0);
 	}
+	public function update($id, $du)
+	{
+		$this->db->where('id', $id);
+		return $this->db->update($this->tbl, $du);
+	}
+	public function getTerapisByCompanyId($a_company_id)
+	{
+		$this->db->from($this->tbl, $this->tbl_as);
+		$this->db->where_as("$this->tbl_as.a_company_id", $a_company_id);
+		$this->db->where_in("a_jabatan_nama", array('Terapis', 'Dokter', 'Perawat'));
+		return $this->db->get();
+	}
+	public function getDokterByCabang($a_company_id)
+	{
+		$this->db->where_as("LOWER(a_jabatan_nama)", $this->db->esc('dokter'));
+		$this->db->where("a_company_id", $a_company_id);
+		return $this->db->get();
+	}
 
+	public function getTerapisByCabang($a_company_id)
+	{
+		$this->db->from($this->tbl, $this->tbl_as);
+		$this->db->where_as("$this->tbl_as.is_active", 1);
+		$this->db->where_as("$this->tbl_as.a_company_id", $a_company_id);
+		$this->db->where_in("a_jabatan_nama", array('Terapis', 'Dokter', 'Perawat'));
+		return $this->db->get();
+	}
+
+	public function getTerapisPoinRedeem($a_pengguna_id, $beli_mindate, $beli_maxdate)
+	{
+		$this->db->select_as("$this->tbl7_as.a_pengguna_id_terapis", 'a_pengguna_id_terapis', 0);
+		$this->db->select_as("$this->tbl3_as.nama", 'produk', 0);
+		$this->db->select_as("$this->tbl3_as.poin_terapis", 'poin_terapis', 0);
+		$this->db->select_as("COUNT(*)", 'total_tindakan', 0);
+		$this->db->select_as("((cp.poin_terapis) * COUNT(*))", 'total_poin', 0);
+		$this->db->from($this->tbl7, $this->tbl7_as);
+		$this->db->between("DATE($this->tbl8_as.cdate)", "DATE('$beli_mindate')", "DATE('$beli_maxdate')");
+		$this->db->join($this->tbl3, $this->tbl3_as, "id", $this->tbl7_as, 'c_produk_id', '');
+		$this->db->join($this->tbl8, $this->tbl8_as, "id", $this->tbl7_as, 'd_redeem_id', '');
+		$this->db->join($this->tbl4, $this->tbl4_as, "id", $this->tbl8_as, 'd_order_id', '');
+		$this->db->where_as("COALESCE($this->tbl7_as.a_pengguna_id_terapis,'0')", $a_pengguna_id);
+		$this->db->where_as("COALESCE($this->tbl4_as.utype,'0')", $this->db->esc("order_selesai"));
+		$this->db->group_by("$this->tbl7_as.c_produk_id");
+		return $this->db->get('', 0);
+	}
+
+	public function getTerapisPoinOrder($a_pengguna_id, $beli_mindate, $beli_maxdate)
+	{
+		$this->db->select_as("$this->tbl5_as.a_pengguna_id_terapis", 'a_pengguna_id_terapis', 0);
+		$this->db->select_as("$this->tbl3_as.nama", 'produk', 0);
+		$this->db->select_as("$this->tbl3_as.utype", 'c_produk_utype', 0);
+		$this->db->select_as("$this->tbl3_as.poin_terapis", 'poin_terapis', 0);
+		$this->db->select_as("SUM($this->tbl5_as.qty)", 'total_tindakan', 0);
+		$this->db->select_as("(($this->tbl3_as.poin_terapis) * SUM($this->tbl5_as.qty))", 'total_poin', 0);
+		$this->db->from($this->tbl5, $this->tbl5_as);
+		$this->db->join($this->tbl4, $this->tbl4_as, "id", $this->tbl5_as, 'd_order_id', '');
+		$this->db->join($this->tbl3, $this->tbl3_as, "id", $this->tbl5_as, 'c_produk_id', '');
+		$this->db->where_as("COALESCE($this->tbl5_as.a_pengguna_id_terapis,'0')", $a_pengguna_id);
+		$this->db->where_as("COALESCE($this->tbl4_as.utype,'0')", $this->db->esc("order_selesai"));
+		$this->db->between("DATE(COALESCE($this->tbl5_as.sdate,$this->tbl4_as.date_order))", "DATE('$beli_mindate')", "DATE('$beli_maxdate')");
+		$this->db->group_by("CONCAT($this->tbl5_as.c_produk_id,'-',$this->tbl5_as.a_pengguna_id_terapis)");
+		return $this->db->get('', 0);
+	}
+
+	public function getAsistensiPoinRedeem($a_pengguna_id, $beli_mindate, $beli_maxdate)
+	{
+		$this->db->select_as("$this->tbl7_as.a_pengguna_id_asistensi", 'a_pengguna_id_asistensi', 0);
+		$this->db->select_as("$this->tbl3_as.nama", 'produk', 0);
+		$this->db->select_as("$this->tbl3_as.poin_asistensi", 'poin_asistensi', 0);
+		$this->db->select_as("COUNT(*)", 'total_tindakan', 0);
+		$this->db->select_as("((cp.poin_asistensi) * COUNT(*))", 'total_poin', 0);
+		$this->db->from($this->tbl7, $this->tbl7_as);
+		$this->db->between("DATE($this->tbl8_as.cdate)", "DATE('$beli_mindate')", "DATE('$beli_maxdate')");
+		$this->db->join($this->tbl3, $this->tbl3_as, "id", $this->tbl7_as, 'c_produk_id', '');
+		$this->db->join($this->tbl8, $this->tbl8_as, "id", $this->tbl7_as, 'd_redeem_id', '');
+		$this->db->join($this->tbl4, $this->tbl4_as, "id", $this->tbl8_as, 'd_order_id', '');
+		$this->db->where_as("COALESCE($this->tbl7_as.a_pengguna_id_asistensi,'0')", $a_pengguna_id);
+		$this->db->where_as("COALESCE($this->tbl4_as.utype,'0')", $this->db->esc("order_selesai"));
+		$this->db->group_by("$this->tbl7_as.c_produk_id");
+		return $this->db->get('', 0);
+	}
+
+	public function getAsistensiPoinOrder($a_pengguna_id, $beli_mindate, $beli_maxdate)
+	{
+		$this->db->select_as("$this->tbl5_as.a_pengguna_id_asistensi", 'a_pengguna_id_asistensi', 0);
+		$this->db->select_as("$this->tbl3_as.nama", 'produk', 0);
+		$this->db->select_as("$this->tbl3_as.poin_asistensi", 'poin_asistensi', 0);
+		$this->db->select_as("SUM($this->tbl5_as.qty)", 'total_tindakan', 0);
+		$this->db->select_as("((cp.poin_asistensi) * SUM($this->tbl5_as.qty))", 'total_poin', 0);
+		$this->db->from($this->tbl5, $this->tbl5_as);
+		$this->db->join($this->tbl3, $this->tbl3_as, "id", $this->tbl5_as, 'c_produk_id', '');
+		$this->db->join($this->tbl4, $this->tbl4_as, "id", $this->tbl5_as, 'd_order_id', '');
+		$this->db->between("DATE(COALESCE($this->tbl5_as.sdate,$this->tbl4_as.date_order))", "DATE('$beli_mindate')", "DATE('$beli_maxdate')");
+		$this->db->where_as("COALESCE($this->tbl5_as.a_pengguna_id_asistensi,'0')", $a_pengguna_id);
+		$this->db->where_as("COALESCE($this->tbl4_as.utype,'0')", $this->db->esc("order_selesai"));
+		$this->db->group_by("$this->tbl5_as.c_produk_id");
+		return $this->db->get('', 0);
+	}
 	public function downloadXLS($a_company_id = "")
 	{
 		$this->db->select_as("$this->tbl_as.id", 'id', 0);
@@ -130,5 +222,13 @@ class A_Pengguna_Model extends  \Model\A_Pengguna_Concern
 		$this->db->where('is_active', 1);
 		$this->db->order_by('nama', 'asc');
 		return $this->db->get();
+	}
+	public function set($di)
+	{
+		if (!is_array($di)) {
+			return 0;
+		}
+		$this->db->insert($this->tbl, $di, 0, 0);
+		return $this->db->last_id;
 	}
 }
